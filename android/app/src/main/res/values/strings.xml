@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Money Flow</string>
+    <string name="title_activity_main">Money Flow</string>
+    <string name="package_name">dev.astsu.moneyflow</string>
+    <string name="custom_url_scheme">dev.astsu.moneyflow</string>
+</resources>
