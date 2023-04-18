@@ -1,3 +1,91 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  :root {
+    --color-base: #24273a;
+    --color-mantle: #1e2030;
+    --color-crust: #181926;
+
+    --color-surface0: #363a4f;
+    --color-surface1: #494d64;
+    --color-surface2: #5b6078;
+
+    --color-overlay0: #6e738d;
+    --color-overlay1: #8087a2;
+    --color-overlay2: #939ab7;
+
+    --color-text: #cad3f5;
+    --color-subtext0: #a5adcb;
+    --color-subtext1: #b8c0e0;
+
+    --color-lavender: #b7bdf8;
+    --color-blue: #8aadf4;
+    --color-sapphire: #7dc4e4;
+    --color-sky: #91d7e3;
+    --color-teal: #8bd5ca;
+    --color-green: #a6da95;
+    --color-yellow: #eed49f;
+    --color-peach: #f5a97f;
+    --color-maroon: #ee99a0;
+    --color-red: #ed8796;
+    --color-mauve: #c6a0f6;
+    --color-pink: #f5bde6;
+    --color-flamingo: #f0c6c6;
+    --color-rosewater: #f4dbd6;
+  }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-family: JetBrainsMono;
+  font-size: 16px;
+}
+
+@font-face {
+  font-family: "JetBrainsMono";
+  src: url("../shared/ui/assets/fonts/JetBrainsMono-Regular.ttf");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "JetBrainsMono";
+  src: url("../shared/ui/assets/fonts/JetBrainsMono-Regular.ttf");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "JetBrainsMono";
+  src: url("../shared/ui/assets/fonts/JetBrainsMono-Medium.ttf");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "JetBrainsMono";
+  src: url("../shared/ui/assets/fonts/JetBrainsMono-SemiBold.ttf");
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "JetBrainsMono";
+  src: url("../shared/ui/assets/fonts/JetBrainsMono-Bold.ttf");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "JetBrainsMono";
+  src: url("../shared/ui/assets/fonts/JetBrainsMono-ExtraBold.ttf");
+  font-weight: 800;
+  font-style: normal;
+}
