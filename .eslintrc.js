@@ -7,11 +7,10 @@ module.exports = {
     "plugin:react-hooks/recommended",
     "plugin:import/recommended",
     "plugin:import/typescript",
-    "plugin:boundaries/recommended",
     "prettier",
   ],
   parser: "@typescript-eslint/parser",
-  plugins: ["@typescript-eslint", "react", "boundaries", "prettier"],
+  plugins: ["@typescript-eslint", "react", "prettier"],
   rules: {
     "prettier/prettier": "error",
     "react/react-in-jsx-scope": "off",
@@ -61,55 +60,114 @@ module.exports = {
         ],
       },
     ],
-    "import/default": "off",
-    "import/no-named-as-default-member": "off",
-    "boundaries/element-types": [
+    "import/no-restricted-paths": [
       "error",
       {
-        default: "disallow",
-        rules: [
+        zones: [
+          // processes
           {
-            from: "app",
-            allow: [
-              "processes",
-              "pages",
-              "widgets",
-              "features",
-              "entities",
-              "shared",
-            ],
+            target: "src/processes",
+            from: "src/app",
+          },
+
+          // pages
+          {
+            target: "src/pages",
+            from: "src/app",
           },
           {
-            from: "processes",
-            allow: ["pages", "widgets", "features", "entities", "shared"],
+            target: "src/pages",
+            from: "src/processes",
+          },
+
+          // widgets
+          {
+            target: "src/widgets",
+            from: "src/app",
           },
           {
-            from: "pages",
-            allow: ["widgets", "features", "entities", "shared"],
+            target: "src/widgets",
+            from: "src/processes",
           },
-          { from: "widgets", allow: ["features", "entities", "shared"] },
           {
-            from: "features",
-            allow: ["entities", "shared"],
+            target: "src/widgets",
+            from: "src/pages",
           },
-          { from: "entities", allow: ["shared"] },
-          { from: "shared", allow: ["shared"] },
+
+          // features
+          {
+            target: "src/features",
+            from: "src/app",
+          },
+          {
+            target: "src/features",
+            from: "src/processes",
+          },
+          {
+            target: "src/features",
+            from: "src/pages",
+          },
+          {
+            target: "src/features",
+            from: "src/widgets",
+          },
+
+          // entities
+          {
+            target: "src/entities",
+            from: "src/app",
+          },
+          {
+            target: "src/entities",
+            from: "src/processes",
+          },
+          {
+            target: "src/entities",
+            from: "src/pages",
+          },
+          {
+            target: "src/entities",
+            from: "src/widgets",
+          },
+          {
+            target: "src/entities",
+            from: "src/features",
+          },
+
+          // shared
+          {
+            target: "src/shared",
+            from: "src/app",
+          },
+          {
+            target: "src/shared",
+            from: "src/processes",
+          },
+          {
+            target: "src/shared",
+            from: "src/pages",
+          },
+          {
+            target: "src/shared",
+            from: "src/widgets",
+          },
+          {
+            target: "src/shared",
+            from: "src/features",
+          },
+          {
+            target: "src/shared",
+            from: "src/entities",
+          },
         ],
       },
     ],
+    "import/default": "off",
+    "import/no-named-as-default-member": "off",
   },
   settings: {
     "import/resolver": {
       typescript: true,
     },
-    "boundaries/elements": [
-      { type: "app", pattern: "src/app/*" },
-      { type: "processes", pattern: "src/processes/*" },
-      { type: "pages", pattern: "src/pages/*" },
-      { type: "widgets", pattern: "src/widgets/*" },
-      { type: "features", pattern: "src/features/*" },
-      { type: "entities", pattern: "src/entities/*" },
-      { type: "shared", pattern: "src/shared/*" },
-    ],
   },
 };
