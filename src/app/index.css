@@ -27,7 +27,10 @@
     --color-sapphire: #7dc4e4;
     --color-sky: #91d7e3;
     --color-teal: #8bd5ca;
+
     --color-green: #a6da95;
+    --color-green-active: #b8e1aa; /* brightness +20% */
+
     --color-yellow: #eed49f;
     --color-peach: #f5a97f;
     --color-maroon: #ee99a0;
@@ -36,6 +39,8 @@
     --color-red-active: #f19fab;
 
     --color-mauve: #c6a0f6;
+    --color-mauve-active: #d1b3f8; /* brightness +20% */
+
     --color-pink: #f5bde6;
     --color-flamingo: #f0c6c6;
     --color-rosewater: #f4dbd6;

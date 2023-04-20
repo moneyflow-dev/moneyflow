@@ -29,7 +29,10 @@ export default {
       sapphire: "var(--color-sapphire)",
       sky: "var(--color-sky)",
       teal: "var(--color-teal)",
+
       green: "var(--color-green)",
+      "green-active": "var(--color-green-active)",
+
       yellow: "var(--color-yellow)",
       peach: "var(--color-peach)",
       maroon: "var(--color-maroon)",
@@ -38,12 +41,22 @@ export default {
       "red-active": "var(--color-red-active)",
 
       mauve: "var(--color-mauve)",
+      "mauve-active": "var(--color-mauve-active)",
+
       pink: "var(--color-pink)",
       flamingo: "var(--color-flamingo)",
       rosewater: "var(--color-rosewater)",
     },
     borderRadius: {
       DEFAULT: "0.675rem",
+      full: "9999px",
+    },
+    dropShadow: {
+      "floating-action-button-lavender":
+        "0px 2px 40px rgba(183, 189, 248, 0.3)",
+      "floating-action-button-red": "0px 2px 40px rgba(238, 153, 160, 0.3)",
+      "floating-action-button-green": "0px 2px 40px rgba(166, 218, 149, 0.3)",
+      "floating-action-button-mauve": "0px 2px 40px rgba(198, 160, 246, 0.3)",
     },
     extend: {},
   },
