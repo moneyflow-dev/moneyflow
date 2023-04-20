@@ -39,15 +39,17 @@ export const Button = ({
   size = "large",
   variant = "solid",
   disabled = false,
+  className,
   children,
   ...props
 }: ButtonProps) => {
   return (
     <button
       className={twMerge(
-        "rounded transition-colors",
+        "rounded transition-colors inline-flex justify-center",
         sizeToClassName[size],
         variantToClassName[variant](disabled),
+        className,
       )}
       disabled={disabled}
       {...props}
