@@ -48,6 +48,7 @@ export default {
       rosewater: "var(--color-rosewater)",
     },
     borderRadius: {
+      sm: "0.375rem",
       DEFAULT: "0.675rem",
       full: "9999px",
     },
@@ -58,7 +59,11 @@ export default {
       "floating-action-button-green": "0px 2px 40px rgba(166, 218, 149, 0.3)",
       "floating-action-button-mauve": "0px 2px 40px rgba(198, 160, 246, 0.3)",
     },
-    extend: {},
+    extend: {
+      spacing: {
+        1.25: "0.3125rem",
+      },
+    },
   },
   plugins: [],
 };
