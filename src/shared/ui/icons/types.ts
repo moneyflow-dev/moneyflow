@@ -1,4 +1,4 @@
-export type IconSize = "small" | "large";
+export type IconSize = "small" | "medium" | "large";
 
 export interface IconProps {
   size: IconSize;

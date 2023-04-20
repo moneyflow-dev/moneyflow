@@ -21,3 +21,6 @@ export { LockIcon } from "./lock-icon";
 export { PlusIcon } from "./plus-icon";
 export { SackDollarIcon } from "./sack-dollar-icon";
 export { TrashIcon } from "./trash-icon";
+export { UpArrowIcon } from "./up-arrow-icon";
+export { DownArrowIcon } from "./down-arrow-icon";
+export { RightLeftArrowIcon } from "./right-left-arrow-icon";
