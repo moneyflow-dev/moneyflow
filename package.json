@@ -6,6 +6,8 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
+    "android": "cap run android",
+    "sync": "cap sync",
     "lint": "eslint src",
     "postinstall": "husky install"
   },
