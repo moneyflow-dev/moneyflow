@@ -21,6 +21,8 @@
     --color-subtext1: #b8c0e0;
 
     --color-lavender: #b7bdf8;
+    --color-lavender-active: #c5caf9; /* brightness +20% */
+
     --color-blue: #8aadf4;
     --color-sapphire: #7dc4e4;
     --color-sky: #91d7e3;
@@ -29,7 +31,10 @@
     --color-yellow: #eed49f;
     --color-peach: #f5a97f;
     --color-maroon: #ee99a0;
+
     --color-red: #ed8796;
+    --color-red-active: #f19fab;
+
     --color-mauve: #c6a0f6;
     --color-pink: #f5bde6;
     --color-flamingo: #f0c6c6;
@@ -46,6 +51,16 @@
 html {
   font-family: JetBrainsMono;
   font-size: 16px;
+  user-select: none;
+}
+
+button {
+  all: unset;
+  cursor: default;
+}
+
+input {
+  all: unset;
 }
 
 @font-face {

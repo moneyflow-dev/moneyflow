@@ -23,6 +23,8 @@ export default {
       subtext1: "var(--color-subtext1)",
 
       lavender: "var(--color-lavender)",
+      "lavender-active": "var(--color-lavender-active)",
+
       blue: "var(--color-blue)",
       sapphire: "var(--color-sapphire)",
       sky: "var(--color-sky)",
@@ -31,11 +33,17 @@ export default {
       yellow: "var(--color-yellow)",
       peach: "var(--color-peach)",
       maroon: "var(--color-maroon)",
+
       red: "var(--color-red)",
+      "red-active": "var(--color-red-active)",
+
       mauve: "var(--color-mauve)",
       pink: "var(--color-pink)",
       flamingo: "var(--color-flamingo)",
       rosewater: "var(--color-rosewater)",
+    },
+    borderRadius: {
+      DEFAULT: "0.675rem",
     },
     extend: {},
   },
