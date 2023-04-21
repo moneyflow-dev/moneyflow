@@ -5,7 +5,7 @@ interface RadioButtonProps<T> extends RadioOptionProps<"li", T> {
   className?: string;
 }
 
-export function RadioButton<T>({
+export function TabLikeRadioButton<T>({
   children,
   className,
   ...props

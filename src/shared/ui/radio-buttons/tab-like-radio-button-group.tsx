@@ -10,7 +10,7 @@ interface RadioButtonGroupProps<T> extends RadioGroupProps<"ul", T> {
   containerClassName?: string;
 }
 
-export function RadioButtonGroup<T>({
+export function TabLikeRadioButtonGroup<T>({
   children,
   className,
   containerClassName,
