@@ -27,9 +27,7 @@ export const Checkbox = ({
     >
       <Switch
         className={twMerge(
-          `p-1.25 rounded-sm transition-colors ${
-            checked ? "bg-lavender" : "bg-surface1"
-          }`,
+          "p-1.25 rounded-sm transition-colors ui-checked:bg-lavender ui-not-checked:bg-surface1",
           className,
         )}
         checked={checked}
@@ -37,19 +35,19 @@ export const Checkbox = ({
       >
         <CheckIcon
           size="small"
-          className={`w-2.5 h-2.5 transition-transform text-crust ${
-            checked ? "scale-100" : "scale-0"
-          }`}
+          className="w-2.5 h-2.5 transition-transform text-crust ui-checked:scale-100 ui-not-checked:scale-0"
         />
       </Switch>
-      <Switch.Label
-        className={twMerge(
-          "text-text text-[0.875rem]/[1.285714]",
-          labelClassName,
-        )}
-      >
-        {label}
-      </Switch.Label>
+      {label && (
+        <Switch.Label
+          className={twMerge(
+            "text-text text-[0.875rem]/[1.285714]",
+            labelClassName,
+          )}
+        >
+          {label}
+        </Switch.Label>
+      )}
     </Switch.Group>
   );
 };
