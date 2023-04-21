@@ -28,11 +28,12 @@ export const Input = ({
   inputBoxClassName,
   className,
   leftAddon,
+  id,
   ...props
 }: InputProps) => {
   return (
     <div className={twMerge("flex flex-col gap-2", containerClassName)}>
-      {label && <Label label={label} required={required} />}
+      {label && <Label label={label} required={required} htmlFor={id} />}
       <div
         className={twMerge(
           "flex gap-2 items-center py-3 px-4 rounded bg-surface0",
@@ -55,6 +56,7 @@ export const Input = ({
             className,
           )}
           required={required}
+          id={id}
           {...props}
         />
       </div>
