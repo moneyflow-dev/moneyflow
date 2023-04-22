@@ -13,6 +13,8 @@ interface FloatingActionButtonProps
   extends ButtonHTMLAttributes<HTMLButtonElement> {
   size?: FloatingActionButtonSize;
   variant?: FloatingActionButtonVariant;
+  title?: string;
+  titleClassName?: string;
 }
 
 const sizeToClassName: Record<FloatingActionButtonSize, string> = {
@@ -46,22 +48,36 @@ export const FloatingActionButton = ({
   size = "large",
   variant = "solid",
   disabled = false,
+  title,
+  titleClassName,
   className,
   children,
   ...props
 }: FloatingActionButtonProps) => {
   return (
-    <button
-      className={twMerge(
-        "rounded-full transition-colors",
-        sizeToClassName[size],
-        variantToClassName[variant](disabled),
-        className,
+    <div className="flex flex-col items-center gap-2">
+      <button
+        className={twMerge(
+          "rounded-full transition-colors",
+          sizeToClassName[size],
+          variantToClassName[variant](disabled),
+          className,
+        )}
+        disabled={disabled}
+        {...props}
+      >
+        {children}
+      </button>
+      {title && (
+        <span
+          className={twMerge(
+            "text-xs text-text font-bold w-min text-center",
+            titleClassName,
+          )}
+        >
+          {title}
+        </span>
       )}
-      disabled={disabled}
-      {...props}
-    >
-      {children}
-    </button>
+    </div>
   );
 };
