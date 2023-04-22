@@ -61,7 +61,7 @@ export function SelectButton<T>({
         children
       )}
       <DownChevronIcon
-        size="small"
+        size="sm"
         className="text-overlay0 transition-transform ui-open:rotate-180"
       />
     </Listbox.Button>

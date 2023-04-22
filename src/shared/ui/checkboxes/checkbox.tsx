@@ -34,7 +34,7 @@ export const Checkbox = ({
         onChange={onChange}
       >
         <CheckIcon
-          size="small"
+          size="sm"
           className="w-2.5 h-2.5 transition-transform text-crust ui-checked:scale-100 ui-not-checked:scale-0"
         />
       </Switch>
