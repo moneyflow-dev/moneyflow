@@ -51,13 +51,22 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+
+    /* Hide scrollbar */
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+
+  /* Hide scrollbar. Chrome, Opera, Safari */
+  *::-webkit-scrollbar {
+    display: none;
   }
 
   html {
     font-family: JetBrainsMono;
     font-size: calc(
       16px * 1.125
-    ); /* multiply by 1.125 because android pixel are not equal desktop pixel */
+    ); /* multiply by 1.125 because android pixel is not equal desktop pixel */
     user-select: none;
   }
 
