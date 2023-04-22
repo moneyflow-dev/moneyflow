@@ -8,7 +8,7 @@ export default {
       current: "currentColor",
       transparent: "transparent",
 
-      base: "var(--color-base)",
+      "base-color": "var(--color-base)",
       mantle: "var(--color-mantle)",
       crust: "var(--color-crust)",
 
