@@ -11,7 +11,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const sizeToClassName: Record<ButtonSize, string> = {
-  sm: "py-2 px-3 text-xsm font-bold outline-1 -outline-offset-1",
+  sm: "py-2 px-3 text-xs font-bold outline-1 -outline-offset-1",
   md: "py-3 px-4 gap-2.5 text-sm font-bold outline-2 -outline-offset-2",
   lg: "py-3.5 px-5 text-base-size font-bold outline-2 -outline-offset-2",
 };
