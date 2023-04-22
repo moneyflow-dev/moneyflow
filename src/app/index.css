@@ -9,6 +9,7 @@
     --color-crust: #181926;
 
     --color-surface0: #363a4f;
+    --color-surface0-active: #555b7c; /* brightness +20% */
     --color-surface1: #494d64;
     --color-surface2: #5b6078;
 
@@ -45,27 +46,27 @@
     --color-flamingo: #f0c6c6;
     --color-rosewater: #f4dbd6;
   }
-}
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
 
-html {
-  font-family: JetBrainsMono;
-  font-size: 16px;
-  user-select: none;
-}
+  html {
+    font-family: JetBrainsMono;
+    font-size: 16px;
+    user-select: none;
+  }
 
-button {
-  all: unset;
-  cursor: default;
-}
+  button {
+    all: unset;
+    cursor: default;
+  }
 
-input {
-  all: unset;
+  input {
+    all: unset;
+  }
 }
 
 @font-face {

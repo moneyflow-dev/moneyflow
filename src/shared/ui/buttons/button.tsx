@@ -11,9 +11,8 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const sizeToClassName: Record<ButtonSize, string> = {
-  small:
-    "py-2 px-3 text-[0.75rem]/[1.3333334] font-bold outline-1 -outline-offset-1",
-  large: "py-3.5 px-5 text-[1rem]/[1.25] font-bold outline-2 -outline-offset-2",
+  small: "py-2 px-3 text-xsm font-bold outline-1 -outline-offset-1",
+  large: "py-3.5 px-5 text-base font-bold outline-2 -outline-offset-2",
 };
 
 const variantToClassName: Record<ButtonVariant, VariantToClassNameFunction> = {

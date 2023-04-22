@@ -39,12 +39,7 @@ export const Checkbox = ({
         />
       </Switch>
       {label && (
-        <Switch.Label
-          className={twMerge(
-            "text-text text-[0.875rem]/[1.285714]",
-            labelClassName,
-          )}
-        >
+        <Switch.Label className={twMerge("text-text text-sm", labelClassName)}>
           {label}
         </Switch.Label>
       )}

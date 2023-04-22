@@ -15,7 +15,7 @@ export const Label = ({
   return (
     <label
       className={twMerge(
-        "flex items-center gap-2 text-text text-[0.75rem]/[1.33334] font-bold ml-4",
+        "flex items-center gap-2 text-text text-xsm font-bold ml-4",
         className,
       )}
       {...props}

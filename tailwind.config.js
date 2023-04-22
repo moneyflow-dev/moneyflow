@@ -13,6 +13,7 @@ export default {
       crust: "var(--color-crust)",
 
       surface0: "var(--color-surface0)",
+      "surface0-active": "var(--color-surface0-active)",
       surface1: "var(--color-surface1)",
       surface2: "var(--color-surface2)",
 
@@ -60,6 +61,11 @@ export default {
       "floating-action-button-red": "0px 2px 40px rgba(238, 153, 160, 0.3)",
       "floating-action-button-green": "0px 2px 40px rgba(166, 218, 149, 0.3)",
       "floating-action-button-mauve": "0px 2px 40px rgba(198, 160, 246, 0.3)",
+    },
+    fontSize: {
+      xsm: ["0.75rem", "1.32"],
+      sm: ["0.875rem", "1.32"],
+      base: ["1rem", "1.32"],
     },
     extend: {
       spacing: {

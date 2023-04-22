@@ -43,7 +43,7 @@ export const Input = ({
         {leftAddon && (
           <span
             className={twMerge(
-              "text-[0.875rem] text-overlay1 font-bold",
+              "text-sm text-overlay1 font-bold",
               leftAddonContainerClassName,
             )}
           >
@@ -52,7 +52,7 @@ export const Input = ({
         )}
         <input
           className={twMerge(
-            "text-text text-[0.875rem] w-full placeholder-overlay1",
+            "text-text text-sm w-full placeholder-overlay1",
             className,
           )}
           required={required}
