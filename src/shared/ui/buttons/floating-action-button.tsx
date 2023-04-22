@@ -1,7 +1,7 @@
 import { ButtonHTMLAttributes } from "react";
 import { twMerge } from "tailwind-merge";
 
-type FloatingActionButtonSize = "medium" | "large";
+type FloatingActionButtonSize = "md" | "lg";
 type FloatingActionButtonVariant =
   | "solid"
   | "solidRed"
@@ -18,8 +18,8 @@ interface FloatingActionButtonProps
 }
 
 const sizeToClassName: Record<FloatingActionButtonSize, string> = {
-  medium: "p-[1.0625rem]",
-  large: "p-5",
+  md: "p-[1.0625rem]",
+  lg: "p-5",
 };
 
 const variantToClassName: Record<
@@ -45,7 +45,7 @@ const variantToClassName: Record<
 };
 
 export const FloatingActionButton = ({
-  size = "large",
+  size = "lg",
   variant = "solid",
   disabled = false,
   title,
