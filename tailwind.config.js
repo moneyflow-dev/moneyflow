@@ -64,8 +64,10 @@ export default {
     },
     fontSize: {
       xs: ["0.75rem", "1.32"],
+      "body-xs": ["0.75rem", "1.75"],
       sm: ["0.875rem", "1.32"],
       base: ["1rem", "1.32"],
+      h2: ["1rem", { lineHeight: "1.32", fontWeight: "700" }],
     },
     extend: {
       spacing: {
