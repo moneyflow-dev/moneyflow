@@ -24,3 +24,4 @@ export { TrashIcon } from "./trash-icon";
 export { UpArrowIcon } from "./up-arrow-icon";
 export { DownArrowIcon } from "./down-arrow-icon";
 export { RightLeftArrowIcon } from "./right-left-arrow-icon";
+export { DownChevronIcon } from "./down-chevron-icon";
