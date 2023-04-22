@@ -4,47 +4,47 @@
 
 @layer base {
   :root {
-    --color-base: #24273a;
-    --color-mantle: #1e2030;
-    --color-crust: #181926;
+    --color-base: 36, 39, 58;
+    --color-mantle: 30, 32, 48;
+    --color-crust: 24, 25, 38;
 
-    --color-surface0: #363a4f;
-    --color-surface0-active: #555b7c; /* brightness +20% */
-    --color-surface1: #494d64;
-    --color-surface2: #5b6078;
+    --color-surface0: 54, 58, 79;
+    --color-surface0-active: 85, 91, 124; /* brightness +20% */
+    --color-surface1: 73, 77, 100;
+    --color-surface2: 91, 96, 120;
 
-    --color-overlay0: #6e738d;
-    --color-overlay1: #8087a2;
-    --color-overlay2: #939ab7;
+    --color-overlay0: 110, 115, 141;
+    --color-overlay1: 128, 135, 162;
+    --color-overlay2: 147, 154, 183;
 
-    --color-text: #cad3f5;
-    --color-subtext0: #a5adcb;
-    --color-subtext1: #b8c0e0;
+    --color-text: 202, 211, 245;
+    --color-subtext0: 165, 173, 203;
+    --color-subtext1: 184, 192, 224;
 
-    --color-lavender: #b7bdf8;
-    --color-lavender-active: #c5caf9; /* brightness +20% */
+    --color-lavender: 183, 189, 248;
+    --color-lavender-active: 197, 202, 249; /* brightness +20% */
 
-    --color-blue: #8aadf4;
-    --color-sapphire: #7dc4e4;
-    --color-sky: #91d7e3;
-    --color-teal: #8bd5ca;
+    --color-blue: 138, 173, 244;
+    --color-sapphire: 125, 196, 228;
+    --color-sky: 145, 215, 227;
+    --color-teal: 139, 213, 202;
 
-    --color-green: #a6da95;
-    --color-green-active: #b8e1aa; /* brightness +20% */
+    --color-green: 166, 218, 149;
+    --color-green-active: 184, 225, 170; /* brightness +20% */
 
-    --color-yellow: #eed49f;
-    --color-peach: #f5a97f;
-    --color-maroon: #ee99a0;
+    --color-yellow: 238, 212, 159;
+    --color-peach: 245, 169, 127;
+    --color-maroon: 238, 153, 160;
 
-    --color-red: #ed8796;
-    --color-red-active: #f19fab;
+    --color-red: 237, 135, 150;
+    --color-red-active: 241, 159, 171;
 
-    --color-mauve: #c6a0f6;
-    --color-mauve-active: #d1b3f8; /* brightness +20% */
+    --color-mauve: 198, 160, 246;
+    --color-mauve-active: 209, 179, 248; /* brightness +20% */
 
-    --color-pink: #f5bde6;
-    --color-flamingo: #f0c6c6;
-    --color-rosewater: #f4dbd6;
+    --color-pink: 245, 189, 230;
+    --color-flamingo: 240, 198, 198;
+    --color-rosewater: 244, 219, 214;
   }
 
   * {
@@ -55,7 +55,9 @@
 
   html {
     font-family: JetBrainsMono;
-    font-size: 16px;
+    font-size: calc(
+      16px * 1.125
+    ); /* multiply by 1.125 because android pixel are not equal desktop pixel */
     user-select: none;
   }
 
