@@ -1,0 +1,15 @@
+export type ColorPickerColor =
+  | "yellow"
+  | "peach"
+  | "green"
+  | "lavender"
+  | "mauve"
+  | "blue"
+  | "sapphire"
+  | "sky"
+  | "teal"
+  | "maroon"
+  | "red"
+  | "pink"
+  | "flamingo"
+  | "rosewater";
