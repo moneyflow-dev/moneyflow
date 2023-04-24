@@ -20,13 +20,17 @@ module.exports = {
         patterns: [
           // Use public API only
           "@app/**",
+          "@processes/*/**",
           "@pages/*/**",
+          "@widgets/*/**",
           "@features/*/**",
           "@entities/*/**",
           "@shared/*/*/**",
 
           "../**/app",
+          "../**/processes",
           "../**/pages",
+          "../**/widgets",
           "../**/features",
           "../**/entities",
           "../**/shared",
@@ -41,6 +45,7 @@ module.exports = {
         pathGroups: [
           "@processes/**",
           "@pages/**",
+          "@widgets/**",
           "@features/**",
           "@entities/**",
           "@shared/**",
@@ -69,6 +74,10 @@ module.exports = {
             target: "src/processes",
             from: "src/app",
           },
+          {
+            target: "src/processes/*/**/*",
+            from: "src/processes/*/*",
+          },
 
           // pages
           {
@@ -78,6 +87,10 @@ module.exports = {
           {
             target: "src/pages",
             from: "src/processes",
+          },
+          {
+            target: "src/pages/*/**/*",
+            from: "src/pages/*/*",
           },
 
           // widgets
@@ -92,6 +105,10 @@ module.exports = {
           {
             target: "src/widgets",
             from: "src/pages",
+          },
+          {
+            target: "src/widgets/*/**/*",
+            from: "src/widgets/*/*",
           },
 
           // features
@@ -110,6 +127,10 @@ module.exports = {
           {
             target: "src/features",
             from: "src/widgets",
+          },
+          {
+            target: "src/features/*/**/*",
+            from: "src/features/*/*",
           },
 
           // entities
@@ -132,6 +153,10 @@ module.exports = {
           {
             target: "src/entities",
             from: "src/features",
+          },
+          {
+            target: "src/entities/*/**/*",
+            from: "src/entities/*/*",
           },
 
           // shared
