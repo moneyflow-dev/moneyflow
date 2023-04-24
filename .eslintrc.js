@@ -74,6 +74,7 @@ module.exports = {
             target: "src/processes",
             from: "src/app",
           },
+          // Cross import
           {
             target: "src/processes/*/**/*",
             from: "src/processes/*/*",
@@ -88,6 +89,7 @@ module.exports = {
             target: "src/pages",
             from: "src/processes",
           },
+          // Cross import
           {
             target: "src/pages/*/**/*",
             from: "src/pages/*/*",
@@ -106,6 +108,7 @@ module.exports = {
             target: "src/widgets",
             from: "src/pages",
           },
+          // Cross import
           {
             target: "src/widgets/*/**/*",
             from: "src/widgets/*/*",
@@ -128,6 +131,7 @@ module.exports = {
             target: "src/features",
             from: "src/widgets",
           },
+          // Cross import
           {
             target: "src/features/*/**/*",
             from: "src/features/*/*",
@@ -154,6 +158,7 @@ module.exports = {
             target: "src/entities",
             from: "src/features",
           },
+          // Cross import
           {
             target: "src/entities/*/**/*",
             from: "src/entities/*/*",
