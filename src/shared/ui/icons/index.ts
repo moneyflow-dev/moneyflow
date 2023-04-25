@@ -25,3 +25,7 @@ export { UpArrowIcon } from "./up-arrow-icon";
 export { DownArrowIcon } from "./down-arrow-icon";
 export { RightLeftArrowIcon } from "./right-left-arrow-icon";
 export { DownChevronIcon } from "./down-chevron-icon";
+export { ListIcon } from "./list-icon";
+export { SettingsIcon } from "./settings-icon";
+export { StatisticsIcon } from "./statistics-icon";
+export { WalletIcon } from "./wallet-icon";
