@@ -77,7 +77,7 @@ module.exports = {
           // Cross import
           {
             target: "src/processes/*/**/*",
-            from: "src/processes/*/*",
+            from: "src/processes/*/index.ts",
           },
 
           // pages
@@ -92,7 +92,7 @@ module.exports = {
           // Cross import
           {
             target: "src/pages/*/**/*",
-            from: "src/pages/*/*",
+            from: "src/pages/*/index.ts",
           },
 
           // widgets
@@ -111,7 +111,7 @@ module.exports = {
           // Cross import
           {
             target: "src/widgets/*/**/*",
-            from: "src/widgets/*/*",
+            from: "src/widgets/*/index.ts",
           },
 
           // features
@@ -134,7 +134,7 @@ module.exports = {
           // Cross import
           {
             target: "src/features/*/**/*",
-            from: "src/features/*/*",
+            from: "src/features/*/index.ts",
           },
 
           // entities
@@ -161,7 +161,7 @@ module.exports = {
           // Cross import
           {
             target: "src/entities/*/**/*",
-            from: "src/entities/*/*",
+            from: "src/entities/*/index.ts",
           },
 
           // shared
