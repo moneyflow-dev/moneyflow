@@ -1,3 +1,5 @@
+*.keystore
+
 # Logs
 logs
 *.log
