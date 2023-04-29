@@ -29,16 +29,28 @@ export default {
       "lavender-active": "rgba(var(--color-lavender-active), <alpha-value>)",
 
       blue: "rgba(var(--color-blue), <alpha-value>)",
+      "blue-active": "rgba(var(--color-blue-active), <alpha-value>)",
+
       sapphire: "rgba(var(--color-sapphire), <alpha-value>)",
+      "sapphire-active": "rgba(var(--color-sapphire-active), <alpha-value>)",
+
       sky: "rgba(var(--color-sky), <alpha-value>)",
+      "sky-active": "rgba(var(--color-sky-active), <alpha-value>)",
+
       teal: "rgba(var(--color-teal), <alpha-value>)",
+      "teal-active": "rgba(var(--color-teal-active), <alpha-value>)",
 
       green: "rgba(var(--color-green), <alpha-value>)",
       "green-active": "rgba(var(--color-green-active), <alpha-value>)",
 
       yellow: "rgba(var(--color-yellow), <alpha-value>)",
+      "yellow-active": "rgba(var(--color-yellow-active), <alpha-value>)",
+
       peach: "rgba(var(--color-peach), <alpha-value>)",
+      "peach-active": "rgba(var(--color-peach-active), <alpha-value>)",
+
       maroon: "rgba(var(--color-maroon), <alpha-value>)",
+      "maroon-active": "rgba(var(--color-maroon-active), <alpha-value>)",
 
       red: "rgba(var(--color-red), <alpha-value>)",
       "red-active": "rgba(var(--color-red-active), <alpha-value>)",
@@ -47,8 +59,13 @@ export default {
       "mauve-active": "rgba(var(--color-mauve-active), <alpha-value>)",
 
       pink: "rgba(var(--color-pink), <alpha-value>)",
+      "pink-active": "rgba(var(--color-pink-active), <alpha-value>)",
+
       flamingo: "rgba(var(--color-flamingo), <alpha-value>)",
+      "flamingo-active": "rgba(var(--color-flamingo-active), <alpha-value>)",
+
       rosewater: "rgba(var(--color-rosewater), <alpha-value>)",
+      "rosewater-active": "rgba(var(--color-rosewater), <alpha-value>)",
     },
     borderRadius: {
       sm: "0.375rem",

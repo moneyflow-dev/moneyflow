@@ -25,26 +25,43 @@
     --color-lavender-active: 197, 202, 249; /* brightness +20% */
 
     --color-blue: 138, 173, 244;
+    --color-blue-active: 161, 189, 246; /* brightness +20% */
+
     --color-sapphire: 125, 196, 228;
+    --color-sapphire-active: 151, 208, 233; /* brightness +20% */
+
     --color-sky: 145, 215, 227;
+    --color-sky-active: 167, 223, 233; /* brightness +20% */
+
     --color-teal: 139, 213, 202;
+    --color-teal-active: 162, 221, 213; /* brightness +20% */
 
     --color-green: 166, 218, 149;
     --color-green-active: 184, 225, 170; /* brightness +20% */
 
     --color-yellow: 238, 212, 159;
+    --color-yellow-active: 241, 221, 178; /* brightness +20% */
+
     --color-peach: 245, 169, 127;
+    --color-peach-active: 247, 186, 153; /* brightness +20% */
+
     --color-maroon: 238, 153, 160;
+    --color-maroon-active: 241, 173, 179; /* brightness +20% */
 
     --color-red: 237, 135, 150;
-    --color-red-active: 241, 159, 171;
+    --color-red-active: 241, 159, 171; /* brightness +20% */
 
     --color-mauve: 198, 160, 246;
     --color-mauve-active: 209, 179, 248; /* brightness +20% */
 
     --color-pink: 245, 189, 230;
+    --color-pink-active: 247, 202, 235; /* brightness +20% */
+
     --color-flamingo: 240, 198, 198;
+    --color-flamingo-active: 243, 209, 209; /* brightness +20% */
+
     --color-rosewater: 244, 219, 214;
+    --color-rosewater-active: 246, 226, 222; /* brightness +20% */
   }
 
   * {
