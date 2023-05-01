@@ -86,6 +86,7 @@ export default {
       base: ["1rem", "1.32"],
       h2: ["1rem", { lineHeight: "1.32", fontWeight: "700" }],
       xl: ["1.125rem", "1.32"],
+      xxl: ["1.5rem", "1.32"],
     },
     extend: {
       spacing: {
