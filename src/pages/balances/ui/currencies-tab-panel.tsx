@@ -19,7 +19,7 @@ export const CurrenciesTabPanel = () => {
         />
       ))}
       <Link
-        to="/create-currency"
+        to="/currencies/create"
         className="absolute bottom-28 left-1/2 -translate-x-1/2"
       >
         <FloatingActionButton>
