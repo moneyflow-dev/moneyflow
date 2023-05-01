@@ -52,7 +52,7 @@ export const Button = ({
   return (
     <button
       className={twMerge(
-        "rounded transition-colors inline-flex items-center justify-center",
+        "rounded transition inline-flex items-center justify-center",
         sizeToClassName[size],
         variantToClassName[variant](disabled),
         className,
