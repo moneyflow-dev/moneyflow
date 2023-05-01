@@ -1,4 +1,9 @@
-import { InputHTMLAttributes, ReactNode } from "react";
+import {
+  ForwardedRef,
+  InputHTMLAttributes,
+  ReactNode,
+  forwardRef,
+} from "react";
 import { twMerge } from "tailwind-merge";
 
 import { Label } from "../labels";
@@ -20,17 +25,20 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
  * @param inputClassName - className for input element
  * @param leftAddon - element to the left of the input
  * */
-export const Input = ({
-  label,
-  required = false,
-  containerClassName,
-  leftAddonContainerClassName,
-  inputBoxClassName,
-  className,
-  leftAddon,
-  id,
-  ...props
-}: InputProps) => {
+export const Input = forwardRef(function Input(
+  {
+    label,
+    required = false,
+    containerClassName,
+    leftAddonContainerClassName,
+    inputBoxClassName,
+    className,
+    leftAddon,
+    id,
+    ...props
+  }: InputProps,
+  ref: ForwardedRef<HTMLInputElement>,
+) {
   return (
     <div className={twMerge("flex flex-col gap-2", containerClassName)}>
       {label && <Label label={label} required={required} htmlFor={id} />}
@@ -57,9 +65,10 @@ export const Input = ({
           )}
           required={required}
           id={id}
+          ref={ref}
           {...props}
         />
       </div>
     </div>
   );
-};
+});
