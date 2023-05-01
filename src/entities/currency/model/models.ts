@@ -1,7 +1,13 @@
 import { ColorPickerColor } from "@shared/ui/color-pickers";
 
 export type CurrencyID = string;
-export type CurrencySymbolPosition = "left" | "right";
+
+export const CurrencySymbolPosition = {
+  left: "left",
+  right: "right",
+} as const;
+export type CurrencySymbolPosition =
+  (typeof CurrencySymbolPosition)[keyof typeof CurrencySymbolPosition];
 
 export interface CreateCurrency {
   symbol: string;
