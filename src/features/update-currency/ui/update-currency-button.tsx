@@ -23,19 +23,23 @@ export const UpdateCurrencyButton = ({
     updateCurrency: state.updateCurrency,
   }));
   const navigate = useNavigate();
-  const { handleSubmit } = useFormContext<UpdateCurrency>();
+  const { handleSubmit, formState } = useFormContext<UpdateCurrency>();
 
   const onUpdate = async (currency: UpdateCurrency) => {
     await updateCurrency(id, currency);
     navigate(-1);
   };
 
+  const disabled = !formState.isValid;
+
   return (
-    <button onClick={handleSubmit(onUpdate)}>
+    <button onClick={handleSubmit(onUpdate)} disabled={disabled}>
       <CheckIcon
         size="sm"
         className={twMerge(
-          "text-overlay1 active:text-overlay2 transition-colors",
+          `text-overlay1 ${
+            disabled ? "opacity-50" : "active:text-overlay2"
+          } transition-colors`,
           className,
         )}
       />
