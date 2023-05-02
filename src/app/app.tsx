@@ -6,6 +6,7 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
 import { BalancesPage } from "@pages/balances";
 import { CreateCurrencyPage } from "@pages/create-currency";
+import { CurrencyOverviewPage } from "@pages/currency-overview";
 import { RootLayoutPage } from "@pages/root-layout";
 
 import { useLoadState } from "./hooks/use-load-state";
@@ -15,6 +16,10 @@ const router = createBrowserRouter([
     path: "/",
     element: <RootLayoutPage />,
     children: [{ path: "/balances", element: <BalancesPage /> }],
+  },
+  {
+    path: "/currencies/:id",
+    element: <CurrencyOverviewPage />,
   },
   {
     path: "/currencies/create",
