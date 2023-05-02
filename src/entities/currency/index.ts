@@ -5,4 +5,6 @@ export {
   CurrencySymbolPosition,
   type CreateCurrency,
   type Currency,
+  type CurrencyID,
+  type UpdateCurrency,
 } from "./model/models";
