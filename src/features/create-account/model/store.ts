@@ -2,6 +2,7 @@ import { create } from "zustand";
 import { devtools } from "zustand/middleware";
 
 import { AccountIcon } from "@entities/account";
+import { CurrencyID } from "@entities/currency";
 
 import { ColorPickerColor } from "@shared/ui/color-pickers";
 
@@ -10,6 +11,7 @@ import { CreateAccountFormFieldsetData } from "../ui/create-account-form-fieldse
 interface CreateAccountStoreState extends CreateAccountFormFieldsetData {
   getAccountFormState(): CreateAccountFormFieldsetData;
   setAccountFormState(value: CreateAccountFormFieldsetData): void;
+  setCurrencyId(currencyId: CurrencyID | null): void;
   resetAccountFormState(): void;
 }
 
@@ -32,6 +34,9 @@ export const useCreateAccountStore = create<CreateAccountStoreState>()(
     },
     setAccountFormState(value) {
       set({ ...value });
+    },
+    setCurrencyId(currencyId) {
+      set({ currencyId });
     },
     resetAccountFormState() {
       set({

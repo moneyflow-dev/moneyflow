@@ -28,8 +28,12 @@ export const CreateAccountForm = ({ className }: CreateAccountFormProps) => {
     createAccount: state.createAccount,
   }));
 
-  const { getAccountFormState, setAccountFormState, resetAccountFormState } =
-    useCreateAccountStore();
+  const {
+    getAccountFormState,
+    setAccountFormState,
+    resetAccountFormState,
+    setCurrencyId,
+  } = useCreateAccountStore();
 
   const methods = useForm<CreateAccountFormFieldsetData>({
     defaultValues: getAccountFormState(),
@@ -37,7 +41,18 @@ export const CreateAccountForm = ({ className }: CreateAccountFormProps) => {
   });
   const { formState, handleSubmit, watch } = methods;
 
-  const { title, currencyId, color, icon, initialBalance } = watch();
+  const formFields = watch();
+  const { title, currencyId, color, icon, initialBalance } = formFields;
+
+  useEffect(() => {
+    const currency =
+      currencyId === null
+        ? currencyId
+        : currencies.currencies[currencyId] ?? null;
+    if (currency === null) {
+      setCurrencyId(null);
+    }
+  }, [currencyId, currencies.currencies, setCurrencyId]);
 
   useEffect(() => {
     setAccountFormState({ title, currencyId, color, icon, initialBalance });
@@ -47,7 +62,6 @@ export const CreateAccountForm = ({ className }: CreateAccountFormProps) => {
     if (account.currencyId === null) {
       throw new Error("Impossible currencyId on account creation");
     }
-    account.currencyId;
     // Remap object because type guard
     await createAccount({ ...account, currencyId: account.currencyId });
     resetAccountFormState();

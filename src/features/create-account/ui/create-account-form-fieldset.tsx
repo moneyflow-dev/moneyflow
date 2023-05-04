@@ -44,8 +44,11 @@ export const CreateAccountFormFieldset = ({
   const { register, control, watch } =
     useFormContext<CreateAccountFormFieldsetData>();
   const [color, currencyId] = watch(["color", "currencyId"]);
-  const currencySymbol =
-    currencyId === null ? "" : currencies.currencies[currencyId].symbol;
+  const currency =
+    currencyId === null
+      ? currencyId
+      : currencies.currencies[currencyId] ?? null;
+  const currencySymbol = currency === null ? "" : currency.symbol;
 
   return (
     <div className={twMerge("flex flex-col gap-6", className)}>
