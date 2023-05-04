@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
 import { BalancesPage } from "@pages/balances";
+import { CreateAccountPage } from "@pages/create-account";
 import { CreateCurrencyPage } from "@pages/create-currency";
 import { CurrencyOverviewPage } from "@pages/currency-overview";
 import { RootLayoutPage } from "@pages/root-layout";
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
   {
     path: "/currencies/create",
     element: <CreateCurrencyPage />,
+  },
+  {
+    path: "/accounts/create",
+    element: <CreateAccountPage />,
   },
 ]);
 
