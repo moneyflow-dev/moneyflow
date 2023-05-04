@@ -28,7 +28,8 @@ export const CreateAccountForm = ({ className }: CreateAccountFormProps) => {
     createAccount: state.createAccount,
   }));
 
-  const { getAccountFormState, setAccountFormState } = useCreateAccountStore();
+  const { getAccountFormState, setAccountFormState, resetAccountFormState } =
+    useCreateAccountStore();
 
   const methods = useForm<CreateAccountFormFieldsetData>({
     defaultValues: getAccountFormState(),
@@ -49,6 +50,7 @@ export const CreateAccountForm = ({ className }: CreateAccountFormProps) => {
     account.currencyId;
     // Remap object because type guard
     await createAccount({ ...account, currencyId: account.currencyId });
+    resetAccountFormState();
     navigate(-1);
   };
 

@@ -10,6 +10,7 @@ import { CreateAccountFormFieldsetData } from "../ui/create-account-form-fieldse
 interface CreateAccountStoreState extends CreateAccountFormFieldsetData {
   getAccountFormState(): CreateAccountFormFieldsetData;
   setAccountFormState(value: CreateAccountFormFieldsetData): void;
+  resetAccountFormState(): void;
 }
 
 export const useCreateAccountStore = create<CreateAccountStoreState>()(
@@ -31,6 +32,15 @@ export const useCreateAccountStore = create<CreateAccountStoreState>()(
     },
     setAccountFormState(value) {
       set({ ...value });
+    },
+    resetAccountFormState() {
+      set({
+        title: "",
+        currencyId: null,
+        color: ColorPickerColor.peach,
+        icon: AccountIcon.cash,
+        initialBalance: "0",
+      });
     },
   })),
 );
