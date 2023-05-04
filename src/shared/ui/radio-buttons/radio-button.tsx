@@ -20,7 +20,7 @@ const selectedColorToClassName: Record<ColorPickerColor, string> = {
   rosewater: "ui-checked:bg-rosewater",
 };
 
-interface RadioButtonProps<T> extends RadioOptionProps<"li", T> {
+export interface RadioButtonProps<T> extends RadioOptionProps<"li", T> {
   selectedColor: ColorPickerColor;
   className?: string;
 }

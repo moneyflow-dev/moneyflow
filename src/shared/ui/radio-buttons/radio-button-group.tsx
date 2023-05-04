@@ -3,7 +3,7 @@ import { twMerge } from "tailwind-merge";
 
 import { Label } from "../labels";
 
-interface RadioButtonGroupProps<T> extends RadioGroupProps<"ul", T> {
+export interface RadioButtonGroupProps<T> extends RadioGroupProps<"ul", T> {
   label?: string;
   required?: boolean;
   className?: string;
