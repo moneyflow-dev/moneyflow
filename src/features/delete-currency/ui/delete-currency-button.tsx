@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { twMerge } from "tailwind-merge";
 
+import { useAccountsStore } from "@entities/account";
 import { CurrencyID, useCurrenciesStore } from "@entities/currency";
 
 import { Button } from "@shared/ui/buttons";
@@ -17,14 +18,18 @@ export const DeleteCurrencyButton = ({
   id,
   className,
 }: DeleteCurrencyButtonProps) => {
+  const navigate = useNavigate();
   const { deleteCurrency } = useCurrenciesStore((state) => ({
     deleteCurrency: state.deleteCurrency,
   }));
+  const { deleteAccountsByCurrency } = useAccountsStore((state) => ({
+    deleteAccountsByCurrency: state.deleteAccountsByCurrency,
+  }));
   const [confirmationIsOpen, setConfirmationIsOpen] = useState(false);
-  const navigate = useNavigate();
 
   const onDelete = async () => {
     await deleteCurrency(id);
+    await deleteAccountsByCurrency(id);
     navigate(-1);
   };
 
