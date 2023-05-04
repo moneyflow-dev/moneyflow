@@ -49,7 +49,7 @@ export const DeleteCurrencyButton = ({
       </button>
       <Modal
         title="Are you sure?"
-        description="If you delete this account ALL related transactions will be also deleted. Make sure you have a backup."
+        description="If you delete this currency ALL related accounts and transactions will be also deleted. Make sure you have a backup."
         isOpen={confirmationIsOpen}
         onClose={closeConfirmation}
         actions={
