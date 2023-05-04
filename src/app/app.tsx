@@ -4,6 +4,7 @@ import { NavigationBar } from "@hugotomazi/capacitor-navigation-bar";
 import { useEffect } from "react";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
+import { AccountOverviewPage } from "@pages/account-overview";
 import { BalancesPage } from "@pages/balances";
 import { CreateAccountPage } from "@pages/create-account";
 import { CreateCurrencyPage } from "@pages/create-currency";
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
   {
     path: "/currencies/create",
     element: <CreateCurrencyPage />,
+  },
+  {
+    path: "/accounts/:id",
+    element: <AccountOverviewPage />,
   },
   {
     path: "/accounts/create",
