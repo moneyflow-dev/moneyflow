@@ -12,12 +12,14 @@ export const PageLayout = ({
   children,
   className,
   hasHorizontalPaddings = true,
+  hasBottomPadding = false,
 }: PageLayoutProps) => {
   return (
     <div
       className={twMerge(
         "flex flex-col gap-3 overflow-y-auto",
         hasHorizontalPaddings && "px-5",
+        hasBottomPadding && "pb-5",
         className,
       )}
     >
