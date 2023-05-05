@@ -10,11 +10,13 @@ import { Modal } from "@shared/ui/modals";
 
 interface DeleteAccountButtonProps {
   id: AccountID;
+  beforeDelete?(): void;
   className?: string;
 }
 
 export const DeleteAccountButton = ({
   id,
+  beforeDelete,
   className,
 }: DeleteAccountButtonProps) => {
   const navigate = useNavigate();
@@ -24,6 +26,7 @@ export const DeleteAccountButton = ({
   const [confirmationIsOpen, setConfirmationIsOpen] = useState(false);
 
   const onDelete = async () => {
+    beforeDelete && beforeDelete();
     await deleteAccount(id);
     navigate(-1);
   };

@@ -3,7 +3,13 @@ import { devtools } from "zustand/middleware";
 
 import { accountsApi } from "@shared/api/accounts-api";
 
-import { AccountID, Accounts, CreateAccount, UpdateAccount } from "./models";
+import {
+  Account,
+  AccountID,
+  Accounts,
+  CreateAccount,
+  UpdateAccount,
+} from "./models";
 
 interface AccountsStoreState extends Accounts {
   fetchAccounts(): Promise<void>;
@@ -11,10 +17,11 @@ interface AccountsStoreState extends Accounts {
   updateAccount(id: AccountID, account: UpdateAccount): Promise<void>;
   deleteAccount(id: AccountID): Promise<void>;
   deleteAccountsByCurrency(currencyId: string): Promise<AccountID[]>;
+  getAccount(id: AccountID): Account;
 }
 
 export const useAccountsStore = create<AccountsStoreState>()(
-  devtools((set) => ({
+  devtools((set, get) => ({
     order: [],
     accounts: {},
     async fetchAccounts() {
@@ -67,6 +74,9 @@ export const useAccountsStore = create<AccountsStoreState>()(
         ),
       }));
       return idsToDelete;
+    },
+    getAccount(id) {
+      return get().accounts[id];
     },
   })),
 );

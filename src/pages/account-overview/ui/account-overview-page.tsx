@@ -7,13 +7,15 @@ import { Header } from "@widgets/header";
 import {
   CreateAccountFormFieldset,
   createAccountFormFieldsetSchema,
+  CreateAccountFormFieldsetData,
+  UpdateAccountButton,
 } from "@features/create-account";
 import { DeleteAccountButton } from "@features/delete-account";
-import { UpdateAccountButton } from "@features/update-account";
 
-import { UpdateAccount, useAccountsStore } from "@entities/account";
+import { AccountIcon, useAccountsStore } from "@entities/account";
 import { useCurrenciesStore } from "@entities/currency";
 
+import { ColorPickerColor } from "@shared/ui/color-pickers";
 import { PageLayout } from "@shared/ui/layouts";
 
 export const AccountOverviewPage = () => {
@@ -22,24 +24,27 @@ export const AccountOverviewPage = () => {
     throw new Error("Impossible account id");
   }
 
-  const { accounts } = useAccountsStore();
-  const account = accounts[id];
-  if (typeof account === "undefined") {
-    throw new Error("Impossible account id");
-  }
-
   const { currencies } = useCurrenciesStore();
 
-  const methods = useForm<UpdateAccount>({
-    defaultValues: {
-      title: account.title,
-      currencyId: account.currencyId,
-      color: account.color,
-      icon: account.icon,
-      initialBalance: account.initialBalance,
-    },
+  const { getAccount } = useAccountsStore((state) => ({
+    getAccount: state.getAccount,
+  }));
+
+  const methods = useForm<CreateAccountFormFieldsetData>({
+    defaultValues: getAccount(id),
     resolver: zodResolver(createAccountFormFieldsetSchema),
   });
+  const { reset } = methods;
+
+  const beforeDelete = () => {
+    reset({
+      title: "",
+      currencyId: null,
+      color: ColorPickerColor.peach,
+      icon: AccountIcon.cash,
+      initialBalance: "0",
+    });
+  };
 
   return (
     <PageLayout>
@@ -49,7 +54,7 @@ export const AccountOverviewPage = () => {
           backButton
           rightActions={
             <>
-              <DeleteAccountButton id={id} />
+              <DeleteAccountButton id={id} beforeDelete={beforeDelete} />
               <UpdateAccountButton id={id} />
             </>
           }

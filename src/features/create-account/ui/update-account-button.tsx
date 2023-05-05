@@ -2,9 +2,11 @@ import { useFormContext } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { twMerge } from "tailwind-merge";
 
-import { AccountID, UpdateAccount, useAccountsStore } from "@entities/account";
+import { AccountID, useAccountsStore } from "@entities/account";
 
 import { CheckIcon } from "@shared/ui/icons";
+
+import { CreateAccountFormFieldsetData } from "./create-account-form-fieldset";
 
 interface UpdateAccountButtonProps {
   id: AccountID;
@@ -19,10 +21,15 @@ export const UpdateAccountButton = ({
     updateAccount: state.updateAccount,
   }));
   const navigate = useNavigate();
-  const { handleSubmit, formState } = useFormContext<UpdateAccount>();
+  const { handleSubmit, formState } =
+    useFormContext<CreateAccountFormFieldsetData>();
 
-  const onUpdate = async (account: UpdateAccount) => {
-    await updateAccount(id, account);
+  const onUpdate = async (account: CreateAccountFormFieldsetData) => {
+    if (account.currencyId === null) {
+      throw new Error("Impossible currencyId on account creation");
+    }
+    // Remap object because type guard
+    await updateAccount(id, { ...account, currencyId: account.currencyId });
     navigate(-1);
   };
 
