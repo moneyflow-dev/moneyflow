@@ -80,6 +80,7 @@ export default {
       "floating-action-button-mauve": "0px 2px 40px rgba(198, 160, 246, 0.3)",
     },
     fontSize: {
+      xxs: ["0.625rem", "1.32"],
       xs: ["0.75rem", "1.32"],
       "body-xs": ["0.75rem", "1.75"],
       sm: ["0.875rem", "1.32"],
