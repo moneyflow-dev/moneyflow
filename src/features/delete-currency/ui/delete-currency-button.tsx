@@ -11,11 +11,13 @@ import { Modal } from "@shared/ui/modals";
 
 interface DeleteCurrencyButtonProps {
   id: CurrencyID;
+  beforeDelete?(): void;
   className?: string;
 }
 
 export const DeleteCurrencyButton = ({
   id,
+  beforeDelete,
   className,
 }: DeleteCurrencyButtonProps) => {
   const navigate = useNavigate();
@@ -28,6 +30,7 @@ export const DeleteCurrencyButton = ({
   const [confirmationIsOpen, setConfirmationIsOpen] = useState(false);
 
   const onDelete = async () => {
+    beforeDelete && beforeDelete();
     await deleteCurrency(id);
     await deleteAccountsByCurrency(id);
     navigate(-1);

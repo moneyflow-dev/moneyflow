@@ -6,6 +6,7 @@ import { currenciesApi } from "@shared/api/currencies-api";
 import {
   CreateCurrency,
   Currencies,
+  Currency,
   CurrencyID,
   UpdateCurrency,
 } from "./models";
@@ -16,10 +17,11 @@ interface CurrenciesState {
   createCurrency(currency: CreateCurrency): Promise<void>;
   updateCurrency(id: CurrencyID, currency: UpdateCurrency): Promise<void>;
   deleteCurrency(id: CurrencyID): Promise<void>;
+  getCurrency(id: CurrencyID): Currency;
 }
 
 export const useCurrenciesStore = create<CurrenciesState>()(
-  devtools((set) => ({
+  devtools((set, get) => ({
     currencies: { order: [], currencies: {} },
     async fetchCurrencies() {
       const currencies = await currenciesApi.getCurrencies();
@@ -65,6 +67,9 @@ export const useCurrenciesStore = create<CurrenciesState>()(
           ),
         },
       }));
+    },
+    getCurrency(id) {
+      return get().currencies.currencies[id];
     },
   })),
 );
