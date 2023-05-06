@@ -8,6 +8,7 @@ import { Tab, TabGroup, TabList } from "@shared/ui/tabs";
 import { useCategoriesPageStore } from "../model/store";
 
 import { ExpenseCategoriesTabPanel } from "./expense-categories-tab-panel";
+import { IncomeCategoriesTabPanel } from "./income-categories-tab-panel";
 
 export const CategoriesPage = () => {
   const { tab, onChangeTab } = useCategoriesPageStore();
@@ -19,9 +20,11 @@ export const CategoriesPage = () => {
         <TabGroup selectedIndex={tab} onChange={onChangeTab}>
           <TabList label="Category type">
             <Tab>Expense</Tab>
+            <Tab>Income</Tab>
           </TabList>
           <HeadlessTab.Panels>
             <ExpenseCategoriesTabPanel />
+            <IncomeCategoriesTabPanel />
           </HeadlessTab.Panels>
         </TabGroup>
       </main>
