@@ -1,5 +1,7 @@
 import { Dialog, Transition } from "@headlessui/react";
-import { Fragment, ReactNode } from "react";
+import { Fragment, ReactNode, useEffect } from "react";
+
+import { useBackButtonContext } from "@shared/lib/back-button-context";
 
 interface ModalProps {
   title: string;
@@ -16,6 +18,15 @@ export const Modal = ({
   onClose,
   actions,
 }: ModalProps) => {
+  const { register, unregister } = useBackButtonContext();
+
+  useEffect(() => {
+    if (isOpen) {
+      register(onClose, 1000);
+      return () => unregister(onClose);
+    }
+  }, [isOpen, onClose, register, unregister]);
+
   return (
     <Transition appear show={isOpen} as={Fragment}>
       <Dialog as="div" className="relative z-10" onClose={onClose}>
