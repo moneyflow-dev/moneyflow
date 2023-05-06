@@ -9,6 +9,7 @@ export default {
       transparent: "transparent",
 
       "base-color": "rgba(var(--color-base), <alpha-value>)",
+      "base-color-active": "rgba(var(--color-base-active), <alpha-value>)",
       mantle: "rgba(var(--color-mantle), <alpha-value>)",
       crust: "rgba(var(--color-crust), <alpha-value>)",
 
@@ -84,6 +85,7 @@ export default {
       xs: ["0.75rem", "1.32"],
       "body-xs": ["0.75rem", "1.75"],
       sm: ["0.875rem", "1.32"],
+      "body-sm": ["0.875rem", "1.75"],
       base: ["1rem", "1.32"],
       h2: ["1rem", { lineHeight: "1.32", fontWeight: "700" }],
       xl: ["1.125rem", "1.32"],
