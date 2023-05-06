@@ -2,22 +2,40 @@ import { Capacitor } from "@capacitor/core";
 import { StatusBar } from "@capacitor/status-bar";
 import { NavigationBar } from "@hugotomazi/capacitor-navigation-bar";
 import { useEffect } from "react";
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import {
+  Navigate,
+  RouterProvider,
+  createBrowserRouter,
+} from "react-router-dom";
 
 import { AccountOverviewPage } from "@pages/account-overview";
 import { BalancesPage } from "@pages/balances";
+import { CategoriesPage } from "@pages/categories";
 import { CreateAccountPage } from "@pages/create-account";
 import { CreateCurrencyPage } from "@pages/create-currency";
+import { CreateExpenseCategoryPage } from "@pages/create-expense-category";
 import { CurrencyOverviewPage } from "@pages/currency-overview";
+import { ExpenseCategoryOverviewPage } from "@pages/expense-category-overview";
+import { RootPage } from "@pages/root";
 import { RootLayoutPage } from "@pages/root-layout";
+import { SettingsPage } from "@pages/settings";
 
 import { useLoadState } from "./hooks/use-load-state";
 
 const router = createBrowserRouter([
   {
-    path: "/",
     element: <RootLayoutPage />,
-    children: [{ path: "/balances", element: <BalancesPage /> }],
+    children: [
+      { path: "/balances", element: <BalancesPage /> },
+      {
+        path: "/settings",
+        element: <SettingsPage />,
+      },
+    ],
+  },
+  {
+    path: "/",
+    element: <RootPage />,
   },
   {
     path: "/currencies/:id",
@@ -34,6 +52,18 @@ const router = createBrowserRouter([
   {
     path: "/accounts/create",
     element: <CreateAccountPage />,
+  },
+  {
+    path: "/categories",
+    element: <CategoriesPage />,
+  },
+  {
+    path: "/expense-categories/create",
+    element: <CreateExpenseCategoryPage />,
+  },
+  {
+    path: "/expense-categories/:id",
+    element: <ExpenseCategoryOverviewPage />,
   },
 ]);
 
