@@ -6,12 +6,14 @@ import { incomeCategoriesApi } from "@shared/api/income-categories-api";
 import {
   CreateIncomeCategory,
   IncomeCategories,
+  IncomeCategory,
   IncomeCategoryID,
   UpdateIncomeCategory,
 } from "./models";
 
 interface IncomeCategoriesStoreState {
   incomeCategories: IncomeCategories;
+  getIncomeCategory(id: IncomeCategoryID): IncomeCategory;
   fetchIncomeCategories(): Promise<void>;
   createIncomeCategory(category: CreateIncomeCategory): Promise<void>;
   updateIncomeCategory(
@@ -22,8 +24,11 @@ interface IncomeCategoriesStoreState {
 }
 
 export const useIncomeCategoriesStore = create<IncomeCategoriesStoreState>()(
-  devtools((set) => ({
+  devtools((set, get) => ({
     incomeCategories: {},
+    getIncomeCategory(id) {
+      return get().incomeCategories[id];
+    },
     async fetchIncomeCategories() {
       set({
         incomeCategories: await incomeCategoriesApi.getIncomeCategories(),
