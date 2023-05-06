@@ -1,7 +1,7 @@
+import { zodResolver } from "@hookform/resolvers/zod";
 import { useEffect } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { useParams } from "react-router-dom";
-import { twMerge } from "tailwind-merge";
 
 import { Header } from "@widgets/header";
 
@@ -9,6 +9,7 @@ import {
   CreateExpenseCategoryFormData,
   CreateExpenseCategoryFormFieldset,
   UpdateExpenseCategoryButton,
+  createExpenseCategoryFormSchema,
 } from "@features/create-expense-category";
 import { DeleteExpenseCategoryButton } from "@features/delete-expense-category";
 
@@ -35,6 +36,7 @@ export const ExpenseCategoryOverviewPage = () => {
 
   const methods = useForm<CreateExpenseCategoryFormData>({
     defaultValues: category,
+    resolver: zodResolver(createExpenseCategoryFormSchema),
   });
   const { reset } = methods;
 
