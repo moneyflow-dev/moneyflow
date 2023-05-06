@@ -2,7 +2,11 @@ import { Capacitor } from "@capacitor/core";
 import { StatusBar } from "@capacitor/status-bar";
 import { NavigationBar } from "@hugotomazi/capacitor-navigation-bar";
 import { useEffect } from "react";
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import {
+  Navigate,
+  RouterProvider,
+  createBrowserRouter,
+} from "react-router-dom";
 
 import { AccountOverviewPage } from "@pages/account-overview";
 import { BalancesPage } from "@pages/balances";
@@ -18,58 +22,65 @@ import { RootPage } from "@pages/root";
 import { RootLayoutPage } from "@pages/root-layout";
 import { SettingsPage } from "@pages/settings";
 
+import { BackButtonContextProvider } from "@shared/lib/back-button-context";
+
 import { useLoadState } from "./hooks/use-load-state";
 
 const router = createBrowserRouter([
   {
-    element: <RootLayoutPage />,
+    element: <RootPage />,
     children: [
-      { path: "/balances", element: <BalancesPage /> },
       {
-        path: "/settings",
-        element: <SettingsPage />,
+        element: <RootLayoutPage />,
+        children: [
+          { path: "/balances", element: <BalancesPage /> },
+          {
+            path: "/settings",
+            element: <SettingsPage />,
+          },
+        ],
+      },
+      {
+        path: "/",
+        element: <Navigate to="/balances" />,
+      },
+      {
+        path: "/currencies/:id",
+        element: <CurrencyOverviewPage />,
+      },
+      {
+        path: "/currencies/create",
+        element: <CreateCurrencyPage />,
+      },
+      {
+        path: "/accounts/:id",
+        element: <AccountOverviewPage />,
+      },
+      {
+        path: "/accounts/create",
+        element: <CreateAccountPage />,
+      },
+      {
+        path: "/categories",
+        element: <CategoriesPage />,
+      },
+      {
+        path: "/expense-categories/create",
+        element: <CreateExpenseCategoryPage />,
+      },
+      {
+        path: "/expense-categories/:id",
+        element: <ExpenseCategoryOverviewPage />,
+      },
+      {
+        path: "/income-categories/create",
+        element: <CreateIncomeCategoryPage />,
+      },
+      {
+        path: "/income-categories/:id",
+        element: <IncomeCategoryOverviewPage />,
       },
     ],
-  },
-  {
-    path: "/",
-    element: <RootPage />,
-  },
-  {
-    path: "/currencies/:id",
-    element: <CurrencyOverviewPage />,
-  },
-  {
-    path: "/currencies/create",
-    element: <CreateCurrencyPage />,
-  },
-  {
-    path: "/accounts/:id",
-    element: <AccountOverviewPage />,
-  },
-  {
-    path: "/accounts/create",
-    element: <CreateAccountPage />,
-  },
-  {
-    path: "/categories",
-    element: <CategoriesPage />,
-  },
-  {
-    path: "/expense-categories/create",
-    element: <CreateExpenseCategoryPage />,
-  },
-  {
-    path: "/expense-categories/:id",
-    element: <ExpenseCategoryOverviewPage />,
-  },
-  {
-    path: "/income-categories/create",
-    element: <CreateIncomeCategoryPage />,
-  },
-  {
-    path: "/income-categories/:id",
-    element: <IncomeCategoryOverviewPage />,
   },
 ]);
 
@@ -82,5 +93,9 @@ export const App = () => {
       NavigationBar.setTransparency({ isTransparent: true });
     }
   }, []);
-  return <RouterProvider router={router} />;
+  return (
+    <BackButtonContextProvider>
+      <RouterProvider router={router} />
+    </BackButtonContextProvider>
+  );
 };

@@ -1,22 +1,28 @@
 import { App as AppPlugin } from "@capacitor/app";
 import { useEffect } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
+
+import {
+  BackButtonHandler,
+  useBackButtonContext,
+} from "@shared/lib/back-button-context";
 
 export const RootPage = () => {
   const navigate = useNavigate();
+  const { register, unregister } = useBackButtonContext();
 
   useEffect(() => {
-    AppPlugin.addListener("backButton", ({ canGoBack }) => {
+    const handler: BackButtonHandler = ({ canGoBack }) => {
       if (!canGoBack) {
         AppPlugin.minimizeApp();
       } else {
         navigate(-1);
       }
-    });
-    return () => {
-      AppPlugin.removeAllListeners();
     };
-  }, [navigate]);
+    register(handler, 0);
 
-  return <Navigate to="/balances" replace />;
+    return () => unregister(handler);
+  }, [navigate, register, unregister]);
+
+  return <Outlet />;
 };
