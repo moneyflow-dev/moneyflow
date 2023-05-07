@@ -3,13 +3,14 @@ interface FlatNode<I> {
   parentId: I | null;
 }
 
-interface TreeNodeValue<T> {
-  id: T;
-}
-
-interface TreeNode<I, T extends TreeNodeValue<I>> {
+export interface TreeNode<I, T> {
   value: T;
   children: TreeNode<I, T>[];
+  depth: number;
+}
+
+interface FlatTreeNode<T> {
+  value: T;
   depth: number;
 }
 
@@ -24,4 +25,16 @@ export const mapFlatToTree = <I, F extends FlatNode<I>>(
     children: mapFlatToTree(nodes, subNode.id, depth + 1),
     depth,
   }));
+};
+
+export const mapTreeToFlat = <I, F>(
+  nodes: TreeNode<I, F>[],
+): FlatTreeNode<F>[] => {
+  return nodes.flatMap((node) => [
+    {
+      value: node.value,
+      depth: node.depth,
+    },
+    ...mapTreeToFlat(node.children),
+  ]);
 };
