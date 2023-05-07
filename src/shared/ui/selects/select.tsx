@@ -4,7 +4,7 @@ import { twMerge } from "tailwind-merge";
 
 import { Label } from "../labels";
 
-interface SelectProps<T, K> extends ListboxProps<"div", T, K> {
+export interface SelectProps<T, K> extends ListboxProps<"div", T, K> {
   label?: string;
   required?: boolean;
   className?: string;

@@ -23,7 +23,7 @@ export const SelectOptions = ({
     >
       <Listbox.Options
         className={twMerge(
-          "absolute flex flex-col w-full rounded py-1.25 mt-1.5 bg-surface0 overflow-hidden",
+          "absolute flex flex-col w-full rounded py-1.25 mt-1.5 bg-surface0 overflow-y-auto",
           "ui-open:outline ui-open:outline-1 ui-open:-outline-offset-1 ui-open:outline-overlay0",
           className,
         )}
