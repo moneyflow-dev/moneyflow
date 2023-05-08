@@ -194,6 +194,14 @@ module.exports = {
     ],
     "import/default": "off",
     "import/no-named-as-default-member": "off",
+    "@typescript-eslint/no-unused-vars": [
+      "warn",
+      {
+        argsIgnorePattern: "^_",
+        varsIgnorePattern: "^_",
+        caughtErrorsIgnorePattern: "^_",
+      },
+    ],
   },
   settings: {
     "import/resolver": {
