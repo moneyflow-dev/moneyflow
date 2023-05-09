@@ -15,6 +15,7 @@ interface FloatingActionButtonProps
   variant?: FloatingActionButtonVariant;
   title?: string;
   titleClassName?: string;
+  containerClassName?: string;
 }
 
 const sizeToClassName: Record<FloatingActionButtonSize, string> = {
@@ -50,12 +51,18 @@ export const FloatingActionButton = ({
   disabled = false,
   title,
   titleClassName,
+  containerClassName,
   className,
   children,
   ...props
 }: FloatingActionButtonProps) => {
   return (
-    <div className="flex flex-col items-center gap-2">
+    <div
+      className={twMerge(
+        "flex flex-col items-center gap-2",
+        containerClassName,
+      )}
+    >
       <button
         className={twMerge(
           "rounded-full transition-colors",
