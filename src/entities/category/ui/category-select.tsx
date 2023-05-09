@@ -57,12 +57,12 @@ export function CategorySelect({
       >
         {value && createCategoryString(categories, value)}
       </SelectButton>
-      <SelectOptions className="max-h-52">
+      <SelectOptions className="max-h-52 z-10">
         {flattenCategoriesTree.map((category) => (
           <SelectOption
             key={category.value.id}
             value={category.value.id}
-            style={{ paddingInlineStart: `${16 * category.depth}px` }}
+            style={{ paddingInlineStart: `${category.depth}rem` }}
           >
             {category.value.title}
           </SelectOption>
