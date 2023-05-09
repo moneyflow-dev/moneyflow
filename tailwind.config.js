@@ -96,6 +96,9 @@ export default {
         1.25: "0.3125rem",
         1.75: "0.4375rem",
       },
+      rotate: {
+        135: "135deg",
+      },
     },
   },
   plugins: [headlessUiPlugin],
