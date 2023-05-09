@@ -16,8 +16,10 @@ export const useLoadState = () => {
   }));
 
   useEffect(() => {
-    fetchCurrencies();
-    fetchAccounts();
-    fetchExpenseCategories();
+    (async () => {
+      await fetchCurrencies();
+      await fetchAccounts();
+      await fetchExpenseCategories();
+    })();
   }, [fetchCurrencies, fetchAccounts, fetchExpenseCategories]);
 };
