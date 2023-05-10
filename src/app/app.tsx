@@ -13,14 +13,18 @@ import { BalancesPage } from "@pages/balances";
 import { CategoriesPage } from "@pages/categories";
 import { CreateAccountPage } from "@pages/create-account";
 import { CreateCurrencyPage } from "@pages/create-currency";
+import { CreateExpensePage } from "@pages/create-expense";
 import { CreateExpenseCategoryPage } from "@pages/create-expense-category";
 import { CreateIncomeCategoryPage } from "@pages/create-income-category";
 import { CurrencyOverviewPage } from "@pages/currency-overview";
 import { ExpenseCategoryOverviewPage } from "@pages/expense-category-overview";
+import { ExpenseOverviewPage } from "@pages/expense-overview";
 import { IncomeCategoryOverviewPage } from "@pages/income-category-overview";
 import { RootPage } from "@pages/root";
 import { RootLayoutPage } from "@pages/root-layout";
 import { SettingsPage } from "@pages/settings";
+import { StatisticsPage } from "@pages/statistics";
+import { TransactionsPage } from "@pages/transactions";
 
 import { BackButtonContextProvider } from "@shared/lib/back-button-context";
 
@@ -33,6 +37,8 @@ const router = createBrowserRouter([
       {
         element: <RootLayoutPage />,
         children: [
+          { path: "/transactions", element: <TransactionsPage /> },
+          { path: "/statistics", element: <StatisticsPage /> },
           { path: "/balances", element: <BalancesPage /> },
           {
             path: "/settings",
@@ -42,7 +48,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/",
-        element: <Navigate to="/balances" />,
+        element: <Navigate to="/transactions" replace />,
       },
       {
         path: "/currencies/:id",
@@ -79,6 +85,14 @@ const router = createBrowserRouter([
       {
         path: "/income-categories/:id",
         element: <IncomeCategoryOverviewPage />,
+      },
+      {
+        path: "/expenses/create",
+        element: <CreateExpensePage />,
+      },
+      {
+        path: "/expenses/:id",
+        element: <ExpenseOverviewPage />,
       },
     ],
   },
