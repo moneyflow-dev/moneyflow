@@ -26,7 +26,9 @@ export interface DeleteCurrencyDTO {
   id: CurrencyID;
 }
 
+export type CurrenciesMap = Record<CurrencyID, Currency>;
+
 export interface Currencies {
   order: CurrencyID[];
-  currencies: Record<string, Currency>;
+  currencies: CurrenciesMap;
 }

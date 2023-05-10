@@ -7,6 +7,7 @@ export {
   type CreateCurrency,
   type Currency,
   type CurrencyID,
+  type CurrenciesMap,
   type Currencies,
   type UpdateCurrency,
 } from "./model/models";
