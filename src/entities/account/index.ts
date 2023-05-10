@@ -2,6 +2,7 @@ export { useAccountsStore } from "./model/store";
 export type {
   AccountID,
   Account,
+  AccountsMap,
   Accounts,
   CreateAccount,
   UpdateAccount,

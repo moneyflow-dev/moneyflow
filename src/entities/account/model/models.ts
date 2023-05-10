@@ -27,7 +27,9 @@ export interface Account extends CreateAccount {
   id: AccountID;
 }
 
+export type AccountsMap = Record<AccountID, Account>;
+
 export interface Accounts {
   order: AccountID[];
-  accounts: Record<AccountID, Account>;
+  accounts: AccountsMap;
 }
