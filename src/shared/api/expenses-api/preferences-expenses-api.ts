@@ -48,6 +48,7 @@ export class PreferencesExpensesAPI implements ExpensesAPI {
     expenses[id] = { ...expenses[id], ...expense, id };
 
     await this.setState(expenses);
+    return expenses[id];
   }
 
   async deleteExpense(id: string): Promise<void> {

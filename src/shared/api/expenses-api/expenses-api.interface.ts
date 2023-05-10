@@ -12,7 +12,7 @@ import {
 export interface ExpensesAPI {
   getExpenses(): Promise<ExpensesDTO>;
   createExpense(expense: CreateExpenseDTO): Promise<ExpenseDTO>;
-  updateExpense(id: ExpenseID, expense: UpdateExpenseDTO): Promise<void>;
+  updateExpense(id: ExpenseID, expense: UpdateExpenseDTO): Promise<ExpenseDTO>;
   deleteExpense(id: ExpenseID): Promise<void>;
   deleteExpensesByAccounts(accountIds: AccountID[]): Promise<void>;
   deleteExpensesByCategories(categoryIds: ExpenseCategoryID[]): Promise<void>;
