@@ -15,11 +15,13 @@ import { CreateAccountPage } from "@pages/create-account";
 import { CreateCurrencyPage } from "@pages/create-currency";
 import { CreateExpensePage } from "@pages/create-expense";
 import { CreateExpenseCategoryPage } from "@pages/create-expense-category";
+import { CreateIncomePage } from "@pages/create-income";
 import { CreateIncomeCategoryPage } from "@pages/create-income-category";
 import { CurrencyOverviewPage } from "@pages/currency-overview";
 import { ExpenseCategoryOverviewPage } from "@pages/expense-category-overview";
 import { ExpenseOverviewPage } from "@pages/expense-overview";
 import { IncomeCategoryOverviewPage } from "@pages/income-category-overview";
+import { IncomeOverviewPage } from "@pages/income-overview";
 import { RootPage } from "@pages/root";
 import { RootLayoutPage } from "@pages/root-layout";
 import { SettingsPage } from "@pages/settings";
@@ -93,6 +95,14 @@ const router = createBrowserRouter([
       {
         path: "/expenses/:id",
         element: <ExpenseOverviewPage />,
+      },
+      {
+        path: "/incomes/create",
+        element: <CreateIncomePage />,
+      },
+      {
+        path: "/incomes/:id",
+        element: <IncomeOverviewPage />,
       },
     ],
   },
