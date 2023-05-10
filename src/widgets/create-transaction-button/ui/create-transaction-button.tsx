@@ -20,13 +20,15 @@ export const CreateTransactionButton = () => {
     <>
       <ModalWithoutContent isOpen={isOpen} onClose={onClose}>
         <div className="fixed bottom-40 left-1/2 -translate-x-1/2 flex items-end gap-[3.25rem] z-10">
-          <FloatingActionButton
-            size="md"
-            variant="solidGreen"
-            title="Add Income"
-          >
-            <DownArrowIcon size="md" />
-          </FloatingActionButton>
+          <Link to="/incomes/create">
+            <FloatingActionButton
+              size="md"
+              variant="solidGreen"
+              title="Add Income"
+            >
+              <DownArrowIcon size="md" />
+            </FloatingActionButton>
+          </Link>
           <FloatingActionButton
             size="md"
             variant="solidMauve"

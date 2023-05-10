@@ -2,12 +2,13 @@ import { useAccountsStore } from "@entities/account";
 import {
   createCategoryString,
   useExpenseCategoriesStore,
+  useIncomeCategoriesStore,
 } from "@entities/category";
 import {
   createCurrencyAmountString,
   useCurrenciesStore,
 } from "@entities/currency";
-import { ExpenseCard } from "@entities/transaction";
+import { ExpenseCard, IncomeCard } from "@entities/transaction";
 
 import { createTransactionGroupDateString } from "../lib/date";
 import { TransactionGroup } from "../lib/group";
@@ -21,6 +22,7 @@ export const TransactionListGroup = ({
   transactionGroup,
 }: TransactionListGroupProps) => {
   const { expenseCategories } = useExpenseCategoriesStore();
+  const { incomeCategories } = useIncomeCategoriesStore();
   const { accounts } = useAccountsStore();
   const {
     currencies: { currencies },
@@ -52,6 +54,28 @@ export const TransactionListGroup = ({
                     }),
                     categoryTitle: createCategoryString(
                       expenseCategories,
+                      transaction.categoryId,
+                    ),
+                    accountTitle: account.title,
+                    time: transaction.datetime.toFormat("T"),
+                  }}
+                />
+              );
+            }
+            case TransactionType.income: {
+              const account = accounts[transaction.accountId];
+              const currency = currencies[account.currencyId];
+              return (
+                <IncomeCard
+                  key={transaction.id}
+                  income={{
+                    ...transaction,
+                    formattedAmount: createCurrencyAmountString({
+                      currency,
+                      amount: transaction.amount,
+                    }),
+                    categoryTitle: createCategoryString(
+                      incomeCategories,
                       transaction.categoryId,
                     ),
                     accountTitle: account.title,
