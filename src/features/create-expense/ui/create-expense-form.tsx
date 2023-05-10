@@ -1,4 +1,5 @@
 import { zodResolver } from "@hookform/resolvers/zod";
+import { DateTime } from "luxon";
 import { useEffect } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
@@ -101,7 +102,7 @@ export const CreateExpenseForm = ({ className }: CreateExpenseFormProps) => {
       ...expense,
       accountId: expense.accountId,
       categoryId: expense.categoryId,
-      datetime: Date.parse(expense.datetime),
+      datetime: DateTime.fromISO(expense.datetime),
     });
     resetCreateExpenseFormState();
     navigate(-1);

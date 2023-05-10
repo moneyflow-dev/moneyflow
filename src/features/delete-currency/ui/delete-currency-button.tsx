@@ -4,6 +4,7 @@ import { twMerge } from "tailwind-merge";
 
 import { useAccountsStore } from "@entities/account";
 import { CurrencyID, useCurrenciesStore } from "@entities/currency";
+import { useExpensesStore } from "@entities/transaction";
 
 import { Button } from "@shared/ui/buttons";
 import { TrashIcon } from "@shared/ui/icons";
@@ -27,12 +28,16 @@ export const DeleteCurrencyButton = ({
   const { deleteAccountsByCurrency } = useAccountsStore((state) => ({
     deleteAccountsByCurrency: state.deleteAccountsByCurrency,
   }));
+  const { deleteExpensesByAccounts } = useExpensesStore((state) => ({
+    deleteExpensesByAccounts: state.deleteExpensesByAccounts,
+  }));
   const [confirmationIsOpen, setConfirmationIsOpen] = useState(false);
 
   const onDelete = async () => {
     beforeDelete && beforeDelete();
     await deleteCurrency(id);
-    await deleteAccountsByCurrency(id);
+    const accountIds = await deleteAccountsByCurrency(id);
+    await deleteExpensesByAccounts(accountIds);
     navigate(-1);
   };
 

@@ -1,3 +1,5 @@
+import { DateTime } from "luxon";
+
 export type ExpenseID = string;
 
 export interface CreateExpense {
@@ -5,14 +7,14 @@ export interface CreateExpense {
   accountId: string;
   categoryId: string;
   amount: string;
-  datetime: number;
+  datetime: DateTime;
 }
 
 export type UpdateExpense = CreateExpense;
 
 export interface Expense extends CreateExpense {
   id: ExpenseID;
-  createdAt: number;
+  createdAt: DateTime;
 }
 
 export type Expenses = Record<ExpenseID, Expense>;

@@ -1,3 +1,4 @@
+import { DateTime } from "luxon";
 import { create } from "zustand";
 import { devtools } from "zustand/middleware";
 
@@ -14,7 +15,7 @@ import {
 interface ExpensesStoreState {
   expenses: Expenses;
   fetchExpenses(): Promise<void>;
-  getExpense(id: ExpenseID): Promise<Expense>;
+  getExpense(id: ExpenseID): Expense;
   createExpense(expense: CreateExpense): Promise<void>;
   updateExpense(id: ExpenseID, expense: UpdateExpense): Promise<void>;
   deleteExpense(id: ExpenseID): Promise<void>;
@@ -26,21 +27,52 @@ export const useExpensesStore = create<ExpensesStoreState>()(
   devtools((set, get) => ({
     expenses: {},
     async fetchExpenses() {
-      set(await expensesApi.getExpenses());
+      const expenses = await expensesApi.getExpenses();
+      const formattedExpenses = Object.fromEntries(
+        Object.entries(expenses).map(([expenseId, expense]) => [
+          expenseId,
+          {
+            ...expense,
+            datetime: DateTime.fromMillis(expense.datetime),
+            createdAt: DateTime.fromMillis(expense.createdAt),
+          },
+        ]),
+      );
+      set({ expenses: formattedExpenses });
     },
-    async getExpense(id) {
+    getExpense(id) {
       return get().expenses[id];
     },
     async createExpense(expense) {
-      const createdExpense = await expensesApi.createExpense(expense);
+      const createdExpense = await expensesApi.createExpense({
+        ...expense,
+        datetime: expense.datetime.toMillis(),
+      });
       set((state) => ({
-        expenses: { ...state.expenses, [createdExpense.id]: createdExpense },
+        expenses: {
+          ...state.expenses,
+          [createdExpense.id]: {
+            ...createdExpense,
+            createdAt: expense.datetime,
+            datetime: expense.datetime,
+          },
+        },
       }));
     },
     async updateExpense(id, expense) {
-      await expensesApi.updateExpense(id, expense);
+      const updatedExpense = await expensesApi.updateExpense(id, {
+        ...expense,
+        datetime: expense.datetime.toMillis(),
+      });
       set((state) => ({
-        expenses: { ...state.expenses, [id]: { ...expense, id } },
+        expenses: {
+          ...state.expenses,
+          [id]: {
+            ...updatedExpense,
+            datetime: expense.datetime,
+            createdAt: DateTime.fromMillis(updatedExpense.createdAt),
+          },
+        },
       }));
     },
     async deleteExpense(id) {

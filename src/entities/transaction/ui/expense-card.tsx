@@ -27,8 +27,8 @@ export const ExpenseCard = ({ expense }: ExpenseCardProps) => {
         time={expense.time}
         firstProperty={{ title: "Category", value: expense.categoryTitle }}
         secondProperty={{ title: "Account", value: expense.accountTitle }}
-        className="border-green"
-        amountClassName="text-green"
+        className="border-red"
+        amountClassName="text-red"
       />
     </Link>
   );

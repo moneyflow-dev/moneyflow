@@ -2,40 +2,32 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { twMerge } from "tailwind-merge";
 
-import {
-  ExpenseCategoryID,
-  useExpenseCategoriesStore,
-} from "@entities/category";
-import { useExpensesStore } from "@entities/transaction";
+import { ExpenseID, useExpensesStore } from "@entities/transaction";
 
 import { Button } from "@shared/ui/buttons";
 import { TrashIcon } from "@shared/ui/icons";
 import { Modal } from "@shared/ui/modals";
 
-interface DeleteExpenseCategoryButtonProps {
-  id: ExpenseCategoryID;
+interface DeleteExpenseButtonProps {
+  id: ExpenseID;
   beforeDelete?(): void;
   className?: string;
 }
 
-export const DeleteExpenseCategoryButton = ({
+export const DeleteExpenseButton = ({
   id,
   beforeDelete,
   className,
-}: DeleteExpenseCategoryButtonProps) => {
+}: DeleteExpenseButtonProps) => {
   const navigate = useNavigate();
-  const { deleteExpenseCategory } = useExpenseCategoriesStore((state) => ({
-    deleteExpenseCategory: state.deleteExpenseCategory,
-  }));
-  const { deleteExpensesByCategories } = useExpensesStore((state) => ({
-    deleteExpensesByCategories: state.deleteExpensesByCategories,
+  const { deleteExpense } = useExpensesStore((state) => ({
+    deleteExpense: state.deleteExpense,
   }));
   const [confirmationIsOpen, setConfirmationIsOpen] = useState(false);
 
   const onDelete = async () => {
     beforeDelete && beforeDelete();
-    const categoryIds = await deleteExpenseCategory(id);
-    await deleteExpensesByCategories(categoryIds);
+    await deleteExpense(id);
     navigate(-1);
   };
 
@@ -55,7 +47,7 @@ export const DeleteExpenseCategoryButton = ({
       </button>
       <Modal
         title="Are you sure?"
-        description="If you delete this category ALL related sub-categories and transactions will be also deleted. Make sure you have a backup."
+        description="You will not be able to undo this action. Make sure you have a backup."
         isOpen={confirmationIsOpen}
         onClose={closeConfirmation}
         actions={
