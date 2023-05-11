@@ -37,3 +37,26 @@ export interface Income extends CreateIncome {
 }
 
 export type Incomes = Record<IncomeID, Income>;
+
+export type TransferID = string;
+
+export interface CreateTransferAccount {
+  accountId: string;
+  amount: string;
+}
+
+export interface CreateTransfer {
+  title: string;
+  fromAccount: CreateTransferAccount;
+  toAccount: CreateTransferAccount;
+  datetime: DateTime;
+}
+
+export type UpdateTransfer = CreateTransfer;
+
+export interface Transfer extends CreateTransfer {
+  id: TransferID;
+  createdAt: DateTime;
+}
+
+export type Transfers = Record<TransferID, Transfer>;
