@@ -19,7 +19,7 @@ export const AccountsTabPanel = () => {
       />
       <Link
         to="/accounts/create"
-        className="absolute bottom-28 left-1/2 -translate-x-1/2"
+        className="absolute bottom-24 left-1/2 -translate-x-1/2"
       >
         <FloatingActionButton>
           <PlusIcon size="lg" />
