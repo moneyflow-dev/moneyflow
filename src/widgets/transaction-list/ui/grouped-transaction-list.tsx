@@ -1,11 +1,16 @@
 import { twMerge } from "tailwind-merge";
 
-import { useExpensesStore, useIncomesStore } from "@entities/transaction";
+import {
+  useExpensesStore,
+  useIncomesStore,
+  useTransfersStore,
+} from "@entities/transaction";
 
 import { groupTransactionsByDay } from "../lib/group";
 import {
   TransactionListExpense,
   TransactionListIncome,
+  TransactionListTransfer,
   TransactionType,
 } from "../model/models";
 
@@ -20,8 +25,16 @@ export const GroupedTransactionList = () => {
   const incomeTransactions: TransactionListIncome[] = Object.values(
     incomes,
   ).map((income) => ({ ...income, type: TransactionType.income }));
+  const { transfers } = useTransfersStore();
+  const transferTransactions: TransactionListTransfer[] = Object.values(
+    transfers,
+  ).map((transfer) => ({ ...transfer, type: TransactionType.transfer }));
 
-  const transactions = [...expenseTransactions, ...incomeTransactions];
+  const transactions = [
+    ...expenseTransactions,
+    ...incomeTransactions,
+    ...transferTransactions,
+  ];
 
   const transactionGroups = groupTransactionsByDay(transactions);
 

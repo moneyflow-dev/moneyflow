@@ -8,7 +8,7 @@ import {
   createCurrencyAmountString,
   useCurrenciesStore,
 } from "@entities/currency";
-import { ExpenseCard, IncomeCard } from "@entities/transaction";
+import { ExpenseCard, IncomeCard, TransferCard } from "@entities/transaction";
 
 import { createTransactionGroupDateString } from "../lib/date";
 import { TransactionGroup } from "../lib/group";
@@ -79,6 +79,39 @@ export const TransactionListGroup = ({
                       transaction.categoryId,
                     ),
                     accountTitle: account.title,
+                    time: transaction.datetime.toFormat("T"),
+                  }}
+                />
+              );
+            }
+            case TransactionType.transfer: {
+              const fromAccount = accounts[transaction.fromAccount.accountId];
+              const fromAccountCurrency = currencies[fromAccount.currencyId];
+              const toAccount = accounts[transaction.toAccount.accountId];
+              const toAccountCurrency = currencies[toAccount.currencyId];
+
+              return (
+                <TransferCard
+                  key={transaction.id}
+                  transfer={{
+                    id: transaction.id,
+                    title: transaction.title,
+                    fromAccount: {
+                      accountTitle: fromAccount.title,
+                      amount: createCurrencyAmountString({
+                        currency: fromAccountCurrency,
+                        amount: transaction.fromAccount.amount,
+                      }),
+                    },
+                    toAccount: {
+                      accountTitle: toAccount.title,
+                      amount: createCurrencyAmountString({
+                        currency: toAccountCurrency,
+                        amount: transaction.toAccount.amount,
+                      }),
+                    },
+                    sameCurrencies:
+                      fromAccountCurrency.id === toAccountCurrency.id,
                     time: transaction.datetime.toFormat("T"),
                   }}
                 />
