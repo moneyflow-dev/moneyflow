@@ -28,6 +28,7 @@ export const CurrencyPicker = ({
       ))}
       <Link to="/currencies/create">
         <Button
+          type="button"
           size="md"
           variant="outlinedOverlay1"
           className="gap-2.5 min-w-max"
