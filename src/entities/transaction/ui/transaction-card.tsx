@@ -3,14 +3,16 @@ import { twMerge } from "tailwind-merge";
 interface TransactionCardPropertyProps {
   title: string;
   value: string;
+  className?: string;
 }
 
 const TransactionCardProperty = ({
   title,
   value,
+  className,
 }: TransactionCardPropertyProps) => {
   return (
-    <div className="flex flex-col gap-0.5">
+    <div className={twMerge("flex flex-col gap-0.5", className)}>
       <span className="text-xxs text-subtext0">{title}</span>
       <span className="text-xs text-subtext0 font-medium">{value}</span>
     </div>
@@ -50,10 +52,10 @@ export const TransactionCard = ({
           {formattedAmount}
         </span>
       </div>
-      <div className="flex justify-between items-end">
-        <div className="flex justify-between gap-4 w-[65%]">
-          <TransactionCardProperty {...firstProperty} />
-          <TransactionCardProperty {...secondProperty} />
+      <div className="flex justify-between items-end gap-4">
+        <div className="flex flex-1 justify-between gap-4">
+          <TransactionCardProperty className="flex-1" {...firstProperty} />
+          <TransactionCardProperty className="flex-1" {...secondProperty} />
         </div>
         <span className="text-xxs text-subtext0">{time}</span>
       </div>
