@@ -29,18 +29,20 @@ export function RadioButton<T>({
   selectedColor,
   children,
   className,
+  disabled,
   ...props
 }: RadioButtonProps<T>) {
   return (
     <RadioGroup.Option
       as="li"
       className={twMerge(
-        "flex shrink-0 items-center gap-2.5 py-3 px-4 transition-colors font-bold text-sm rounded",
-        "ui-not-checked:bg-surface0 ui-not-checked:text-overlay1",
-        "ui-not-checked:active:bg-surface1 ui-checked:text-crust",
+        "flex shrink-0 items-center gap-2.5 py-3 px-4 transition font-bold text-sm rounded",
+        "ui-not-checked:bg-surface0 ui-not-checked:text-overlay1 ui-checked:text-crust",
+        disabled ? "opacity-50" : "ui-not-checked:active:bg-surface1",
         selectedColorToClassName[selectedColor],
         className,
       )}
+      disabled={disabled}
       {...props}
     >
       {children}
