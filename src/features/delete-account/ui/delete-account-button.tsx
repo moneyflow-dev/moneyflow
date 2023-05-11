@@ -3,7 +3,11 @@ import { useNavigate } from "react-router-dom";
 import { twMerge } from "tailwind-merge";
 
 import { AccountID, useAccountsStore } from "@entities/account";
-import { useExpensesStore } from "@entities/transaction";
+import {
+  useExpensesStore,
+  useIncomesStore,
+  useTransfersStore,
+} from "@entities/transaction";
 
 import { Button } from "@shared/ui/buttons";
 import { TrashIcon } from "@shared/ui/icons";
@@ -27,12 +31,20 @@ export const DeleteAccountButton = ({
   const { deleteExpensesByAccounts } = useExpensesStore((state) => ({
     deleteExpensesByAccounts: state.deleteExpensesByAccounts,
   }));
+  const { deleteIncomesByAccounts } = useIncomesStore((state) => ({
+    deleteIncomesByAccounts: state.deleteIncomesByAccounts,
+  }));
+  const { deleteTransfersByAccounts } = useTransfersStore((state) => ({
+    deleteTransfersByAccounts: state.deleteTransfersByAccounts,
+  }));
   const [confirmationIsOpen, setConfirmationIsOpen] = useState(false);
 
   const onDelete = async () => {
     beforeDelete && beforeDelete();
     await deleteAccount(id);
     await deleteExpensesByAccounts([id]);
+    await deleteIncomesByAccounts([id]);
+    await deleteTransfersByAccounts([id]);
     navigate(-1);
   };
 
