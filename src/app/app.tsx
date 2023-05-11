@@ -17,6 +17,7 @@ import { CreateExpensePage } from "@pages/create-expense";
 import { CreateExpenseCategoryPage } from "@pages/create-expense-category";
 import { CreateIncomePage } from "@pages/create-income";
 import { CreateIncomeCategoryPage } from "@pages/create-income-category";
+import { CreateTransferPage } from "@pages/create-transfer";
 import { CurrencyOverviewPage } from "@pages/currency-overview";
 import { ExpenseCategoryOverviewPage } from "@pages/expense-category-overview";
 import { ExpenseOverviewPage } from "@pages/expense-overview";
@@ -27,6 +28,7 @@ import { RootLayoutPage } from "@pages/root-layout";
 import { SettingsPage } from "@pages/settings";
 import { StatisticsPage } from "@pages/statistics";
 import { TransactionsPage } from "@pages/transactions";
+import { TransferOverviewPage } from "@pages/transfer-overview";
 
 import { BackButtonContextProvider } from "@shared/lib/back-button-context";
 
@@ -103,6 +105,14 @@ const router = createBrowserRouter([
       {
         path: "/incomes/:id",
         element: <IncomeOverviewPage />,
+      },
+      {
+        path: "/transfers/create",
+        element: <CreateTransferPage />,
+      },
+      {
+        path: "/transfers/:id",
+        element: <TransferOverviewPage />,
       },
     ],
   },
