@@ -58,6 +58,7 @@ export const AccountPicker = ({ accounts, ...props }: AccountPickerProps) => {
       ))}
       <Link to="/accounts/create">
         <Button
+          type="button"
           size="md"
           variant="outlinedOverlay1"
           className="gap-2.5 min-w-max"
