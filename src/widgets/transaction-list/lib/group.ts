@@ -1,17 +1,17 @@
 import { DateTime } from "luxon";
 
-import { TransactionListTransaction } from "../model/models";
+import { Transaction } from "@entities/transaction";
 
 export interface TransactionGroup {
   datetime: DateTime;
-  transactions: TransactionListTransaction[];
+  transactions: Transaction[];
 }
 
 export const groupTransactionsByDay = (
-  transactions: TransactionListTransaction[],
+  transactions: Transaction[],
 ): TransactionGroup[] => {
   const groupedTransactions = transactions.reduce<
-    Record<string, TransactionListTransaction[]>
+    Record<string, Transaction[]>
   >((group, transaction) => {
     const key = transaction.datetime.toFormat("yyyy-LL-dd");
     if (key in group) {
