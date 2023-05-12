@@ -4,17 +4,22 @@ export { useTransfersStore } from "./model/transfers-store";
 export { ExpenseCard } from "./ui/expense-card";
 export { IncomeCard } from "./ui/income-card";
 export { TransferCard } from "./ui/transfer-card";
-export {
-  type CreateExpense,
-  type UpdateExpense,
-  type Expense,
-  type ExpenseID,
-  type CreateIncome,
-  type UpdateIncome,
-  type Income,
-  type IncomeID,
-  type CreateTransfer,
-  type UpdateTransfer,
-  type Transfer,
-  type TransferID,
+export { TransactionType } from "./model/models";
+export type {
+  CreateExpense,
+  UpdateExpense,
+  Expense,
+  ExpenseID,
+  CreateIncome,
+  UpdateIncome,
+  Income,
+  IncomeID,
+  CreateTransfer,
+  UpdateTransfer,
+  Transfer,
+  TransferID,
+  TypedExpense,
+  TypedIncome,
+  TypedTransfer,
+  Transaction,
 } from "./model/models";

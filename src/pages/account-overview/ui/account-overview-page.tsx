@@ -3,6 +3,7 @@ import { FormProvider, useForm } from "react-hook-form";
 import { useParams } from "react-router-dom";
 
 import { Header } from "@widgets/header";
+import { GroupedTransactionList } from "@widgets/transaction-list";
 
 import {
   CreateAccountFormFieldset,
@@ -16,6 +17,7 @@ import { AccountIcon, useAccountsStore } from "@entities/account";
 import { useCurrenciesStore } from "@entities/currency";
 
 import { ColorPickerColor } from "@shared/ui/color-pickers";
+import { Divider } from "@shared/ui/dividers";
 import { PageLayout } from "@shared/ui/layouts";
 
 export const AccountOverviewPage = () => {
@@ -30,8 +32,10 @@ export const AccountOverviewPage = () => {
     getAccount: state.getAccount,
   }));
 
+  const account = getAccount(id);
+
   const methods = useForm<CreateAccountFormFieldsetData>({
-    defaultValues: getAccount(id),
+    defaultValues: account,
     resolver: zodResolver(createAccountFormFieldsetSchema),
   });
   const { reset } = methods;
@@ -47,7 +51,7 @@ export const AccountOverviewPage = () => {
   };
 
   return (
-    <PageLayout>
+    <PageLayout hasBottomPadding>
       <FormProvider {...methods}>
         <Header
           title="Account Overview"
@@ -59,7 +63,11 @@ export const AccountOverviewPage = () => {
             </>
           }
         />
-        <CreateAccountFormFieldset currencies={currencies} />
+        <main className="flex flex-col gap-6">
+          <CreateAccountFormFieldset currencies={currencies} />
+          <Divider />
+          {account && <GroupedTransactionList filters={{ accountId: id }} />}
+        </main>
       </FormProvider>
     </PageLayout>
   );

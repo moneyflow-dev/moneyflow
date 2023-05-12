@@ -9,7 +9,7 @@ export const TransactionsPage = () => {
     <PageLayout>
       <Header title="Transactions" />
       <main className="pb-16">
-        <GroupedTransactionList />
+        <GroupedTransactionList showEmptyState />
         <CreateTransactionButton />
       </main>
     </PageLayout>

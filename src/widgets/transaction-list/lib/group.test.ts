@@ -1,13 +1,13 @@
 import { DateTime } from "luxon";
 import { assert, describe, it } from "vitest";
 
-import { TransactionListTransaction, TransactionType } from "../model/models";
+import { Transaction, TransactionType } from "@entities/transaction";
 
 import { groupTransactionsByDay } from "./group";
 
 describe("groupTransactionsByDay", () => {
   it("with same day", () => {
-    const transactions: TransactionListTransaction[] = [
+    const transactions: Transaction[] = [
       {
         type: TransactionType.expense,
         id: "1",
@@ -61,7 +61,7 @@ describe("groupTransactionsByDay", () => {
   });
 
   it("with 2 different days", () => {
-    const transactions: TransactionListTransaction[] = [
+    const transactions: Transaction[] = [
       {
         type: TransactionType.expense,
         id: "1",

@@ -8,11 +8,15 @@ import {
   createCurrencyAmountString,
   useCurrenciesStore,
 } from "@entities/currency";
-import { ExpenseCard, IncomeCard, TransferCard } from "@entities/transaction";
+import {
+  ExpenseCard,
+  IncomeCard,
+  TransferCard,
+  TransactionType,
+} from "@entities/transaction";
 
 import { createTransactionGroupDateString } from "../lib/date";
 import { TransactionGroup } from "../lib/group";
-import { TransactionType } from "../model/models";
 
 interface TransactionListGroupProps {
   transactionGroup: TransactionGroup;

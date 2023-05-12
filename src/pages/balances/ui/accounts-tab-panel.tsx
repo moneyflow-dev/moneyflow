@@ -10,7 +10,7 @@ export const AccountsTabPanel = () => {
   const { order, accounts } = useAccountsStore();
 
   return (
-    <HeadlessTab.Panel as="div" className="text-text flex flex-col gap-2.5">
+    <HeadlessTab.Panel as="div" className="text-text">
       <AccountCardList
         accounts={order.map((accountId) => ({
           account: accounts[accountId],

@@ -4,6 +4,7 @@ import { FormProvider, useForm } from "react-hook-form";
 import { useParams } from "react-router-dom";
 
 import { Header } from "@widgets/header";
+import { GroupedTransactionList } from "@widgets/transaction-list";
 
 import {
   CreateIncomeCategoryFormData,
@@ -19,6 +20,7 @@ import {
 } from "@entities/category";
 
 import { FloatingActionButton } from "@shared/ui/buttons";
+import { Divider } from "@shared/ui/dividers";
 import { PlusIcon } from "@shared/ui/icons";
 import { PageLayout } from "@shared/ui/layouts";
 import { Link } from "@shared/ui/links";
@@ -50,7 +52,7 @@ export const IncomeCategoryOverviewPage = () => {
 
   return (
     category && (
-      <PageLayout>
+      <PageLayout className="pb-44">
         <FormProvider {...methods}>
           <Header
             title="Category Overview"
@@ -82,13 +84,17 @@ export const IncomeCategoryOverviewPage = () => {
               )}
               <Link
                 to={`/income-categories/create?parentId=${category.id}`}
-                className="absolute bottom-20 left-1/2 -translate-x-1/2"
+                className="fixed bottom-20 left-1/2 -translate-x-1/2"
               >
                 <FloatingActionButton>
                   <PlusIcon size="lg" />
                 </FloatingActionButton>
               </Link>
             </div>
+            <Divider />
+            {category && (
+              <GroupedTransactionList filters={{ incomeCategoryId: id }} />
+            )}
           </main>
         </FormProvider>
       </PageLayout>
