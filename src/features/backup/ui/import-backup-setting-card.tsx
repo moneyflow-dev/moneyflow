@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 import { useAccountsStore } from "@entities/account";
 import {
   useExpenseCategoriesStore,
@@ -11,11 +13,15 @@ import {
   useTransfersStore,
 } from "@entities/transaction";
 
+import { Button } from "@shared/ui/buttons";
 import { UploadIcon } from "@shared/ui/icons";
+import { Modal } from "@shared/ui/modals";
 
 import { importBackup } from "../model/import";
 
 export const ImportBackupSettingCard = () => {
+  const [confirmationIsOpen, setConfirmationIsOpen] = useState(false);
+
   const { fetchExpenses } = useExpensesStore((state) => ({
     fetchExpenses: state.fetchExpenses,
   }));
@@ -38,6 +44,9 @@ export const ImportBackupSettingCard = () => {
     fetchIncomeCategories: state.fetchIncomeCategories,
   }));
 
+  const onClick = () => setConfirmationIsOpen(true);
+  const closeConfirmation = () => setConfirmationIsOpen(false);
+
   const onImportBackup = async () => {
     await importBackup();
     await fetchCurrencies();
@@ -47,14 +56,33 @@ export const ImportBackupSettingCard = () => {
     fetchExpenses();
     fetchIncomes();
     fetchTransfers();
+    closeConfirmation();
   };
 
   return (
-    <SettingCard
-      icon={<UploadIcon size="md" />}
-      title="Import backup"
-      description="Import backup from file"
-      onClick={onImportBackup}
-    />
+    <>
+      <SettingCard
+        icon={<UploadIcon size="md" />}
+        title="Import backup"
+        description="Import backup from file"
+        onClick={onClick}
+      />
+      <Modal
+        title="Are you sure?"
+        description="If you import backup it will override your current settings. Make sure you have a backup."
+        isOpen={confirmationIsOpen}
+        onClose={closeConfirmation}
+        actions={
+          <div className="flex gap-3">
+            <Button size="sm" variant="outlined" onClick={onImportBackup}>
+              Import
+            </Button>
+            <Button size="sm" onClick={closeConfirmation}>
+              Cancel
+            </Button>
+          </div>
+        }
+      />
+    </>
   );
 };
