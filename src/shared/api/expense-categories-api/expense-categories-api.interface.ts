@@ -8,6 +8,7 @@ import {
 
 export interface ExpenseCategoriesAPI {
   getExpenseCategories(): Promise<ExpenseCategoriesDTO>;
+  setExpenseCategories(categories: ExpenseCategoriesDTO): Promise<void>;
   createExpenseCategory(
     category: CreateExpenseCategoryDTO,
   ): Promise<ExpenseCategoryDTO>;

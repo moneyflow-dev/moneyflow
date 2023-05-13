@@ -26,6 +26,10 @@ export class PreferencesExpensesAPI implements ExpensesAPI {
     return await this.getState();
   }
 
+  async setExpenses(expenses: ExpensesDTO) {
+    await this.setState(expenses);
+  }
+
   async createExpense(expense: CreateExpenseDTO) {
     const expenses = await this.getState();
 

@@ -37,6 +37,10 @@ export class PreferencesAccountsAPI implements AccountsAPI {
     return await this.getState();
   }
 
+  async setAccounts(accounts: AccountsDTO) {
+    await this.setState(accounts);
+  }
+
   async createAccount(account: CreateAccountDTO): Promise<AccountDTO> {
     const state = await this.getState();
     const { order, accounts } = state;

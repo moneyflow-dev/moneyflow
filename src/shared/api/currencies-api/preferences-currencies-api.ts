@@ -35,6 +35,10 @@ export class PreferencesCurrenciesAPI implements CurrenciesAPI {
     return await this.getState();
   }
 
+  async setCurrencies(currencies: CurrenciesDTO): Promise<void> {
+    await this.setState(currencies);
+  }
+
   async createCurrency(currency: CreateCurrencyDTO): Promise<CurrencyDTO> {
     const state = await this.getState();
     const { order, currencies } = state;

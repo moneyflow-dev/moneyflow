@@ -26,6 +26,10 @@ export class PreferencesIncomesAPI implements IncomesAPI {
     return await this.getState();
   }
 
+  async setIncomes(incomes: IncomesDTO) {
+    await this.setState(incomes);
+  }
+
   async createIncome(expense: CreateIncomeDTO) {
     const expenses = await this.getState();
 

@@ -26,6 +26,10 @@ export class PreferencesTransfersAPI implements TransfersAPI {
     return await this.getState();
   }
 
+  async setTransfers(transfers: TransfersDTO) {
+    await this.setState(transfers);
+  }
+
   async createTransfer(transfer: CreateTransferDTO) {
     const transfers = await this.getState();
 

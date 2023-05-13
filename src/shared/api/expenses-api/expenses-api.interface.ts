@@ -11,6 +11,7 @@ import {
 
 export interface ExpensesAPI {
   getExpenses(): Promise<ExpensesDTO>;
+  setExpenses(expenses: ExpensesDTO): Promise<void>;
   createExpense(expense: CreateExpenseDTO): Promise<ExpenseDTO>;
   updateExpense(id: ExpenseID, expense: UpdateExpenseDTO): Promise<ExpenseDTO>;
   deleteExpense(id: ExpenseID): Promise<void>;

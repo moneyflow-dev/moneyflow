@@ -8,6 +8,7 @@ import {
 
 export interface IncomeCategoriesAPI {
   getIncomeCategories(): Promise<IncomeCategoriesDTO>;
+  setIncomeCategories(categories: IncomeCategoriesDTO): Promise<void>;
   createIncomeCategory(
     category: CreateIncomeCategoryDTO,
   ): Promise<IncomeCategoryDTO>;

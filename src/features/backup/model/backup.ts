@@ -12,7 +12,7 @@ import {
 import { IncomesDTO, incomesApi } from "@shared/api/incomes-api";
 import { TransfersDTO, transfersApi } from "@shared/api/transfers-api";
 
-interface Backup {
+export interface Backup {
   version: string;
   expenses: ExpensesDTO;
   incomes: IncomesDTO;

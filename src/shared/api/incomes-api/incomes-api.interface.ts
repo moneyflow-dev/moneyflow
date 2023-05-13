@@ -11,6 +11,7 @@ import {
 
 export interface IncomesAPI {
   getIncomes(): Promise<IncomesDTO>;
+  setIncomes(incomes: IncomesDTO): Promise<void>;
   createIncome(expense: CreateIncomeDTO): Promise<IncomeDTO>;
   updateIncome(id: IncomeID, expense: UpdateIncomeDTO): Promise<IncomeDTO>;
   deleteIncome(id: IncomeID): Promise<void>;

@@ -31,6 +31,10 @@ export class PreferencesIncomeCategoriesAPI implements IncomeCategoriesAPI {
     return await this.getState();
   }
 
+  async setIncomeCategories(categories: IncomeCategoriesDTO) {
+    await this.setState(categories);
+  }
+
   async createIncomeCategory(
     category: CreateIncomeCategoryDTO,
   ): Promise<IncomeCategoryDTO> {

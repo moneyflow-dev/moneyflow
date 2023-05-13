@@ -10,6 +10,7 @@ import {
 
 export interface TransfersAPI {
   getTransfers(): Promise<TransfersDTO>;
+  setTransfers(transfers: TransfersDTO): Promise<void>;
   createTransfer(transfer: CreateTransferDTO): Promise<TransferDTO>;
   updateTransfer(
     id: TransferID,

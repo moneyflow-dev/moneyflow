@@ -10,6 +10,7 @@ import {
 
 export interface AccountsAPI {
   getAccounts(): Promise<AccountsDTO>;
+  setAccounts(accounts: AccountsDTO): Promise<void>;
   createAccount(account: CreateAccountDTO): Promise<AccountDTO>;
   updateAccount(id: AccountID, currency: UpdateAccountDTO): Promise<void>;
   deleteAccount(id: AccountID): Promise<void>;

@@ -31,6 +31,10 @@ export class PreferencesExpenseCategoriesAPI implements ExpenseCategoriesAPI {
     return await this.getState();
   }
 
+  async setExpenseCategories(categories: ExpenseCategoriesDTO) {
+    await this.setState(categories);
+  }
+
   async createExpenseCategory(
     category: CreateExpenseCategoryDTO,
   ): Promise<ExpenseCategoryDTO> {
