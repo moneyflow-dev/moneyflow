@@ -26,6 +26,7 @@
     "@hookform/resolvers": "^3.1.0",
     "@hugotomazi/capacitor-navigation-bar": "^2.0.1",
     "buffer": "^6.0.3",
+    "decimal.js": "^10.4.3",
     "luxon": "^3.3.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
