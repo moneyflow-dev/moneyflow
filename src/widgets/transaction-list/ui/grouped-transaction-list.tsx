@@ -10,15 +10,7 @@ import {
   useExpenseCategoriesStore,
   useIncomeCategoriesStore,
 } from "@entities/category";
-import {
-  useExpensesStore,
-  useIncomesStore,
-  useTransfersStore,
-  TypedExpense,
-  TypedIncome,
-  TypedTransfer,
-  TransactionType,
-} from "@entities/transaction";
+import { useTransactions } from "@entities/transaction";
 
 import { groupTransactionsByDay } from "../lib/group";
 
@@ -36,28 +28,17 @@ export const GroupedTransactionList = ({
   const { accounts } = useAccountsStore();
   const { expenseCategories } = useExpenseCategoriesStore();
   const { incomeCategories } = useIncomeCategoriesStore();
-  const { expenses } = useExpensesStore();
-  const expenseTransactions: TypedExpense[] = Object.values(expenses).map(
-    (expense) => ({ ...expense, type: TransactionType.expense }),
-  );
-  const { incomes } = useIncomesStore();
-  const incomeTransactions: TypedIncome[] = Object.values(incomes).map(
-    (income) => ({ ...income, type: TransactionType.income }),
-  );
-  const { transfers } = useTransfersStore();
-  const transferTransactions: TypedTransfer[] = Object.values(transfers).map(
-    (transfer) => ({ ...transfer, type: TransactionType.transfer }),
-  );
+  const transactions = useTransactions();
 
-  const transactions = filterTransactions(
-    [...expenseTransactions, ...incomeTransactions, ...transferTransactions],
+  const filteredTransactions = filterTransactions(
+    transactions,
     filters,
     accounts,
     expenseCategories,
     incomeCategories,
   );
 
-  const transactionGroups = groupTransactionsByDay(transactions);
+  const transactionGroups = groupTransactionsByDay(filteredTransactions);
 
   return (
     <div className="flex flex-col gap-6">

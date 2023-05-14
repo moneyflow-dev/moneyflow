@@ -23,3 +23,4 @@ export type {
   TypedTransfer,
   Transaction,
 } from "./model/models";
+export { useTransactions } from "./model/hooks";
