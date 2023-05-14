@@ -1,1 +1,1 @@
-export { getAccountBalance } from "./model/statistics";
+export { getAccountBalance, getCurrencyBalance } from "./model/statistics";
