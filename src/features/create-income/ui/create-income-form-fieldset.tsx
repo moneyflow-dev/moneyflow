@@ -77,6 +77,7 @@ export const CreateIncomeFormFieldset = ({
             required
             value={value}
             onChange={onChange}
+            createCategoryButtonLink="/income-categories/create"
           />
         )}
       />

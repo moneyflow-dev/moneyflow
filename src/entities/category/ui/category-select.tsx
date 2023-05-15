@@ -1,4 +1,6 @@
 import { mapFlatToTree, mapTreeToFlat } from "@shared/lib/tree";
+import { PlusIcon } from "@shared/ui/icons";
+import { Link } from "@shared/ui/links";
 import {
   Select,
   SelectButton,
@@ -30,16 +32,19 @@ interface IncomeCategorySelectCategory {
 interface ExpenseCategorySelectProps
   extends SelectProps<ExpenseCategoryID | null, ExpenseCategoryID | null> {
   categories: ExpenseCategories;
+  createCategoryButtonLink: string;
 }
 
 interface IncomeCategorySelectProps
   extends SelectProps<IncomeCategoryID | null, IncomeCategoryID | null> {
   categories: IncomeCategories;
+  createCategoryButtonLink: string;
 }
 
 export function CategorySelect({
   categories,
   value,
+  createCategoryButtonLink,
   ...props
 }: IncomeCategorySelectProps | ExpenseCategorySelectProps) {
   const categoriesTree = mapFlatToTree<
@@ -67,6 +72,13 @@ export function CategorySelect({
             {category.value.title}
           </SelectOption>
         ))}
+        <Link
+          to={createCategoryButtonLink}
+          className="flex gap-3 items-center py-2.5 px-4 text-subtext0 font-bold text-sm transition-colors active:bg-surface1"
+        >
+          <PlusIcon size="xs" />
+          Add category
+        </Link>
       </SelectOptions>
     </Select>
   );
