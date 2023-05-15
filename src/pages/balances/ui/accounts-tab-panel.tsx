@@ -21,7 +21,7 @@ export const AccountsTabPanel = () => {
   const transactions = useTransactions();
 
   return (
-    <HeadlessTab.Panel as="div" className="text-text">
+    <HeadlessTab.Panel as="div" className="text-text pb-14">
       <AccountCardList
         accounts={order.map((accountId) => {
           const account = accounts[accountId];
