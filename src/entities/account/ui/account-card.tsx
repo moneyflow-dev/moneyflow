@@ -52,11 +52,11 @@ export const AccountCard = ({
         className,
       )}
     >
-      <div className="flex gap-3 items-center text-xl font-bold">
+      <div className="flex gap-3 items-center text-base font-bold">
         {iconToComponent[account.icon]}
         {account.title}
       </div>
-      <span className="text-xxl font-extrabold">{formattedBalance}</span>
+      <span className="text-xl font-extrabold">{formattedBalance}</span>
     </Link>
   );
 };
