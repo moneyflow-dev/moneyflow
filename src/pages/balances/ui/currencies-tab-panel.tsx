@@ -16,7 +16,10 @@ export const CurrenciesTabPanel = () => {
   const transactions = useTransactions();
 
   return (
-    <HeadlessTab.Panel as="div" className="text-text flex flex-col gap-2.5">
+    <HeadlessTab.Panel
+      as="div"
+      className="text-text flex flex-col gap-2.5 pb-14"
+    >
       {currencies.order.map((id) => (
         <CurrencyCard
           key={id}
