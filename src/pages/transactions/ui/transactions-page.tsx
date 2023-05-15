@@ -8,7 +8,7 @@ export const TransactionsPage = () => {
   return (
     <PageLayout>
       <Header title="Transactions" />
-      <main className="pb-16">
+      <main className="pb-14">
         <GroupedTransactionList showEmptyState />
         <CreateTransactionButton />
       </main>
