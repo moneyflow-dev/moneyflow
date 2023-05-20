@@ -42,6 +42,7 @@ export const NotificationsTimeSettingCard = () => {
         description={localeTimeString}
         onClick={onClick}
         icon={<ClockIcon size="md" />}
+        disabled={!notificationsSettings.enabled}
       />
       <input
         className="absolute w-0 h-0"
