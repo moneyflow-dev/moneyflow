@@ -30,6 +30,8 @@ import { StatisticsPage } from "@pages/statistics";
 import { TransactionsPage } from "@pages/transactions";
 import { TransferOverviewPage } from "@pages/transfer-overview";
 
+import { NotificationsScheduler } from "@features/notifications";
+
 import { BackButtonContextProvider } from "@shared/lib/back-button-context";
 
 import { useLoadState } from "./hooks/use-load-state";
@@ -130,6 +132,7 @@ export const App = () => {
   return (
     <BackButtonContextProvider>
       <RouterProvider router={router} />
+      <NotificationsScheduler />
     </BackButtonContextProvider>
   );
 };

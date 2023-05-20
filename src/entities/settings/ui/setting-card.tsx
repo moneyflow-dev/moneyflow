@@ -17,7 +17,7 @@ export const SettingCard = ({
 }: SettingCardProps) => {
   return (
     <div
-      className="py-4 px-5 flex items-center gap-4 transition-colors bg-base active:bg-base-color-active"
+      className="py-4 px-5 flex items-center gap-4 transition-colors bg-base active:bg-surface0"
       onClick={onClick}
     >
       <span className="text-overlay1">{icon}</span>

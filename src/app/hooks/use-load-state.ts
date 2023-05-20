@@ -6,6 +6,7 @@ import {
   useIncomeCategoriesStore,
 } from "@entities/category";
 import { useCurrenciesStore } from "@entities/currency";
+import { useSettingsStore } from "@entities/settings";
 import {
   useExpensesStore,
   useIncomesStore,
@@ -34,6 +35,9 @@ export const useLoadState = () => {
   const { fetchTransfers } = useTransfersStore((state) => ({
     fetchTransfers: state.fetchTransfers,
   }));
+  const { fetchSettings } = useSettingsStore((state) => ({
+    fetchSettings: state.fetchSettings,
+  }));
 
   useEffect(() => {
     (async () => {
@@ -44,6 +48,7 @@ export const useLoadState = () => {
       await fetchIncomeCategories();
       await fetchIncomes();
       await fetchTransfers();
+      await fetchSettings();
     })();
   }, [
     fetchCurrencies,
@@ -53,5 +58,6 @@ export const useLoadState = () => {
     fetchIncomeCategories,
     fetchIncomes,
     fetchTransfers,
+    fetchSettings,
   ]);
 };
