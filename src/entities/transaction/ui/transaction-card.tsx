@@ -46,9 +46,14 @@ export const TransactionCard = ({
         className,
       )}
     >
-      <div className="flex justify-between">
-        <span className="text-sm font-bold text-text">{title}</span>
-        <span className={twMerge("text-sm font-bold pt-1", amountClassName)}>
+      <div className="flex gap-4 justify-between">
+        <span className="text-sm font-bold text-text truncate">{title}</span>
+        <span
+          className={twMerge(
+            "text-sm font-bold pt-1 whitespace-nowrap",
+            amountClassName,
+          )}
+        >
           {formattedAmount}
         </span>
       </div>
