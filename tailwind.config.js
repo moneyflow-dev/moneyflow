@@ -95,6 +95,8 @@ export default {
       spacing: {
         1.25: "0.3125rem",
         1.75: "0.4375rem",
+        26: "6.5rem",
+        50: "12.5rem",
       },
       rotate: {
         135: "135deg",

@@ -1,3 +1,5 @@
+import { DateTime } from "luxon";
+import { Virtuoso } from "react-virtuoso";
 import { twMerge } from "tailwind-merge";
 
 import {
@@ -18,6 +20,7 @@ import { TransactionListGroup } from "./transaction-group";
 
 interface GroupedTransactionListProps {
   filters?: TransactionFilters;
+  getScrollElement?(): Element | null;
   showEmptyState?: boolean;
 }
 
@@ -41,14 +44,18 @@ export const GroupedTransactionList = ({
   const transactionGroups = groupTransactionsByDay(filteredTransactions);
 
   return (
-    <div className="flex flex-col gap-6">
+    <div>
       {transactionGroups.length ? (
-        transactionGroups.map((transactionGroup) => (
-          <TransactionListGroup
-            key={transactionGroup.datetime.valueOf()}
-            transactionGroup={transactionGroup}
-          />
-        ))
+        <Virtuoso
+          useWindowScroll
+          data={transactionGroups}
+          itemContent={(_, transactionGroup) => (
+            <TransactionListGroup
+              className="pb-6 group-last:pb-0"
+              transactionGroup={transactionGroup}
+            />
+          )}
+        />
       ) : showEmptyState ? (
         <p
           className={twMerge(

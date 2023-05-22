@@ -13,7 +13,7 @@ import { CurrenciesTabPanel } from "./currencies-tab-panel";
 export const BalancesPage = () => {
   const { tab, onChangeTab } = useBalancesPageStore();
   return (
-    <PageLayout>
+    <PageLayout className="pb-14">
       <Header title="Balances" />
       <TabGroup selectedIndex={tab} onChange={onChangeTab}>
         <TabList label="Group By">

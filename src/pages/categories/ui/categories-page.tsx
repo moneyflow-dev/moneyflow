@@ -16,7 +16,7 @@ export const CategoriesPage = () => {
   return (
     <PageLayout>
       <Header title="Categories" backButton />
-      <main>
+      <main className="pb-44">
         <TabGroup selectedIndex={tab} onChange={onChangeTab}>
           <TabList label="Category type">
             <Tab>Expense</Tab>

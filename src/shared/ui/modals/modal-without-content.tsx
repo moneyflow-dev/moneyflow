@@ -47,7 +47,7 @@ export const ModalWithoutContent = ({
           leaveFrom="opacity-100 scale-100"
           leaveTo="opacity-0 scale-95"
         >
-          <Dialog.Panel>{children}</Dialog.Panel>
+          {children}
         </Transition.Child>
       </Dialog>
     </Transition>

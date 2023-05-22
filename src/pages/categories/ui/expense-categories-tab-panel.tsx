@@ -33,7 +33,7 @@ export const ExpenseCategoriesTabPanel = () => {
 
       <Link
         to="/expense-categories/create"
-        className="absolute bottom-20 left-1/2 -translate-x-1/2"
+        className="fixed bottom-20 left-1/2 -translate-x-1/2 z-10"
       >
         <FloatingActionButton>
           <PlusIcon size="lg" />

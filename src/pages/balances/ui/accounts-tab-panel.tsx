@@ -21,7 +21,7 @@ export const AccountsTabPanel = () => {
   const transactions = useTransactions();
 
   return (
-    <HeadlessTab.Panel as="div" className="text-text pb-14">
+    <HeadlessTab.Panel as="div" className="text-text">
       <AccountCardList
         accounts={order.map((accountId) => {
           const account = accounts[accountId];
@@ -40,7 +40,7 @@ export const AccountsTabPanel = () => {
       />
       <Link
         to="/accounts/create"
-        className="absolute bottom-24 left-1/2 -translate-x-1/2"
+        className="fixed bottom-20 left-1/2 -translate-x-1/2 z-10"
       >
         <FloatingActionButton>
           <PlusIcon size="lg" />

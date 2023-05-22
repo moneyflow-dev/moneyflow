@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { ForwardedRef, ReactNode, forwardRef } from "react";
 import { twMerge } from "tailwind-merge";
 
 interface PageLayoutProps {
@@ -8,16 +8,20 @@ interface PageLayoutProps {
   className?: string;
 }
 
-export const PageLayout = ({
-  children,
-  className,
-  hasHorizontalPaddings = true,
-  hasBottomPadding = false,
-}: PageLayoutProps) => {
+export const PageLayout = forwardRef(function PageLayout(
+  {
+    children,
+    className,
+    hasHorizontalPaddings = true,
+    hasBottomPadding = false,
+  }: PageLayoutProps,
+  ref: ForwardedRef<HTMLDivElement>,
+) {
   return (
     <div
+      ref={ref}
       className={twMerge(
-        "flex flex-col gap-3 overflow-y-auto",
+        "flex flex-col gap-3",
         hasHorizontalPaddings && "px-5",
         hasBottomPadding && "pb-5",
         className,
@@ -26,4 +30,4 @@ export const PageLayout = ({
       {children}
     </div>
   );
-};
+});

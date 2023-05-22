@@ -4,7 +4,7 @@ import { NavBar } from "@widgets/navigation";
 
 export const RootLayoutPage = () => {
   return (
-    <div className="flex flex-col justify-between h-full">
+    <div className="pb-26">
       <Outlet />
       <NavBar />
     </div>

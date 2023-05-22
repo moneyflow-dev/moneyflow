@@ -125,8 +125,9 @@ export const App = () => {
 
   useEffect(() => {
     if (Capacitor.getPlatform() === "android") {
-      StatusBar.setOverlaysWebView({ overlay: true });
-      NavigationBar.setTransparency({ isTransparent: true });
+      StatusBar.setBackgroundColor({ color: "#24273a" });
+      // StatusBar.setOverlaysWebView({ overlay: true });
+      NavigationBar.setColor({ color: "#24273a" });
     }
   }, []);
   return (
