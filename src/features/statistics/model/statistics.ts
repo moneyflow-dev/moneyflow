@@ -1,6 +1,6 @@
 import { Decimal } from "decimal.js";
 
-import { Account, AccountID, AccountsMap } from "@entities/account";
+import { Account, AccountID } from "@entities/account";
 import { CurrencyID } from "@entities/currency";
 import { Transaction, TransactionType } from "@entities/transaction";
 
@@ -54,4 +54,58 @@ export const getCurrencyBalance = (
     }
   }
   return balance.toString();
+};
+
+export const getCurrencyIncome = (
+  currencyId: CurrencyID,
+  accounts: Account[],
+  transactions: Transaction[],
+): Decimal => {
+  let income = new Decimal("0");
+  for (const account of accounts) {
+    const accountId = account.id;
+    if (account.currencyId === currencyId) {
+      for (const transaction of transactions) {
+        switch (transaction.type) {
+          case TransactionType.income: {
+            income = income.plus(transaction.amount);
+            break;
+          }
+          case TransactionType.transfer: {
+            if (transaction.toAccount.accountId === accountId) {
+              income = income.plus(transaction.toAccount.amount);
+            }
+          }
+        }
+      }
+    }
+  }
+  return income;
+};
+
+export const getCurrencyExpense = (
+  currencyId: CurrencyID,
+  accounts: Account[],
+  transactions: Transaction[],
+): Decimal => {
+  let expense = new Decimal("0");
+  for (const account of accounts) {
+    const accountId = account.id;
+    if (account.currencyId === currencyId) {
+      for (const transaction of transactions) {
+        switch (transaction.type) {
+          case TransactionType.expense: {
+            expense = expense.minus(transaction.amount);
+            break;
+          }
+          case TransactionType.transfer: {
+            if (transaction.fromAccount.accountId === accountId) {
+              expense = expense.minus(transaction.fromAccount.amount);
+            }
+          }
+        }
+      }
+    }
+  }
+  return expense;
 };
