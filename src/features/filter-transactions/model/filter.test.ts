@@ -220,6 +220,57 @@ describe("filterTransactions", () => {
     ]);
   });
 
+  it("by expense and transfer type", () => {
+    const actual = filterTransactions(
+      transactions,
+      { type: [TransactionType.expense, TransactionType.transfer] },
+      {},
+      expenseCategories,
+      incomeCategories,
+    );
+    assert.deepEqual(actual, [
+      {
+        type: "expense",
+        id: "1",
+        title: "",
+        amount: "0",
+        accountId: "10",
+        categoryId: "100",
+        createdAt: datetime,
+        datetime,
+      },
+      {
+        type: "expense",
+        id: "2",
+        title: "",
+        amount: "0",
+        accountId: "10",
+        categoryId: "100",
+        createdAt: datetime,
+        datetime,
+      },
+      {
+        type: "expense",
+        id: "5",
+        title: "",
+        amount: "0",
+        accountId: "12",
+        categoryId: "100",
+        createdAt: datetime,
+        datetime,
+      },
+      {
+        type: "transfer",
+        id: "4",
+        title: "",
+        fromAccount: { accountId: "10", amount: "0" },
+        toAccount: { accountId: "11", amount: "0" },
+        createdAt: datetime,
+        datetime,
+      },
+    ]);
+  });
+
   it("by not existed accountId", () => {
     const actual = filterTransactions(
       transactions,
@@ -247,6 +298,37 @@ describe("filterTransactions", () => {
         amount: "0",
         accountId: "12",
         categoryId: "100",
+        createdAt: datetime,
+        datetime,
+      },
+    ]);
+  });
+
+  it("by multiple accountIds", () => {
+    const actual = filterTransactions(
+      transactions,
+      { accountId: ["12", "11"] },
+      {},
+      expenseCategories,
+      incomeCategories,
+    );
+    assert.deepEqual(actual, [
+      {
+        type: "expense",
+        id: "5",
+        title: "",
+        amount: "0",
+        accountId: "12",
+        categoryId: "100",
+        createdAt: datetime,
+        datetime,
+      },
+      {
+        type: "transfer",
+        id: "4",
+        title: "",
+        fromAccount: { accountId: "10", amount: "0" },
+        toAccount: { accountId: "11", amount: "0" },
         createdAt: datetime,
         datetime,
       },
@@ -409,6 +491,17 @@ describe("filterTransactions", () => {
     ]);
   });
 
+  it("by multiple currencyIds", () => {
+    const actual = filterTransactions(
+      transactions,
+      { currencyId: ["100", "101"] },
+      accounts,
+      expenseCategories,
+      incomeCategories,
+    );
+    assert.deepEqual(actual, transactions);
+  });
+
   it("by expenseCategoryId", () => {
     const actual = filterTransactions(
       transactions,
@@ -567,5 +660,47 @@ describe("filterTransactions", () => {
         datetime,
       },
     ]);
+  });
+
+  it("from specific datetime", () => {
+    const actual = filterTransactions(
+      transactions,
+      {
+        fromDateTimeRange: DateTime.local(2000, 12, 12, 12, 12, 12),
+      },
+      accounts,
+      expenseCategories,
+      incomeCategories,
+    );
+
+    assert.deepEqual(actual, transactions);
+  });
+
+  it("from specific future datetime", () => {
+    const actual = filterTransactions(
+      transactions,
+      {
+        fromDateTimeRange: DateTime.local(2100, 12, 12, 12, 12, 12),
+      },
+      accounts,
+      expenseCategories,
+      incomeCategories,
+    );
+
+    assert.deepEqual(actual, []);
+  });
+
+  it("to specific datetime", () => {
+    const actual = filterTransactions(
+      transactions,
+      {
+        toDateTimeRange: DateTime.local(2100, 12, 12, 12, 12, 12),
+      },
+      accounts,
+      expenseCategories,
+      incomeCategories,
+    );
+
+    assert.deepEqual(actual, transactions);
   });
 });
