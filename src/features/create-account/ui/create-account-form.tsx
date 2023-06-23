@@ -72,7 +72,7 @@ export const CreateAccountForm = ({ className }: CreateAccountFormProps) => {
     <FormProvider {...methods}>
       <form
         className={twMerge(
-          "flex flex-col justify-between items-center pb-7",
+          "flex flex-col justify-between items-center gap-8 pb-7",
           className,
         )}
       >

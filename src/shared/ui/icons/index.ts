@@ -29,3 +29,5 @@ export { ListIcon } from "./list-icon";
 export { SettingsIcon } from "./settings-icon";
 export { StatisticsIcon } from "./statistics-icon";
 export { WalletIcon } from "./wallet-icon";
+export { XmarkIcon } from "./xmark-icon";
+export { FilterIcon } from "./filter-icon";

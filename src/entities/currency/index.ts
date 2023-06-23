@@ -12,3 +12,5 @@ export {
   type UpdateCurrency,
 } from "./model/models";
 export { type CurrencyRadioButtonCurrency } from "./ui/currency-radio-button";
+export { CurrencyCheckbox } from "./ui/currency-checkbox";
+export { CurrencyMultiplePicker } from "./ui/currency-multiple-picker";

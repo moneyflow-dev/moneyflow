@@ -1,4 +1,3 @@
-import { DateTime } from "luxon";
 import { Virtuoso } from "react-virtuoso";
 import { twMerge } from "tailwind-merge";
 
@@ -20,7 +19,6 @@ import { TransactionListGroup } from "./transaction-group";
 
 interface GroupedTransactionListProps {
   filters?: TransactionFilters;
-  getScrollElement?(): Element | null;
   showEmptyState?: boolean;
 }
 

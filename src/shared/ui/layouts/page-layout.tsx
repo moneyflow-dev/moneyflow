@@ -21,7 +21,7 @@ export const PageLayout = forwardRef(function PageLayout(
     <div
       ref={ref}
       className={twMerge(
-        "flex flex-col gap-3",
+        "flex flex-col gap-3 pt-4",
         hasHorizontalPaddings && "px-5",
         hasBottomPadding && "pb-5",
         className,

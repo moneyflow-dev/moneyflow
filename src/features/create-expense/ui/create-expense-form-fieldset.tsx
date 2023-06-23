@@ -77,7 +77,6 @@ export const CreateExpenseFormFieldset = ({
             required
             value={value}
             onChange={onChange}
-            createCategoryButtonLink="/expense-categories/create"
           />
         )}
       />

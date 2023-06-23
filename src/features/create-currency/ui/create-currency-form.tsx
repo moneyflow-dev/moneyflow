@@ -46,7 +46,7 @@ export const CreateCurrencyForm = () => {
 
   return (
     <FormProvider {...methods}>
-      <form className="flex flex-col h-full justify-between pb-12">
+      <form className="flex flex-col h-full justify-between gap-8 pb-12">
         <div className="flex flex-col gap-14">
           <CreateCurrencyFormFieldset />
           {formState.isValid && (

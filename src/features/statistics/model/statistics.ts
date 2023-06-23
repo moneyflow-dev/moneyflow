@@ -75,6 +75,7 @@ export const getCurrencyIncome = (
             if (transaction.toAccount.accountId === accountId) {
               income = income.plus(transaction.toAccount.amount);
             }
+            break;
           }
         }
       }
@@ -102,6 +103,7 @@ export const getCurrencyExpense = (
             if (transaction.fromAccount.accountId === accountId) {
               expense = expense.minus(transaction.fromAccount.amount);
             }
+            break;
           }
         }
       }

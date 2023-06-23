@@ -47,7 +47,7 @@ export function SelectButton<T>({
       as="div"
       className={twMerge(
         "flex items-center justify-between gap-2 py-3 px-4 text-text text-sm rounded bg-surface0",
-        "ui-open:outline ui-open:outline-1 ui-open:-outline-offset-1 ui-open:outline-overlay0",
+        "ui-open:outline ui-open:outline-1 ui-open:-outline-offset-1 ui-open:outline-overlay0 ui-not-open:outline-none",
         "transition-colors active:bg-surface1",
         className,
       )}
@@ -62,7 +62,7 @@ export function SelectButton<T>({
       )}
       <DownChevronIcon
         size="sm"
-        className="text-overlay0 transition-transform ui-open:rotate-180"
+        className="text-overlay0 transition-transform ui-not-open:rotate-0 ui-open:rotate-180"
       />
     </Listbox.Button>
   );
