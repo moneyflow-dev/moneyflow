@@ -5,6 +5,7 @@ import {
   TransactionFilters,
   filterTransactions,
 } from "@features/filter-transactions";
+import { searchTransactionsByTitle } from "@features/search-transactions";
 
 import { useAccountsStore } from "@entities/account";
 import {
@@ -19,10 +20,12 @@ import { TransactionListGroup } from "./transaction-group";
 
 interface GroupedTransactionListProps {
   filters?: TransactionFilters;
+  searchTerm?: string;
   showEmptyState?: boolean;
 }
 
 export const GroupedTransactionList = ({
+  searchTerm,
   filters = {},
   showEmptyState = false,
 }: GroupedTransactionListProps) => {
@@ -31,12 +34,15 @@ export const GroupedTransactionList = ({
   const { incomeCategories } = useIncomeCategoriesStore();
   const transactions = useTransactions();
 
-  const filteredTransactions = filterTransactions(
-    transactions,
-    filters,
-    accounts,
-    expenseCategories,
-    incomeCategories,
+  const filteredTransactions = searchTransactionsByTitle(
+    filterTransactions(
+      transactions,
+      filters,
+      accounts,
+      expenseCategories,
+      incomeCategories,
+    ),
+    searchTerm,
   );
 
   const transactionGroups = groupTransactionsByDay(filteredTransactions);
