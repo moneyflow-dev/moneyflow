@@ -31,3 +31,4 @@ export { StatisticsIcon } from "./statistics-icon";
 export { WalletIcon } from "./wallet-icon";
 export { XmarkIcon } from "./xmark-icon";
 export { FilterIcon } from "./filter-icon";
+export { SearchIcon } from "./search-icon";
