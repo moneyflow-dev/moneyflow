@@ -28,6 +28,7 @@
     "@hugotomazi/capacitor-navigation-bar": "^2.0.1",
     "buffer": "^6.0.3",
     "decimal.js": "^10.4.3",
+    "fuse.js": "^6.6.2",
     "luxon": "^3.3.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
