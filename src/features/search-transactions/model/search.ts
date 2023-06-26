@@ -1,18 +1,20 @@
 import Fuse from "fuse.js";
 
-import { Transaction } from "@entities/transaction";
+interface SearchTransaction {
+  title: string;
+}
 
-export const searchTransactionsByTitle = (
-  transactions: Transaction[],
+export const searchTransactionsByTitle = <T extends SearchTransaction>(
+  transactions: T[],
   searchTerm?: string,
-): Transaction[] => {
+): T[] => {
   searchTerm = searchTerm?.trim();
   if (!searchTerm) {
     return transactions;
   }
 
   const fuse = new Fuse(transactions, {
-    keys: ["title"] as (keyof Transaction)[],
+    keys: ["title"] as (keyof SearchTransaction)[],
     ignoreLocation: true,
     threshold: 0.3,
   });
