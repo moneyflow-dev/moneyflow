@@ -17,16 +17,22 @@ import { useCreateTransferFormStore } from "../model/store";
 import {
   CreateTransferFormData,
   CreateTransferFormFieldset,
+  CreateTransferFormFieldsetProps,
   createTransferFormSchema,
 } from "./create-transfer-form-fieldset";
 
-interface CreateTransferFormProps {
+interface CreateTransferFormProps
+  extends Pick<CreateTransferFormFieldsetProps, "searchTransactionsByTitle"> {
   className?: string;
 }
 
-export const CreateTransferForm = ({ className }: CreateTransferFormProps) => {
+export const CreateTransferForm = ({
+  className,
+  searchTransactionsByTitle,
+}: CreateTransferFormProps) => {
   const navigate = useNavigate();
-  const { createTransfer } = useTransfersStore((state) => ({
+  const { createTransfer, transfers } = useTransfersStore((state) => ({
+    transfers: state.transfers,
     createTransfer: state.createTransfer,
   }));
   const { order: accountsOrder, accounts } = useAccountsStore();
@@ -130,8 +136,10 @@ export const CreateTransferForm = ({ className }: CreateTransferFormProps) => {
         )}
       >
         <CreateTransferFormFieldset
+          transfers={transfers}
           accounts={{ order: accountsOrder, accounts }}
           currencies={currencies}
+          searchTransactionsByTitle={searchTransactionsByTitle}
         />
         <Button
           onClick={handleSubmit(onCreateTransfer)}

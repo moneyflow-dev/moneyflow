@@ -7,7 +7,19 @@ import {
   ExpenseCategoryID,
   ExpenseCategories,
 } from "@entities/category";
-import { CurrencyID } from "@entities/currency";
+import {
+  CurrenciesMap,
+  CurrencyID,
+  createCurrencyAmountString,
+} from "@entities/currency";
+import {
+  ExpenseID,
+  Expenses,
+  TransactionTitleAutocomplete,
+  TransactionTitleAutocompleteProps,
+  createExpenseAmountString,
+  sortTransactionsByDateTime,
+} from "@entities/transaction";
 
 import { positiveDecimalRegex } from "@shared/lib/regex";
 import { ColorPickerColor } from "@shared/ui/color-pickers";
@@ -30,13 +42,15 @@ export interface CreateExpenseFormData {
   datetime: string;
 }
 
-interface CreateExpenseFormFieldsetProps {
+export interface CreateExpenseFormFieldsetProps
+  extends Pick<TransactionTitleAutocompleteProps, "searchTransactionsByTitle"> {
+  expenses: Expenses;
   categories: ExpenseCategories;
   accounts: {
     order: AccountID[];
     accounts: Record<AccountID, CreateExpenseFormAccount>;
   };
-  currencies: Record<CurrencyID, { symbol: string }>;
+  currencies: CurrenciesMap;
 }
 
 export const createExpenseFormSchema = z.object({
@@ -48,24 +62,56 @@ export const createExpenseFormSchema = z.object({
 });
 
 export const CreateExpenseFormFieldset = ({
+  expenses,
   categories,
   accounts,
   currencies,
+  searchTransactionsByTitle,
 }: CreateExpenseFormFieldsetProps) => {
-  const { control, register, watch } = useFormContext<CreateExpenseFormData>();
+  const { control, register, watch, reset } =
+    useFormContext<CreateExpenseFormData>();
 
-  const accountId = watch("accountId");
+  const [accountId, title] = watch(["accountId", "title"]);
   const currencySymbol =
     accountId === null
       ? undefined
       : currencies[accounts.accounts[accountId].currencyId]?.symbol;
+  const sortedExpenses = sortTransactionsByDateTime(Object.values(expenses));
+  const formattedExpenses = sortedExpenses.map((expense) => ({
+    ...expense,
+    formattedAmount: createExpenseAmountString(
+      createCurrencyAmountString({
+        currency: currencies[accounts.accounts[expense.accountId].currencyId],
+        amount: expense.amount,
+      }),
+    ),
+  }));
+
+  const onSelectAutocompleteExpenseId = (value: ExpenseID) => {
+    const expense = expenses[value];
+    reset({
+      title: expense.title,
+      categoryId: expense.categoryId,
+      accountId: expense.accountId,
+      amount: expense.amount,
+    });
+  };
 
   return (
     <div className="flex flex-col gap-6">
-      <Input
-        label="Title"
-        placeholder="e.g. Bananas, Bread, ..."
-        {...register("title")}
+      <TransactionTitleAutocomplete
+        transactions={formattedExpenses}
+        title={title}
+        amountColor="red"
+        inputProps={{
+          label: "Title",
+          placeholder: "e.g. Bananas, Bread, ...",
+          value: title,
+          ...register("title"),
+          // onChange: (event) => setTitle(event.target.value),
+        }}
+        searchTransactionsByTitle={searchTransactionsByTitle}
+        onSelect={onSelectAutocompleteExpenseId}
       />
       <Controller
         control={control}

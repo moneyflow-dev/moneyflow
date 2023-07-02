@@ -1,5 +1,6 @@
 import { Link } from "@shared/ui/links";
 
+import { createTransferAmountString } from "../lib";
 import { TransferID } from "../model/models";
 
 import { TransactionCard } from "./transaction-card";
@@ -25,10 +26,11 @@ interface TransferCardProps {
 export const TransferCard = ({ transfer }: TransferCardProps) => {
   const fromAmount = transfer.fromAccount.amount;
   const toAmount = transfer.toAccount.amount;
-  const formattedAmount =
-    fromAmount === toAmount && transfer.sameCurrencies
-      ? fromAmount
-      : `${fromAmount} -> ${toAmount}`;
+  const formattedAmount = createTransferAmountString({
+    fromAmount,
+    toAmount,
+    sameCurrencies: transfer.sameCurrencies,
+  });
 
   return (
     <Link to={`/transfers/${transfer.id}`}>

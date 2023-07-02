@@ -18,16 +18,22 @@ import { useCreateIncomeFormStore } from "../model/store";
 import {
   CreateIncomeFormData,
   CreateIncomeFormFieldset,
+  CreateIncomeFormFieldsetProps,
   createIncomeFormSchema,
 } from "./create-income-form-fieldset";
 
-interface CreateIncomeFormProps {
+interface CreateIncomeFormProps
+  extends Pick<CreateIncomeFormFieldsetProps, "searchTransactionsByTitle"> {
   className?: string;
 }
 
-export const CreateIncomeForm = ({ className }: CreateIncomeFormProps) => {
+export const CreateIncomeForm = ({
+  className,
+  searchTransactionsByTitle,
+}: CreateIncomeFormProps) => {
   const navigate = useNavigate();
-  const { createIncome } = useIncomesStore((state) => ({
+  const { createIncome, incomes } = useIncomesStore((state) => ({
+    incomes: state.incomes,
     createIncome: state.createIncome,
   }));
   const { incomeCategories } = useIncomeCategoriesStore();
@@ -117,9 +123,11 @@ export const CreateIncomeForm = ({ className }: CreateIncomeFormProps) => {
         )}
       >
         <CreateIncomeFormFieldset
+          incomes={incomes}
           categories={incomeCategories}
           accounts={{ order: accountsOrder, accounts }}
           currencies={currencies}
+          searchTransactionsByTitle={searchTransactionsByTitle}
         />
         <Button
           onClick={handleSubmit(onCreateIncome)}

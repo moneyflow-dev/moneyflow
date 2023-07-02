@@ -16,6 +16,7 @@ import {
   TransferCard,
   TransactionType,
   Transaction,
+  sortTransactionsByDateTime,
 } from "@entities/transaction";
 
 import { createTransactionGroupDateString } from "../lib/date";
@@ -37,8 +38,8 @@ export const TransactionListGroup = ({
     currencies: { currencies },
   } = useCurrenciesStore();
   const datetime = transactionGroup.datetime;
-  const transactions = transactionGroup.transactions.sort(
-    (a, b) => b.datetime.valueOf() - a.datetime.valueOf(),
+  const transactions = sortTransactionsByDateTime(
+    transactionGroup.transactions,
   );
 
   const renderTransaction = (transaction: Transaction) => {

@@ -8,6 +8,7 @@ import { GroupedTransactionList } from "@widgets/transaction-list";
 import { TransactionFiltersButton } from "@features/filter-transactions";
 import { TransactionsSearchBar } from "@features/search-transactions";
 
+import { useDebounce } from "@shared/lib/hooks";
 import { PageLayout } from "@shared/ui/layouts";
 
 import { useTransactionFiltersStore } from "../model/store";
@@ -16,6 +17,7 @@ export const TransactionsPage = () => {
   const pageLayoutRef = useRef<HTMLDivElement | null>(null);
   const { filters, searchTerm, setSearchTerm, setTransactionFilters } =
     useTransactionFiltersStore();
+  const debouncedSearchTerm = useDebounce(searchTerm, 300);
   const [params, setParams] = useSearchParams({
     filtersModalIsOpen: "false",
   });
@@ -42,7 +44,7 @@ export const TransactionsPage = () => {
         <GroupedTransactionList
           showEmptyState
           filters={filters}
-          searchTerm={searchTerm}
+          searchTerm={debouncedSearchTerm}
         />
         <CreateTransactionButton />
       </main>

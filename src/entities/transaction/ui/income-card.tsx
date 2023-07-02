@@ -1,5 +1,6 @@
 import { Link } from "@shared/ui/links";
 
+import { createIncomeAmountString } from "../lib";
 import { IncomeID } from "../model/models";
 
 import { TransactionCard } from "./transaction-card";
@@ -18,7 +19,7 @@ interface IncomeCardProps {
 }
 
 export const IncomeCard = ({ income }: IncomeCardProps) => {
-  const formattedAmount = `+${income.formattedAmount}`;
+  const formattedAmount = createIncomeAmountString(income.formattedAmount);
   return (
     <Link to={`/incomes/${income.id}`}>
       <TransactionCard

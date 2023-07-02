@@ -61,6 +61,8 @@ export interface Transfer extends CreateTransfer {
 
 export type Transfers = Record<TransferID, Transfer>;
 
+export type TransactionID = ExpenseID | IncomeID | TransferID;
+
 export const TransactionType = {
   expense: "expense",
   income: "income",

@@ -18,16 +18,22 @@ import { useCreateExpenseFormStore } from "../model/store";
 import {
   CreateExpenseFormData,
   CreateExpenseFormFieldset,
+  CreateExpenseFormFieldsetProps,
   createExpenseFormSchema,
 } from "./create-expense-form-fieldset";
 
-interface CreateExpenseFormProps {
+interface CreateExpenseFormProps
+  extends Pick<CreateExpenseFormFieldsetProps, "searchTransactionsByTitle"> {
   className?: string;
 }
 
-export const CreateExpenseForm = ({ className }: CreateExpenseFormProps) => {
+export const CreateExpenseForm = ({
+  className,
+  searchTransactionsByTitle,
+}: CreateExpenseFormProps) => {
   const navigate = useNavigate();
-  const { createExpense } = useExpensesStore((state) => ({
+  const { createExpense, expenses } = useExpensesStore((state) => ({
+    expenses: state.expenses,
     createExpense: state.createExpense,
   }));
   const { expenseCategories } = useExpenseCategoriesStore();
@@ -117,9 +123,11 @@ export const CreateExpenseForm = ({ className }: CreateExpenseFormProps) => {
         )}
       >
         <CreateExpenseFormFieldset
+          expenses={expenses}
           categories={expenseCategories}
           accounts={{ order: accountsOrder, accounts }}
           currencies={currencies}
+          searchTransactionsByTitle={searchTransactionsByTitle}
         />
         <Button
           onClick={handleSubmit(onCreateExpense)}

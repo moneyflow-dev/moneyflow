@@ -2,7 +2,19 @@ import { Controller, useFormContext } from "react-hook-form";
 import { z } from "zod";
 
 import { AccountID, AccountIcon, AccountPicker } from "@entities/account";
-import { CurrencyID } from "@entities/currency";
+import {
+  CurrenciesMap,
+  CurrencyID,
+  createCurrencyAmountString,
+} from "@entities/currency";
+import {
+  TransactionTitleAutocomplete,
+  TransactionTitleAutocompleteProps,
+  TransferID,
+  Transfers,
+  createTransferAmountString,
+  sortTransactionsByDateTime,
+} from "@entities/transaction";
 
 import { positiveDecimalRegex } from "@shared/lib/regex";
 import { ColorPickerColor } from "@shared/ui/color-pickers";
@@ -26,12 +38,14 @@ export interface CreateTransferFormData {
   datetime: string;
 }
 
-interface CreateTransferFormFieldsetProps {
+export interface CreateTransferFormFieldsetProps
+  extends Pick<TransactionTitleAutocompleteProps, "searchTransactionsByTitle"> {
+  transfers: Transfers;
   accounts: {
     order: AccountID[];
     accounts: Record<AccountID, CreateTransferFormAccount>;
   };
-  currencies: Record<CurrencyID, { symbol: string }>;
+  currencies: CurrenciesMap;
 }
 
 export const createTransferFormSchema = z.object({
@@ -44,12 +58,19 @@ export const createTransferFormSchema = z.object({
 });
 
 export const CreateTransferFormFieldset = ({
+  transfers,
   accounts,
   currencies,
+  searchTransactionsByTitle,
 }: CreateTransferFormFieldsetProps) => {
-  const { control, register, watch } = useFormContext<CreateTransferFormData>();
+  const { control, register, watch, reset } =
+    useFormContext<CreateTransferFormData>();
 
-  const [fromAccountId, toAccountId] = watch(["fromAccountId", "toAccountId"]);
+  const [fromAccountId, toAccountId, title] = watch([
+    "fromAccountId",
+    "toAccountId",
+    "title",
+  ]);
   const fromAccountCurrencySymbol =
     fromAccountId === null
       ? undefined
@@ -58,13 +79,53 @@ export const CreateTransferFormFieldset = ({
     toAccountId === null
       ? undefined
       : currencies[accounts.accounts[toAccountId].currencyId]?.symbol;
+  const sortedTransfers = sortTransactionsByDateTime(Object.values(transfers));
+  const formattedTransfers = sortedTransfers.map((transfer) => {
+    const fromAccount = accounts.accounts[transfer.fromAccount.accountId];
+    const fromCurrency = currencies[fromAccount.currencyId];
+    const toAccount = accounts.accounts[transfer.toAccount.accountId];
+    const toCurrency = currencies[toAccount.currencyId];
+    return {
+      ...transfer,
+      formattedAmount: createTransferAmountString({
+        fromAmount: createCurrencyAmountString({
+          currency: fromCurrency,
+          amount: transfer.fromAccount.amount,
+        }),
+        toAmount: createCurrencyAmountString({
+          currency: toCurrency,
+          amount: transfer.toAccount.amount,
+        }),
+        sameCurrencies: fromAccount.currencyId === toAccount.currencyId,
+      }),
+    };
+  });
+
+  const onSelectAutocompleteTransferId = (value: TransferID) => {
+    const transfer = transfers[value];
+    reset({
+      title: transfer.title,
+      fromAccountId: transfer.fromAccount.accountId,
+      fromAccountAmount: transfer.fromAccount.amount,
+      toAccountId: transfer.toAccount.accountId,
+      toAccountAmount: transfer.toAccount.amount,
+    });
+  };
 
   return (
     <div className="flex flex-col gap-6">
-      <Input
-        label="Title"
-        placeholder="e.g. Withdraw cash, ..."
-        {...register("title")}
+      <TransactionTitleAutocomplete
+        transactions={formattedTransfers}
+        title={title}
+        amountColor="blue"
+        inputProps={{
+          label: "Title",
+          placeholder: "e.g. Withdraw cash, ...",
+          value: title,
+          ...register("title"),
+        }}
+        searchTransactionsByTitle={searchTransactionsByTitle}
+        onSelect={onSelectAutocompleteTransferId}
       />
       <div className="flex flex-col gap-3">
         <h2 className="text-h2 text-text ms-4">From</h2>
