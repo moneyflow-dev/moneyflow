@@ -11,6 +11,7 @@ import {
   UpdateExpenseButton,
 } from "@features/create-expense";
 import { DeleteExpenseButton } from "@features/delete-expense";
+import { searchTransactionsByTitle } from "@features/search-transactions";
 
 import { useAccountsStore } from "@entities/account";
 import { useExpenseCategoriesStore } from "@entities/category";
@@ -29,7 +30,8 @@ export const ExpenseOverviewPage = () => {
   const { expenseCategories } = useExpenseCategoriesStore();
   const { accounts, order: accountsOrder } = useAccountsStore();
   const { currencies } = useCurrenciesStore();
-  const { getExpense } = useExpensesStore((state) => ({
+  const { getExpense, expenses } = useExpensesStore((state) => ({
+    expenses: state.expenses,
     getExpense: state.getExpense,
   }));
 
@@ -57,9 +59,11 @@ export const ExpenseOverviewPage = () => {
           }
         />
         <CreateExpenseFormFieldset
+          expenses={expenses}
           categories={expenseCategories}
           accounts={{ accounts, order: accountsOrder }}
           currencies={currencies.currencies}
+          searchTransactionsByTitle={searchTransactionsByTitle}
         />
       </FormProvider>
     </PageLayout>

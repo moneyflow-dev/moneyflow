@@ -11,6 +11,7 @@ import {
   UpdateTransferButton,
 } from "@features/create-transfer";
 import { DeleteTransferButton } from "@features/delete-transfer";
+import { searchTransactionsByTitle } from "@features/search-transactions";
 
 import { useAccountsStore } from "@entities/account";
 import { useCurrenciesStore } from "@entities/currency";
@@ -27,7 +28,8 @@ export const TransferOverviewPage = () => {
 
   const { accounts, order: accountsOrder } = useAccountsStore();
   const { currencies } = useCurrenciesStore();
-  const { getTransfer } = useTransfersStore((state) => ({
+  const { getTransfer, transfers } = useTransfersStore((state) => ({
+    transfers: state.transfers,
     getTransfer: state.getTransfer,
   }));
 
@@ -59,8 +61,10 @@ export const TransferOverviewPage = () => {
           }
         />
         <CreateTransferFormFieldset
+          transfers={transfers}
           accounts={{ accounts, order: accountsOrder }}
           currencies={currencies.currencies}
+          searchTransactionsByTitle={searchTransactionsByTitle}
         />
       </FormProvider>
     </PageLayout>

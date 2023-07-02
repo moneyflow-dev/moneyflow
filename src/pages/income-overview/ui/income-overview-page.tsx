@@ -11,6 +11,7 @@ import {
   UpdateIncomeButton,
 } from "@features/create-income";
 import { DeleteIncomeButton } from "@features/delete-income";
+import { searchTransactionsByTitle } from "@features/search-transactions";
 
 import { useAccountsStore } from "@entities/account";
 import { useIncomeCategoriesStore } from "@entities/category";
@@ -29,7 +30,8 @@ export const IncomeOverviewPage = () => {
   const { incomeCategories } = useIncomeCategoriesStore();
   const { accounts, order: accountsOrder } = useAccountsStore();
   const { currencies } = useCurrenciesStore();
-  const { getIncome } = useIncomesStore((state) => ({
+  const { getIncome, incomes } = useIncomesStore((state) => ({
+    incomes: state.incomes,
     getIncome: state.getIncome,
   }));
 
@@ -57,9 +59,11 @@ export const IncomeOverviewPage = () => {
           }
         />
         <CreateIncomeFormFieldset
+          incomes={incomes}
           categories={incomeCategories}
           accounts={{ accounts, order: accountsOrder }}
           currencies={currencies.currencies}
+          searchTransactionsByTitle={searchTransactionsByTitle}
         />
       </FormProvider>
     </PageLayout>
