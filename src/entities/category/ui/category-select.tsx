@@ -1,5 +1,5 @@
 import { mapFlatToTree, mapTreeToFlat } from "@shared/lib/tree";
-import { LeftArrowIcon, PlusIcon } from "@shared/ui/icons";
+import { PlusIcon } from "@shared/ui/icons";
 import { Link } from "@shared/ui/links";
 import {
   Select,
