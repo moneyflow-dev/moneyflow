@@ -1,3 +1,4 @@
+import { SplashScreen } from "@capacitor/splash-screen";
 import { useEffect } from "react";
 
 import { useAccountsStore } from "@entities/account";
@@ -49,6 +50,7 @@ export const useLoadState = () => {
       await fetchIncomes();
       await fetchTransfers();
       await fetchSettings();
+      await SplashScreen.hide();
     })();
   }, [
     fetchCurrencies,

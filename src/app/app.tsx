@@ -1,7 +1,3 @@
-import { Capacitor } from "@capacitor/core";
-import { StatusBar } from "@capacitor/status-bar";
-import { NavigationBar } from "@hugotomazi/capacitor-navigation-bar";
-import { useEffect } from "react";
 import {
   Navigate,
   RouterProvider,
@@ -123,12 +119,6 @@ const router = createBrowserRouter([
 export const App = () => {
   useLoadState();
 
-  useEffect(() => {
-    if (Capacitor.getPlatform() === "android") {
-      StatusBar.setBackgroundColor({ color: "#24273a" });
-      NavigationBar.setColor({ color: "#24273a" });
-    }
-  }, []);
   return (
     <BackButtonContextProvider>
       <RouterProvider router={router} />
