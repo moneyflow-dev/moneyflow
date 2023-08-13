@@ -7,7 +7,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.SplashScreen">
-        <!-- android:theme="@style/Theme.AppTheme.SplashScreen"> -->
         <activity
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale|smallestScreenSize|screenLayout|uiMode"
             android:name="dev.astsu.moneyflow.MainActivity"
