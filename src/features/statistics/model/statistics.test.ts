@@ -1,7 +1,7 @@
 import { DateTime } from "luxon";
 import { describe, expect, it } from "vitest";
 
-import { Account } from "@entities/account";
+import { AccountsMap } from "@entities/account";
 import { Transaction } from "@entities/transaction";
 
 import { getAccountBalance, getCurrencyBalance } from "./statistics";
@@ -194,8 +194,8 @@ describe("statistics", () => {
 
   describe("getCurrencyBalance", () => {
     it("without transactions", () => {
-      const accounts: Account[] = [
-        {
+      const accounts: AccountsMap = {
+        "1": {
           id: "1",
           title: "Account 1",
           color: "peach",
@@ -203,7 +203,7 @@ describe("statistics", () => {
           initialBalance: "0",
           currencyId: "60",
         },
-        {
+        "2": {
           id: "2",
           title: "Account 2",
           color: "peach",
@@ -211,15 +211,15 @@ describe("statistics", () => {
           initialBalance: "0",
           currencyId: "61",
         },
-      ];
+      };
 
       const actual = getCurrencyBalance("60", accounts, []);
       expect(actual).toStrictEqual("0");
     });
 
     it("with one expense and matched currency", () => {
-      const accounts: Account[] = [
-        {
+      const accounts: AccountsMap = {
+        "1": {
           id: "1",
           title: "Account 1",
           color: "peach",
@@ -227,7 +227,7 @@ describe("statistics", () => {
           initialBalance: "0",
           currencyId: "60",
         },
-        {
+        "2": {
           id: "2",
           title: "Account 2",
           color: "peach",
@@ -235,7 +235,7 @@ describe("statistics", () => {
           initialBalance: "0",
           currencyId: "61",
         },
-      ];
+      };
       const transactions: Transaction[] = [
         {
           type: "expense",
@@ -254,8 +254,8 @@ describe("statistics", () => {
     });
 
     it("with one income and matched currency", () => {
-      const accounts: Account[] = [
-        {
+      const accounts: AccountsMap = {
+        "1": {
           id: "1",
           title: "Account 1",
           color: "peach",
@@ -263,7 +263,7 @@ describe("statistics", () => {
           initialBalance: "0",
           currencyId: "60",
         },
-        {
+        "2": {
           id: "2",
           title: "Account 2",
           color: "peach",
@@ -271,7 +271,7 @@ describe("statistics", () => {
           initialBalance: "0",
           currencyId: "61",
         },
-      ];
+      };
       const transactions: Transaction[] = [
         {
           type: "income",
@@ -290,8 +290,8 @@ describe("statistics", () => {
     });
 
     it("with one transfer, matched from and to currencies and matched amount", () => {
-      const accounts: Account[] = [
-        {
+      const accounts: AccountsMap = {
+        "1": {
           id: "1",
           title: "Account 1",
           color: "peach",
@@ -299,7 +299,7 @@ describe("statistics", () => {
           initialBalance: "10",
           currencyId: "60",
         },
-        {
+        "2": {
           id: "2",
           title: "Account 2",
           color: "peach",
@@ -307,7 +307,7 @@ describe("statistics", () => {
           initialBalance: "0",
           currencyId: "60",
         },
-      ];
+      };
       const transactions: Transaction[] = [
         {
           type: "transfer",
@@ -331,8 +331,8 @@ describe("statistics", () => {
     });
 
     it("with one transfer, matched from and to currencies and not matched amount", () => {
-      const accounts: Account[] = [
-        {
+      const accounts: AccountsMap = {
+        "1": {
           id: "1",
           title: "Account 1",
           color: "peach",
@@ -340,7 +340,7 @@ describe("statistics", () => {
           initialBalance: "10",
           currencyId: "60",
         },
-        {
+        "2": {
           id: "2",
           title: "Account 2",
           color: "peach",
@@ -348,7 +348,7 @@ describe("statistics", () => {
           initialBalance: "0",
           currencyId: "60",
         },
-      ];
+      };
       const transactions: Transaction[] = [
         {
           type: "transfer",
@@ -372,8 +372,8 @@ describe("statistics", () => {
     });
 
     it("with one transfer and not matched from and to currencies", () => {
-      const accounts: Account[] = [
-        {
+      const accounts: AccountsMap = {
+        "1": {
           id: "1",
           title: "Account 1",
           color: "peach",
@@ -381,7 +381,7 @@ describe("statistics", () => {
           initialBalance: "10",
           currencyId: "60",
         },
-        {
+        "2": {
           id: "2",
           title: "Account 2",
           color: "peach",
@@ -389,7 +389,7 @@ describe("statistics", () => {
           initialBalance: "0",
           currencyId: "61",
         },
-      ];
+      };
       const transactions: Transaction[] = [
         {
           type: "transfer",
@@ -416,8 +416,8 @@ describe("statistics", () => {
     });
 
     it("with multiple transactions and not matched currency", () => {
-      const accounts: Account[] = [
-        {
+      const accounts: AccountsMap = {
+        "1": {
           id: "1",
           title: "Account 1",
           color: "peach",
@@ -425,7 +425,7 @@ describe("statistics", () => {
           initialBalance: "10",
           currencyId: "60",
         },
-        {
+        "2": {
           id: "2",
           title: "Account 2",
           color: "peach",
@@ -433,7 +433,7 @@ describe("statistics", () => {
           initialBalance: "0",
           currencyId: "60",
         },
-      ];
+      };
       const transactions: Transaction[] = [
         {
           type: "expense",
@@ -477,8 +477,8 @@ describe("statistics", () => {
     });
 
     it("with multiple transactions and matched currency", () => {
-      const accounts: Account[] = [
-        {
+      const accounts: AccountsMap = {
+        "1": {
           id: "1",
           title: "Account 1",
           color: "peach",
@@ -486,7 +486,7 @@ describe("statistics", () => {
           initialBalance: "10",
           currencyId: "60",
         },
-        {
+        "2": {
           id: "2",
           title: "Account 2",
           color: "peach",
@@ -494,7 +494,7 @@ describe("statistics", () => {
           initialBalance: "0",
           currencyId: "61",
         },
-      ];
+      };
       const transactions: Transaction[] = [
         {
           type: "expense",

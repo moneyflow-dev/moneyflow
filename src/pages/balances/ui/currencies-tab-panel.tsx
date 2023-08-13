@@ -21,11 +21,7 @@ export const CurrenciesTabPanel = () => {
         <CurrencyCard
           key={id}
           currency={currencies.currencies[id]}
-          balance={getCurrencyBalance(
-            id,
-            Object.values(accounts),
-            transactions,
-          )}
+          balance={getCurrencyBalance(id, accounts, transactions)}
         />
       ))}
       <Link
