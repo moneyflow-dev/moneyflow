@@ -1,46 +1,33 @@
 {
   "compilerOptions": {
-    "target": "ES6",
+    "target": "ES2020",
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
     "useDefineForClassFields": true,
     "allowJs": false,
     "skipLibCheck": true,
     "allowSyntheticDefaultImports": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
-    "module": "CommonJS",
-    "moduleResolution": "Node",
+
+    "module": "ES2020",
+    "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
+
     "baseUrl": "./",
     "paths": {
-      "@app/*": [
-        "src/app/*"
-      ],
-      "@processes/*": [
-        "src/processes/*"
-      ],
-      "@pages/*": [
-        "src/pages/*"
-      ],
-      "@widgets/*": [
-        "src/widgets/*"
-      ],
-      "@features/*": [
-        "src/features/*"
-      ],
-      "@entities/*": [
-        "src/entities/*"
-      ],
-      "@shared/*": [
-        "src/shared/*"
-      ]
+      "@app/*": ["src/app/*"],
+      "@processes/*": ["src/processes/*"],
+      "@pages/*": ["src/pages/*"],
+      "@widgets/*": ["src/widgets/*"],
+      "@features/*": ["src/features/*"],
+      "@entities/*": ["src/entities/*"],
+      "@shared/*": ["src/shared/*"]
     }
   },
-  "include": [
-    "src"
-  ],
+  "include": ["src"],
   "references": [
     {
       "path": "./tsconfig.node.json"
