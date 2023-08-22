@@ -1,6 +1,9 @@
 *.keystore
 *.jks
 
+.env*
+!.env.sample
+
 # Logs
 logs
 *.log
