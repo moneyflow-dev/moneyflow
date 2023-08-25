@@ -1,10 +1,10 @@
 apply plugin: 'com.android.application'
 
 android {
-    namespace "dev.astsu.moneyflow"
+    namespace "cash.moneyflow.moneyflow"
     compileSdkVersion rootProject.ext.compileSdkVersion
     defaultConfig {
-        applicationId "dev.astsu.moneyflow"
+        applicationId "cash.moneyflow.moneyflow"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

@@ -1,4 +1,4 @@
-package dev.astsu.moneyflow;
+package cash.moneyflow.moneyflow;
 
 import android.os.Bundle;
 

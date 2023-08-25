@@ -9,7 +9,7 @@
         android:theme="@style/AppTheme.SplashScreen">
         <activity
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale|smallestScreenSize|screenLayout|uiMode"
-            android:name="dev.astsu.moneyflow.MainActivity"
+            android:name="cash.moneyflow.moneyflow.MainActivity"
             android:label="@string/title_activity_main"
             android:launchMode="singleTask"
             android:theme="@style/AppTheme.SplashScreen"
