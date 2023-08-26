@@ -1,3 +1,4 @@
+import { DateTime } from "luxon";
 import { create } from "zustand";
 import { devtools } from "zustand/middleware";
 
@@ -26,9 +27,15 @@ export const useAccountsStore = create<AccountsStoreState>()(
     accounts: {},
     async fetchAccounts() {
       const accounts = await accountsApi.getAccounts();
+      const formattedAccounts = Object.fromEntries(
+        Object.entries(accounts.accounts).map(([accountId, account]) => [
+          accountId,
+          { ...account, createdAt: DateTime.fromMillis(account.createdAt) },
+        ]),
+      );
       set(() => ({
-        order: accounts.order,
-        accounts: accounts.accounts,
+        ...accounts,
+        accounts: formattedAccounts,
       }));
     },
     async createAccount(account) {
@@ -37,16 +44,22 @@ export const useAccountsStore = create<AccountsStoreState>()(
         order: [...state.order, createdAccount.id],
         accounts: {
           ...state.accounts,
-          [createdAccount.id]: createdAccount,
+          [createdAccount.id]: {
+            ...createdAccount,
+            createdAt: DateTime.fromMillis(createdAccount.createdAt),
+          },
         },
       }));
     },
     async updateAccount(id, account) {
-      await accountsApi.updateAccount(id, account);
+      const updatedAccount = await accountsApi.updateAccount(id, account);
       set((state) => ({
         accounts: {
           ...state.accounts,
-          [id]: { id, ...account },
+          [id]: {
+            ...updatedAccount,
+            createdAt: DateTime.fromMillis(updatedAccount.createdAt),
+          },
         },
       }));
     },

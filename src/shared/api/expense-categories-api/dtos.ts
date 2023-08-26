@@ -9,6 +9,7 @@ export type UpdateExpenseCategoryDTO = CreateExpenseCategoryDTO;
 
 export interface ExpenseCategoryDTO extends CreateExpenseCategoryDTO {
   id: ExpenseCategoryID;
+  createdAt: number;
 }
 
 export type ExpenseCategoriesDTO = Record<string, ExpenseCategoryDTO>;

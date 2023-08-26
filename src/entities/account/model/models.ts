@@ -1,3 +1,5 @@
+import { DateTime } from "luxon";
+
 import { ColorPickerColor } from "@shared/ui/color-pickers";
 
 export type AccountID = string;
@@ -25,6 +27,7 @@ export type UpdateAccount = CreateAccount;
 
 export interface Account extends CreateAccount {
   id: AccountID;
+  createdAt: DateTime;
 }
 
 export type AccountsMap = Record<AccountID, Account>;

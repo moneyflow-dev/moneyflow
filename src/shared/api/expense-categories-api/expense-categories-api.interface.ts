@@ -15,6 +15,6 @@ export interface ExpenseCategoriesAPI {
   updateExpenseCategory(
     id: ExpenseCategoryID,
     category: UpdateExpenseCategoryDTO,
-  ): Promise<void>;
+  ): Promise<ExpenseCategoryDTO>;
   deleteExpenseCategory(id: ExpenseCategoryID): Promise<ExpenseCategoryID[]>;
 }

@@ -49,6 +49,7 @@ export class PreferencesAccountsAPI implements AccountsAPI {
     const createdAccount: AccountDTO = {
       ...account,
       id,
+      createdAt: Date.now(),
     };
 
     order.push(id);
@@ -71,6 +72,8 @@ export class PreferencesAccountsAPI implements AccountsAPI {
     accounts[id] = updatedAccount;
 
     await this.setState(state);
+
+    return accounts[id];
   }
 
   async deleteAccount(id: AccountID) {

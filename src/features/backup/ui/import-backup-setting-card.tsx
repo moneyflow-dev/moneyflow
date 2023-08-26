@@ -17,6 +17,7 @@ import { Button } from "@shared/ui/buttons";
 import { UploadIcon } from "@shared/ui/icons";
 import { Modal } from "@shared/ui/modals";
 
+import { BackupValidationError } from "../model/errors";
 import { importBackup } from "../model/import";
 
 export const ImportBackupSettingCard = () => {
@@ -48,7 +49,16 @@ export const ImportBackupSettingCard = () => {
   const closeConfirmation = () => setConfirmationIsOpen(false);
 
   const onImportBackup = async () => {
-    await importBackup();
+    try {
+      await importBackup();
+    } catch (err) {
+      if (err instanceof BackupValidationError) {
+        // TODO: show backup validation error for user
+        closeConfirmation();
+        return;
+      }
+      throw err;
+    }
     await fetchCurrencies();
     await fetchAccounts();
     await fetchExpenseCategories();

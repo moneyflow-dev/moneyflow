@@ -1,3 +1,4 @@
+import { DateTime } from "luxon";
 import { create } from "zustand";
 import { devtools } from "zustand/middleware";
 
@@ -30,8 +31,21 @@ export const useExpenseCategoriesStore = create<ExpenseCategoriesStoreState>()(
       return get().expenseCategories[id];
     },
     async fetchExpenseCategories() {
+      const expenseCategories =
+        await expenseCategoriesApi.getExpenseCategories();
+      const formattedExpenseCategories = Object.fromEntries(
+        Object.entries(expenseCategories).map(
+          ([expenseCategoryId, expenseCategory]) => [
+            expenseCategoryId,
+            {
+              ...expenseCategory,
+              createdAt: DateTime.fromMillis(expenseCategory.createdAt),
+            },
+          ],
+        ),
+      );
       set({
-        expenseCategories: await expenseCategoriesApi.getExpenseCategories(),
+        expenseCategories: formattedExpenseCategories,
       });
     },
     async createExpenseCategory(category) {
@@ -41,16 +55,23 @@ export const useExpenseCategoriesStore = create<ExpenseCategoriesStoreState>()(
       set((state) => ({
         expenseCategories: {
           ...state.expenseCategories,
-          [createdCategory.id]: createdCategory,
+          [createdCategory.id]: {
+            ...createdCategory,
+            createdAt: DateTime.fromMillis(createdCategory.createdAt),
+          },
         },
       }));
     },
     async updateExpenseCategory(id, category) {
-      await expenseCategoriesApi.updateExpenseCategory(id, category);
+      const updatedExpenseCategory =
+        await expenseCategoriesApi.updateExpenseCategory(id, category);
       set((state) => ({
         expenseCategories: {
           ...state.expenseCategories,
-          [id]: { ...category, id },
+          [id]: {
+            ...updatedExpenseCategory,
+            createdAt: DateTime.fromMillis(updatedExpenseCategory.createdAt),
+          },
         },
       }));
     },

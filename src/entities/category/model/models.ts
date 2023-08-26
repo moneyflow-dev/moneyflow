@@ -1,3 +1,5 @@
+import { DateTime } from "luxon";
+
 export type ExpenseCategoryID = string;
 
 export interface CreateExpenseCategory {
@@ -9,6 +11,7 @@ export type UpdateExpenseCategory = CreateExpenseCategory;
 
 export interface ExpenseCategory extends CreateExpenseCategory {
   id: ExpenseCategoryID;
+  createdAt: DateTime;
 }
 
 export type ExpenseCategories = Record<string, ExpenseCategory>;
@@ -24,6 +27,7 @@ export type UpdateIncomeCategory = CreateIncomeCategory;
 
 export interface IncomeCategory extends CreateIncomeCategory {
   id: IncomeCategoryID;
+  createdAt: DateTime;
 }
 
 export type IncomeCategories = Record<string, IncomeCategory>;

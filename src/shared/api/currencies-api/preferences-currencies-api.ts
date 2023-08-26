@@ -60,7 +60,7 @@ export class PreferencesCurrenciesAPI implements CurrenciesAPI {
   async updateCurrency(
     id: CurrencyID,
     currency: UpdateCurrencyDTO,
-  ): Promise<void> {
+  ): Promise<CurrencyDTO> {
     const state = await this.getState();
     const { currencies } = state;
 
@@ -73,6 +73,7 @@ export class PreferencesCurrenciesAPI implements CurrenciesAPI {
     currencies[id] = updatedCurrency;
 
     await this.setState(state);
+    return currencies[id];
   }
 
   async deleteCurrency(id: CurrencyID) {

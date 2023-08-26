@@ -9,6 +9,7 @@ export type UpdateIncomeCategoryDTO = CreateIncomeCategoryDTO;
 
 export interface IncomeCategoryDTO extends CreateIncomeCategoryDTO {
   id: IncomeCategoryID;
+  createdAt: number;
 }
 
 export type IncomeCategoriesDTO = Record<string, IncomeCategoryDTO>;

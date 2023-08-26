@@ -31,7 +31,7 @@ export class PreferencesIncomesAPI implements IncomesAPI {
   }
 
   async createIncome(expense: CreateIncomeDTO) {
-    const expenses = await this.getState();
+    const incomes = await this.getState();
 
     const id = uuidv4();
     const createdIncome: IncomeDTO = {
@@ -40,35 +40,35 @@ export class PreferencesIncomesAPI implements IncomesAPI {
       createdAt: Date.now(),
     };
 
-    expenses[id] = createdIncome;
+    incomes[id] = createdIncome;
 
-    await this.setState(expenses);
+    await this.setState(incomes);
     return createdIncome;
   }
 
   async updateIncome(id: string, expense: CreateIncomeDTO) {
-    const expenses = await this.getState();
+    const incomes = await this.getState();
 
-    expenses[id] = { ...expenses[id], ...expense, id };
+    incomes[id] = { ...incomes[id], ...expense, id };
 
-    await this.setState(expenses);
-    return expenses[id];
+    await this.setState(incomes);
+    return incomes[id];
   }
 
   async deleteIncome(id: string): Promise<void> {
-    const expenses = await this.getState();
+    const incomes = await this.getState();
 
-    delete expenses[id];
+    delete incomes[id];
 
-    await this.setState(expenses);
+    await this.setState(incomes);
   }
 
   async deleteIncomesByAccounts(accountIds: string[]) {
-    const expenses = await this.getState();
+    const incomes = await this.getState();
 
     await this.setState(
       Object.fromEntries(
-        Object.entries(expenses).filter(
+        Object.entries(incomes).filter(
           ([_, expense]) => !accountIds.includes(expense.accountId),
         ),
       ),
@@ -76,11 +76,11 @@ export class PreferencesIncomesAPI implements IncomesAPI {
   }
 
   async deleteIncomesByCategories(categoryIds: string[]) {
-    const expenses = await this.getState();
+    const incomes = await this.getState();
 
     await this.setState(
       Object.fromEntries(
-        Object.entries(expenses).filter(
+        Object.entries(incomes).filter(
           ([_, expense]) => !categoryIds.includes(expense.categoryId),
         ),
       ),

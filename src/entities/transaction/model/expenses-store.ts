@@ -53,8 +53,8 @@ export const useExpensesStore = create<ExpensesStoreState>()(
           ...state.expenses,
           [createdExpense.id]: {
             ...createdExpense,
-            createdAt: expense.datetime,
             datetime: expense.datetime,
+            createdAt: DateTime.fromMillis(createdExpense.createdAt),
           },
         },
       }));

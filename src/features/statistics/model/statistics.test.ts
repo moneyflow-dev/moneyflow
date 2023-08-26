@@ -202,6 +202,7 @@ describe("statistics", () => {
           icon: "cash",
           initialBalance: "0",
           currencyId: "60",
+          createdAt: nowDate,
         },
         "2": {
           id: "2",
@@ -210,6 +211,7 @@ describe("statistics", () => {
           icon: "cash",
           initialBalance: "0",
           currencyId: "61",
+          createdAt: nowDate,
         },
       };
 
@@ -226,6 +228,7 @@ describe("statistics", () => {
           icon: "cash",
           initialBalance: "0",
           currencyId: "60",
+          createdAt: nowDate,
         },
         "2": {
           id: "2",
@@ -234,6 +237,7 @@ describe("statistics", () => {
           icon: "cash",
           initialBalance: "0",
           currencyId: "61",
+          createdAt: nowDate,
         },
       };
       const transactions: Transaction[] = [
@@ -262,6 +266,7 @@ describe("statistics", () => {
           icon: "cash",
           initialBalance: "0",
           currencyId: "60",
+          createdAt: nowDate,
         },
         "2": {
           id: "2",
@@ -270,6 +275,7 @@ describe("statistics", () => {
           icon: "cash",
           initialBalance: "0",
           currencyId: "61",
+          createdAt: nowDate,
         },
       };
       const transactions: Transaction[] = [
@@ -298,6 +304,7 @@ describe("statistics", () => {
           icon: "cash",
           initialBalance: "10",
           currencyId: "60",
+          createdAt: nowDate,
         },
         "2": {
           id: "2",
@@ -306,6 +313,7 @@ describe("statistics", () => {
           icon: "cash",
           initialBalance: "0",
           currencyId: "60",
+          createdAt: nowDate,
         },
       };
       const transactions: Transaction[] = [
@@ -339,6 +347,7 @@ describe("statistics", () => {
           icon: "cash",
           initialBalance: "10",
           currencyId: "60",
+          createdAt: nowDate,
         },
         "2": {
           id: "2",
@@ -347,6 +356,7 @@ describe("statistics", () => {
           icon: "cash",
           initialBalance: "0",
           currencyId: "60",
+          createdAt: nowDate,
         },
       };
       const transactions: Transaction[] = [
@@ -380,6 +390,7 @@ describe("statistics", () => {
           icon: "cash",
           initialBalance: "10",
           currencyId: "60",
+          createdAt: nowDate,
         },
         "2": {
           id: "2",
@@ -388,6 +399,7 @@ describe("statistics", () => {
           icon: "cash",
           initialBalance: "0",
           currencyId: "61",
+          createdAt: nowDate,
         },
       };
       const transactions: Transaction[] = [
@@ -424,6 +436,7 @@ describe("statistics", () => {
           icon: "cash",
           initialBalance: "10",
           currencyId: "60",
+          createdAt: nowDate,
         },
         "2": {
           id: "2",
@@ -432,6 +445,7 @@ describe("statistics", () => {
           icon: "cash",
           initialBalance: "0",
           currencyId: "60",
+          createdAt: nowDate,
         },
       };
       const transactions: Transaction[] = [
@@ -485,6 +499,7 @@ describe("statistics", () => {
           icon: "cash",
           initialBalance: "10",
           currencyId: "60",
+          createdAt: nowDate,
         },
         "2": {
           id: "2",
@@ -493,6 +508,7 @@ describe("statistics", () => {
           icon: "cash",
           initialBalance: "0",
           currencyId: "61",
+          createdAt: nowDate,
         },
       };
       const transactions: Transaction[] = [

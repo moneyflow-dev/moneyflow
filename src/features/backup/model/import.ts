@@ -1,18 +1,29 @@
 import { Buffer } from "buffer";
 
 import { FilePicker } from "@capawesome/capacitor-file-picker";
+import { z } from "zod";
 
-import { accountsApi } from "@shared/api/accounts-api";
-import { currenciesApi } from "@shared/api/currencies-api";
-import { expenseCategoriesApi } from "@shared/api/expense-categories-api";
-import { expensesApi } from "@shared/api/expenses-api";
-import { incomeCategoriesApi } from "@shared/api/income-categories-api";
-import { incomesApi } from "@shared/api/incomes-api";
-import { transfersApi } from "@shared/api/transfers-api";
+import { migrator } from "@shared/api/migrations";
+import { DBVersion, versionApi } from "@shared/api/version-api";
 
-import { Backup } from "./backup";
+import { BackupImporter } from "./backup-importer.interface";
+import { BackupValidationError } from "./errors";
+import { V1BackupImporter } from "./versions/v1/v1-backup.importer";
+import { v1BackupConsistentSchema } from "./versions/v1/v1-backup.schema";
+import {
+  BackupWithVersion,
+  backupVersionSchema,
+} from "./versions/version.schema";
 
-export const importBackup = async () => {
+const backupSchemas: Record<DBVersion, z.ZodSchema<BackupWithVersion>> = {
+  1: v1BackupConsistentSchema,
+};
+
+const backupImporters: Record<DBVersion, BackupImporter> = {
+  1: new V1BackupImporter(),
+};
+
+export async function importBackup() {
   let result;
   try {
     result = await FilePicker.pickFiles({
@@ -28,12 +39,40 @@ export const importBackup = async () => {
     return;
   }
 
-  const backup: Backup = JSON.parse(Buffer.from(data, "base64").toString());
-  expensesApi.setExpenses(backup.expenses);
-  incomesApi.setIncomes(backup.incomes);
-  transfersApi.setTransfers(backup.transfers);
-  currenciesApi.setCurrencies(backup.currencies);
-  accountsApi.setAccounts(backup.accounts);
-  expenseCategoriesApi.setExpenseCategories(backup.expenseCategories);
-  incomeCategoriesApi.setIncomeCategories(backup.incomeCategories);
-};
+  const backup = parseBackupJson(Buffer.from(data, "base64").toString());
+  const backupWithVersion = validateBackup(backup);
+  await backupImporters[backupWithVersion.version].import(backupWithVersion);
+  await migrator.migrate(await versionApi.getVersion());
+}
+
+function validateBackup(backup: unknown): BackupWithVersion {
+  const versionValidation = backupVersionSchema.safeParse(backup);
+
+  if (!versionValidation.success) {
+    console.error(versionValidation.error);
+    throw new BackupValidationError();
+  }
+
+  const backupWithVersion = versionValidation.data;
+
+  const backupValidation =
+    backupSchemas[backupWithVersion.version].safeParse(backup);
+
+  if (!backupValidation.success) {
+    console.error(backupValidation.error);
+    throw new BackupValidationError();
+  }
+
+  return backupValidation.data;
+}
+
+function parseBackupJson(data: string): unknown {
+  try {
+    return JSON.parse(data);
+  } catch (err) {
+    if (err instanceof SyntaxError) {
+      throw new BackupValidationError();
+    }
+    throw err;
+  }
+}

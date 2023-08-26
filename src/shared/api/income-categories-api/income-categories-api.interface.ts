@@ -15,6 +15,6 @@ export interface IncomeCategoriesAPI {
   updateIncomeCategory(
     id: IncomeCategoryID,
     category: UpdateIncomeCategoryDTO,
-  ): Promise<void>;
+  ): Promise<IncomeCategoryDTO>;
   deleteIncomeCategory(id: IncomeCategoryID): Promise<IncomeCategoryID[]>;
 }

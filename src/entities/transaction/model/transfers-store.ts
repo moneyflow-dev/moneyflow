@@ -52,8 +52,8 @@ export const useTransfersStore = create<TransfersStoreState>()(
           ...state.transfers,
           [createdTransfer.id]: {
             ...createdTransfer,
-            createdAt: transfer.datetime,
             datetime: transfer.datetime,
+            createdAt: DateTime.fromMillis(createdTransfer.createdAt),
           },
         },
       }));

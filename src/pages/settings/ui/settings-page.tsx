@@ -3,7 +3,11 @@ import { Header } from "@widgets/header";
 import { BackupSettingCardGroup } from "@features/backup";
 import { NotificationsSettingCardGroup } from "@features/notifications";
 
-import { CategoriesSettingCard, SettingCardGroup } from "@entities/settings";
+import {
+  AboutUsSettingCardGroup,
+  CategoriesSettingCard,
+  SettingCardGroup,
+} from "@entities/settings";
 
 import { PageLayout } from "@shared/ui/layouts";
 
@@ -17,6 +21,7 @@ export const SettingsPage = () => {
         </SettingCardGroup>
         <BackupSettingCardGroup />
         <NotificationsSettingCardGroup />
+        <AboutUsSettingCardGroup />
       </main>
     </PageLayout>
   );

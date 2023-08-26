@@ -1,3 +1,4 @@
+import { DateTime } from "luxon";
 import { create } from "zustand";
 import { devtools } from "zustand/middleware";
 
@@ -25,8 +26,20 @@ export const useCurrenciesStore = create<CurrenciesState>()(
     currencies: { order: [], currencies: {} },
     async fetchCurrencies() {
       const currencies = await currenciesApi.getCurrencies();
+      const formattedCurrencies = Object.fromEntries(
+        Object.entries(currencies.currencies).map(([currencyId, currency]) => [
+          currencyId,
+          {
+            ...currency,
+            createdAt: DateTime.fromMillis(currency.createdAt),
+          },
+        ]),
+      );
       set(() => ({
-        currencies,
+        currencies: {
+          ...currencies,
+          currencies: formattedCurrencies,
+        },
       }));
     },
     async createCurrency(currency) {
@@ -36,19 +49,25 @@ export const useCurrenciesStore = create<CurrenciesState>()(
           order: [...state.currencies.order, createdCurrency.id],
           currencies: {
             ...state.currencies.currencies,
-            [createdCurrency.id]: createdCurrency,
+            [createdCurrency.id]: {
+              ...createdCurrency,
+              createdAt: DateTime.fromMillis(createdCurrency.createdAt),
+            },
           },
         },
       }));
     },
     async updateCurrency(id, currency) {
-      await currenciesApi.updateCurrency(id, currency);
+      const updatedCurrency = await currenciesApi.updateCurrency(id, currency);
       set((state) => ({
         currencies: {
           ...state.currencies,
           currencies: {
             ...state.currencies.currencies,
-            [id]: { id, ...currency },
+            [id]: {
+              ...updatedCurrency,
+              createdAt: DateTime.fromMillis(updatedCurrency.createdAt),
+            },
           },
         },
       }));

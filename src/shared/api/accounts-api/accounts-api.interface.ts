@@ -12,7 +12,7 @@ export interface AccountsAPI {
   getAccounts(): Promise<AccountsDTO>;
   setAccounts(accounts: AccountsDTO): Promise<void>;
   createAccount(account: CreateAccountDTO): Promise<AccountDTO>;
-  updateAccount(id: AccountID, currency: UpdateAccountDTO): Promise<void>;
+  updateAccount(id: AccountID, currency: UpdateAccountDTO): Promise<AccountDTO>;
   deleteAccount(id: AccountID): Promise<void>;
   deleteAccountsByCurrency(currencyId: CurrencyID): Promise<AccountID[]>;
 }

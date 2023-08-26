@@ -25,6 +25,7 @@ export type UpdateAccountDTO = CreateAccountDTO;
 
 export interface AccountDTO extends CreateAccountDTO {
   id: AccountID;
+  createdAt: number;
 }
 
 export interface AccountsDTO {

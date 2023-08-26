@@ -1,3 +1,4 @@
+import { DateTime } from "luxon";
 import { create } from "zustand";
 import { devtools } from "zustand/middleware";
 
@@ -30,8 +31,20 @@ export const useIncomeCategoriesStore = create<IncomeCategoriesStoreState>()(
       return get().incomeCategories[id];
     },
     async fetchIncomeCategories() {
+      const incomeCategories = await incomeCategoriesApi.getIncomeCategories();
+      const formattedIncomeCategories = Object.fromEntries(
+        Object.entries(incomeCategories).map(
+          ([incomeCategoryId, incomeCategory]) => [
+            incomeCategoryId,
+            {
+              ...incomeCategory,
+              createdAt: DateTime.fromMillis(incomeCategory.createdAt),
+            },
+          ],
+        ),
+      );
       set({
-        incomeCategories: await incomeCategoriesApi.getIncomeCategories(),
+        incomeCategories: formattedIncomeCategories,
       });
     },
     async createIncomeCategory(category) {
@@ -41,16 +54,23 @@ export const useIncomeCategoriesStore = create<IncomeCategoriesStoreState>()(
       set((state) => ({
         incomeCategories: {
           ...state.incomeCategories,
-          [createdCategory.id]: createdCategory,
+          [createdCategory.id]: {
+            ...createdCategory,
+            createdAt: DateTime.fromMillis(createdCategory.createdAt),
+          },
         },
       }));
     },
     async updateIncomeCategory(id, category) {
-      await incomeCategoriesApi.updateIncomeCategory(id, category);
+      const updatedIncomeCategory =
+        await incomeCategoriesApi.updateIncomeCategory(id, category);
       set((state) => ({
         incomeCategories: {
           ...state.incomeCategories,
-          [id]: { ...category, id },
+          [id]: {
+            ...updatedIncomeCategory,
+            createdAt: DateTime.fromMillis(updatedIncomeCategory.createdAt),
+          },
         },
       }));
     },

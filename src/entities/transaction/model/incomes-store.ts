@@ -53,8 +53,8 @@ export const useIncomesStore = create<IncomesStoreState>()(
           ...state.incomes,
           [createdIncome.id]: {
             ...createdIncome,
-            createdAt: income.datetime,
             datetime: income.datetime,
+            createdAt: DateTime.fromMillis(createdIncome.createdAt),
           },
         },
       }));

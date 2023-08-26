@@ -70,6 +70,7 @@ describe("filterTransactions", () => {
       color: ColorPickerColor.red,
       icon: AccountIcon.pig,
       initialBalance: "0",
+      createdAt: datetime,
     },
     11: {
       id: "11",
@@ -78,6 +79,7 @@ describe("filterTransactions", () => {
       color: ColorPickerColor.red,
       icon: AccountIcon.pig,
       initialBalance: "0",
+      createdAt: datetime,
     },
     12: {
       id: "12",
@@ -86,6 +88,7 @@ describe("filterTransactions", () => {
       color: ColorPickerColor.red,
       icon: AccountIcon.pig,
       initialBalance: "0",
+      createdAt: datetime,
     },
   };
   const expenseCategories: ExpenseCategories = {
@@ -93,11 +96,13 @@ describe("filterTransactions", () => {
       id: "100",
       title: "",
       parentId: "101",
+      createdAt: datetime,
     },
     101: {
       id: "101",
       title: "",
       parentId: null,
+      createdAt: datetime,
     },
   };
   const incomeCategories: IncomeCategories = {
@@ -105,11 +110,13 @@ describe("filterTransactions", () => {
       id: "100",
       title: "",
       parentId: "101",
+      createdAt: datetime,
     },
     101: {
       id: "101",
       title: "",
       parentId: null,
+      createdAt: datetime,
     },
   };
 

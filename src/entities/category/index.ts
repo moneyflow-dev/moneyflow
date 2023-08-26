@@ -7,6 +7,8 @@ export {
   type IncomeCategoryID,
   type ExpenseCategories,
   type IncomeCategories,
+  type IncomeCategory,
+  type ExpenseCategory,
 } from "./model/models";
 export { CategorySelect } from "./ui/category-select";
 export { createCategoryString } from "./lib/format";

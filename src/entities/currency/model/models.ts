@@ -1,3 +1,5 @@
+import { DateTime } from "luxon";
+
 import { ColorPickerColor } from "@shared/ui/color-pickers";
 
 export type CurrencyID = string;
@@ -20,6 +22,7 @@ export type UpdateCurrency = CreateCurrency;
 
 export interface Currency extends CreateCurrency {
   id: CurrencyID;
+  createdAt: DateTime;
 }
 
 export interface DeleteCurrencyDTO {

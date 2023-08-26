@@ -44,6 +44,7 @@ export class PreferencesIncomeCategoriesAPI implements IncomeCategoriesAPI {
     const createdCategory: IncomeCategoryDTO = {
       ...category,
       id,
+      createdAt: Date.now(),
     };
 
     categories[id] = createdCategory;
@@ -55,9 +56,11 @@ export class PreferencesIncomeCategoriesAPI implements IncomeCategoriesAPI {
   async updateIncomeCategory(id: string, category: CreateIncomeCategoryDTO) {
     const categories = await this.getState();
 
-    categories[id] = { ...category, id };
+    categories[id] = { ...categories[id], ...category, id };
 
     await this.setState(categories);
+
+    return categories[id];
   }
 
   private deleteCategoryTree(

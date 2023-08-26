@@ -14,6 +14,9 @@ import {
   useTransfersStore,
 } from "@entities/transaction";
 
+import { migrator } from "@shared/api/migrations";
+import { versionApi } from "@shared/api/version-api";
+
 export const useLoadState = () => {
   const { fetchCurrencies } = useCurrenciesStore((state) => ({
     fetchCurrencies: state.fetchCurrencies,
@@ -42,6 +45,7 @@ export const useLoadState = () => {
 
   useEffect(() => {
     (async () => {
+      await migrator.migrate(await versionApi.getVersion());
       await fetchCurrencies();
       await fetchAccounts();
       await fetchExpenseCategories();
