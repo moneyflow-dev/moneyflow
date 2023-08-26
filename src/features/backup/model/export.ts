@@ -17,23 +17,23 @@ import { Backup } from "./types";
 const createBackup = async (): Promise<Backup> => {
   const [
     version,
-    expenses,
-    incomes,
-    transfers,
     currencies,
     accounts,
     expenseCategories,
     incomeCategories,
+    expenses,
+    incomes,
+    transfers,
     settings,
   ] = await Promise.all([
     versionApi.getVersion(),
-    expensesApi.getExpenses(),
-    incomesApi.getIncomes(),
-    transfersApi.getTransfers(),
     currenciesApi.getCurrencies(),
     accountsApi.getAccounts(),
     expenseCategoriesApi.getExpenseCategories(),
     incomeCategoriesApi.getIncomeCategories(),
+    expensesApi.getExpenses(),
+    incomesApi.getIncomes(),
+    transfersApi.getTransfers(),
     settingsApi.getSettings(),
   ]);
   return {
