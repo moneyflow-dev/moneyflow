@@ -1,4 +1,5 @@
 import { Tab as HeadlessTab } from "@headlessui/react";
+import { twMerge } from "tailwind-merge";
 
 import { getAccountBalance } from "@features/statistics";
 
@@ -22,22 +23,33 @@ export const AccountsTabPanel = () => {
 
   return (
     <HeadlessTab.Panel as="div" className="text-text">
-      <AccountCardList
-        accounts={order.map((accountId) => {
-          const account = accounts[accountId];
-          return {
-            account,
-            formattedBalance: createCurrencyAmountString({
-              currency: currencies[account.currencyId],
-              amount: getAccountBalance(
-                accountId,
-                account.initialBalance,
-                transactions,
-              ),
-            }),
-          };
-        })}
-      />
+      {order.length ? (
+        <AccountCardList
+          accounts={order.map((accountId) => {
+            const account = accounts[accountId];
+            return {
+              account,
+              formattedBalance: createCurrencyAmountString({
+                currency: currencies[account.currencyId],
+                amount: getAccountBalance(
+                  accountId,
+                  account.initialBalance,
+                  transactions,
+                ),
+              }),
+            };
+          })}
+        />
+      ) : (
+        <p
+          className={twMerge(
+            "absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[75%]",
+            "text-center text-base/[1.75] font-medium text-subtext0 whitespace-pre-line",
+          )}
+        >
+          You don’t have any accounts yet. To add first tap add button
+        </p>
+      )}
       <Link
         to="/accounts/create"
         className="fixed bottom-20 left-1/2 -translate-x-1/2 z-10"

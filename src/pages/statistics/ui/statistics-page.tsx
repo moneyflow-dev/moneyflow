@@ -14,7 +14,7 @@ export const StatisticsPage = () => {
           "text-center text-base/[1.75] font-medium text-subtext0 whitespace-pre-line",
         )}
       >
-        This page in the development stage
+        This page is under development
       </p>
     </PageLayout>
   );
