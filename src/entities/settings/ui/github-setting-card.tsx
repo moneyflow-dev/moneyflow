@@ -4,10 +4,6 @@ import { ExternalLinkIcon, GithubIcon } from "@shared/ui/icons";
 import { SettingCard } from "./setting-card";
 
 export function GithubSettingCard() {
-  if (!APP_GITHUB_LINK) {
-    return null;
-  }
-
   return (
     <a href={APP_GITHUB_LINK}>
       <SettingCard
