@@ -2,13 +2,11 @@ import { useFormContext } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { twMerge } from "tailwind-merge";
 
-import {
-  CurrencyID,
-  UpdateCurrency,
-  useCurrenciesStore,
-} from "@entities/currency";
+import { CurrencyID, useCurrenciesStore } from "@entities/currency";
 
 import { CheckIcon } from "@shared/ui/icons";
+
+import { CreateCurrencyFormFieldsetSchema } from "./create-currency-form-fieldset";
 
 interface UpdateCurrencyButtonProps {
   id: CurrencyID;
@@ -23,10 +21,14 @@ export const UpdateCurrencyButton = ({
     updateCurrency: state.updateCurrency,
   }));
   const navigate = useNavigate();
-  const { handleSubmit, formState } = useFormContext<UpdateCurrency>();
+  const { handleSubmit, formState } =
+    useFormContext<CreateCurrencyFormFieldsetSchema>();
 
-  const onUpdate = async (currency: UpdateCurrency) => {
-    await updateCurrency(id, currency);
+  const onUpdate = async (currency: CreateCurrencyFormFieldsetSchema) => {
+    await updateCurrency(id, {
+      ...currency,
+      precision: Number(currency.precision),
+    });
     navigate(-1);
   };
 

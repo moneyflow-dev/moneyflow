@@ -3,7 +3,6 @@ import { FormProvider, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 
 import {
-  CreateCurrency,
   CurrencySymbolPosition,
   createCurrencyAmountString,
   useCurrenciesStore,
@@ -14,6 +13,7 @@ import { ColorPickerColor } from "@shared/ui/color-pickers";
 
 import {
   CreateCurrencyFormFieldset,
+  CreateCurrencyFormFieldsetSchema,
   createCurrencyFormFieldsetSchema,
 } from "./create-currency-form-fieldset";
 
@@ -23,12 +23,13 @@ export const CreateCurrencyForm = () => {
   }));
   const navigate = useNavigate();
 
-  const methods = useForm<CreateCurrency>({
+  const methods = useForm<CreateCurrencyFormFieldsetSchema>({
     defaultValues: {
       symbol: "",
       symbolPosition: CurrencySymbolPosition.left,
       color: ColorPickerColor.peach,
       hasSpaceBetweenAmountAndSymbol: false,
+      precision: "2",
     },
     resolver: zodResolver(createCurrencyFormFieldsetSchema),
   });
@@ -39,8 +40,13 @@ export const CreateCurrencyForm = () => {
     "hasSpaceBetweenAmountAndSymbol",
   ]);
 
-  const onCreateCurrency = async (currency: CreateCurrency) => {
-    await createCurrency(currency);
+  const onCreateCurrency = async (
+    currency: CreateCurrencyFormFieldsetSchema,
+  ) => {
+    await createCurrency({
+      ...currency,
+      precision: Number(currency.precision),
+    });
     navigate(-1);
   };
 

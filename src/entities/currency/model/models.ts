@@ -16,6 +16,7 @@ export interface CreateCurrency {
   symbolPosition: CurrencySymbolPosition;
   color: ColorPickerColor;
   hasSpaceBetweenAmountAndSymbol: boolean;
+  precision: number;
 }
 
 export type UpdateCurrency = CreateCurrency;

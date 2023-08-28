@@ -1,3 +1,3 @@
-import { V1Backup } from "./versions/v1/v1-backup.schema";
+import { V2Backup } from "./versions/v2/v2-backup.schema";
 
-export type Backup = V1Backup;
+export type Backup = V2Backup;

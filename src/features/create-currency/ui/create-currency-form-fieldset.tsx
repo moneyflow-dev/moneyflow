@@ -4,6 +4,7 @@ import { z } from "zod";
 
 import { CurrencySymbolPosition, CreateCurrency } from "@entities/currency";
 
+import { positiveIntegerRegex } from "@shared/lib/regex";
 import { Checkbox } from "@shared/ui/checkboxes";
 import { ColorPicker, ColorPickerColor } from "@shared/ui/color-pickers";
 import { Input } from "@shared/ui/inputs";
@@ -21,7 +22,12 @@ export const createCurrencyFormFieldsetSchema = z.object({
   symbolPosition: z.nativeEnum(CurrencySymbolPosition),
   color: z.nativeEnum(ColorPickerColor),
   hasSpaceBetweenAmountAndSymbol: z.boolean(),
+  precision: z.string().regex(positiveIntegerRegex),
 });
+
+export type CreateCurrencyFormFieldsetSchema = z.infer<
+  typeof createCurrencyFormFieldsetSchema
+>;
 
 export const CreateCurrencyFormFieldset = ({
   className,
@@ -35,6 +41,13 @@ export const CreateCurrencyFormFieldset = ({
         required
         placeholder="e.g. $, USD, ..."
         {...register("symbol")}
+      />
+      <Input
+        label="Precision"
+        required
+        placeholder="Number of digits after the decimal point"
+        type="number"
+        {...register("precision")}
       />
       <Controller
         control={control}

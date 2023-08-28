@@ -6,6 +6,7 @@ import { getAccountBalance } from "@features/statistics";
 import { AccountCardList, useAccountsStore } from "@entities/account";
 import {
   createCurrencyAmountString,
+  formatAmountPrecision,
   useCurrenciesStore,
 } from "@entities/currency";
 import { useTransactions } from "@entities/transaction";
@@ -27,14 +28,18 @@ export const AccountsTabPanel = () => {
         <AccountCardList
           accounts={order.map((accountId) => {
             const account = accounts[accountId];
+            const currency = currencies[account.currencyId];
             return {
               account,
               formattedBalance: createCurrencyAmountString({
-                currency: currencies[account.currencyId],
-                amount: getAccountBalance(
-                  accountId,
-                  account.initialBalance,
-                  transactions,
+                currency,
+                amount: formatAmountPrecision(
+                  getAccountBalance(
+                    accountId,
+                    account.initialBalance,
+                    transactions,
+                  ),
+                  currency.precision,
                 ),
               }),
             };

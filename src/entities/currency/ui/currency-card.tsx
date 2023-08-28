@@ -3,7 +3,7 @@ import { twMerge } from "tailwind-merge";
 import { ColorPickerColor } from "@shared/ui/color-pickers";
 import { Link } from "@shared/ui/links";
 
-import { createCurrencyAmountString } from "../lib";
+import { createCurrencyAmountString, formatAmountPrecision } from "../lib";
 import { Currency } from "../model/models";
 
 interface CurrencyCardProps {
@@ -44,7 +44,10 @@ export const CurrencyCard = ({
         className,
       )}
     >
-      {createCurrencyAmountString({ currency, amount: balance })}
+      {createCurrencyAmountString({
+        currency,
+        amount: formatAmountPrecision(balance, currency.precision),
+      })}
     </Link>
   );
 };

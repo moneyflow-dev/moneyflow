@@ -8,15 +8,12 @@ import { GroupedTransactionList } from "@widgets/transaction-list";
 import {
   CreateCurrencyFormFieldset,
   createCurrencyFormFieldsetSchema,
+  CreateCurrencyFormFieldsetSchema,
+  UpdateCurrencyButton,
 } from "@features/create-currency";
 import { DeleteCurrencyButton } from "@features/delete-currency";
-import { UpdateCurrencyButton } from "@features/update-currency";
 
-import {
-  CurrencySymbolPosition,
-  UpdateCurrency,
-  useCurrenciesStore,
-} from "@entities/currency";
+import { CurrencySymbolPosition, useCurrenciesStore } from "@entities/currency";
 
 import { ColorPickerColor } from "@shared/ui/color-pickers";
 import { Divider } from "@shared/ui/dividers";
@@ -34,8 +31,8 @@ export const CurrencyOverviewPage = () => {
 
   const currency = getCurrency(id);
 
-  const methods = useForm<UpdateCurrency>({
-    defaultValues: currency,
+  const methods = useForm<CreateCurrencyFormFieldsetSchema>({
+    defaultValues: { ...currency, precision: currency.precision.toString() },
     resolver: zodResolver(createCurrencyFormFieldsetSchema),
   });
   const { reset } = methods;
@@ -46,6 +43,7 @@ export const CurrencyOverviewPage = () => {
       symbolPosition: CurrencySymbolPosition.left,
       color: ColorPickerColor.peach,
       hasSpaceBetweenAmountAndSymbol: false,
+      precision: "2",
     });
   };
 

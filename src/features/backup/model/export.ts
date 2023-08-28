@@ -10,7 +10,7 @@ import { incomeCategoriesApi } from "@shared/api/income-categories-api";
 import { incomesApi } from "@shared/api/incomes-api";
 import { settingsApi } from "@shared/api/settings-api";
 import { transfersApi } from "@shared/api/transfers-api";
-import { DBVersion, versionApi } from "@shared/api/version-api";
+import { versionApi } from "@shared/api/version-api";
 
 import { Backup } from "./types";
 
@@ -37,7 +37,7 @@ const createBackup = async (): Promise<Backup> => {
     settingsApi.getSettings(),
   ]);
   return {
-    version: version as DBVersion,
+    version: version as 2,
     expenses,
     incomes,
     transfers,

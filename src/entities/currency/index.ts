@@ -1,6 +1,6 @@
 export { CurrencyCard } from "./ui/currency-card";
 export { CurrencyPicker } from "./ui/currency-picker";
-export { createCurrencyAmountString } from "./lib";
+export { createCurrencyAmountString, formatAmountPrecision } from "./lib";
 export { useCurrenciesStore } from "./model/store";
 export {
   CurrencySymbolPosition,

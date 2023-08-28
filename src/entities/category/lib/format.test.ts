@@ -29,8 +29,8 @@ describe("createCategoryString", () => {
       "2": { id: "2", title: "B", parentId: "1", createdAt: nowDate },
       "3": { id: "3", title: "C", parentId: "2", createdAt: nowDate },
     };
-    const actual = createCategoryString(categories, "3");
-    assert.strictEqual(actual, "A / B / C");
+    const actual = createCategoryString(categories, "3", " | ");
+    assert.strictEqual(actual, "A | B | C");
   });
 
   it("with depth 2 and nested categories for depth 2", () => {

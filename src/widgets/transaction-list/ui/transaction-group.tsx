@@ -8,6 +8,7 @@ import {
 } from "@entities/category";
 import {
   createCurrencyAmountString,
+  formatAmountPrecision,
   useCurrenciesStore,
 } from "@entities/currency";
 import {
@@ -54,7 +55,10 @@ export const TransactionListGroup = ({
               ...transaction,
               formattedAmount: createCurrencyAmountString({
                 currency,
-                amount: transaction.amount,
+                amount: formatAmountPrecision(
+                  transaction.amount,
+                  currency.precision,
+                ),
               }),
               categoryTitle: createCategoryString(
                 expenseCategories,
@@ -76,7 +80,10 @@ export const TransactionListGroup = ({
               ...transaction,
               formattedAmount: createCurrencyAmountString({
                 currency,
-                amount: transaction.amount,
+                amount: formatAmountPrecision(
+                  transaction.amount,
+                  currency.precision,
+                ),
               }),
               categoryTitle: createCategoryString(
                 incomeCategories,
@@ -104,14 +111,20 @@ export const TransactionListGroup = ({
                 accountTitle: fromAccount.title,
                 amount: createCurrencyAmountString({
                   currency: fromAccountCurrency,
-                  amount: transaction.fromAccount.amount,
+                  amount: formatAmountPrecision(
+                    transaction.fromAccount.amount,
+                    fromAccountCurrency.precision,
+                  ),
                 }),
               },
               toAccount: {
                 accountTitle: toAccount.title,
                 amount: createCurrencyAmountString({
                   currency: toAccountCurrency,
-                  amount: transaction.toAccount.amount,
+                  amount: formatAmountPrecision(
+                    transaction.toAccount.amount,
+                    toAccountCurrency.precision,
+                  ),
                 }),
               },
               sameCurrencies: fromAccountCurrency.id === toAccountCurrency.id,

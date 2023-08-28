@@ -10,6 +10,8 @@ import { BackupImporter } from "./backup-importer.interface";
 import { BackupValidationError } from "./errors";
 import { V1BackupImporter } from "./versions/v1/v1-backup.importer";
 import { v1BackupConsistentSchema } from "./versions/v1/v1-backup.schema";
+import { V2BackupImporter } from "./versions/v2/v2-backup.importer";
+import { v2BackupConsistentSchema } from "./versions/v2/v2-backup.schema";
 import {
   BackupWithVersion,
   backupVersionSchema,
@@ -17,10 +19,12 @@ import {
 
 const backupSchemas: Record<DBVersion, z.ZodSchema<BackupWithVersion>> = {
   1: v1BackupConsistentSchema,
+  2: v2BackupConsistentSchema,
 };
 
 const backupImporters: Record<DBVersion, BackupImporter> = {
   1: new V1BackupImporter(),
+  2: new V2BackupImporter(),
 };
 
 export async function importBackup() {

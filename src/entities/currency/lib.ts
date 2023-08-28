@@ -11,6 +11,8 @@ interface CreateCurrencyBalanceStringParams {
   amount: string;
 }
 
+export class InvalidPrecisionError extends Error {}
+
 export const createCurrencyAmountString = ({
   currency: { symbol, symbolPosition, hasSpaceBetweenAmountAndSymbol },
   amount,
@@ -24,4 +26,18 @@ export const createCurrencyAmountString = ({
   }
   const currencyString = parts.join(hasSpaceBetweenAmountAndSymbol ? " " : "");
   return `${isNegative ? "-" : ""}${currencyString}`;
+};
+
+export const formatAmountPrecision = (
+  amount: string,
+  precision: number,
+): string => {
+  if (precision < 0 || !Number.isInteger(precision)) {
+    throw new InvalidPrecisionError(
+      "precision must be greater than or equal to 0",
+    );
+  }
+  return new Decimal(amount)
+    .toDecimalPlaces(precision, Decimal.ROUND_DOWN)
+    .toString();
 };

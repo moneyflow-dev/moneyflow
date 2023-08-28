@@ -8,6 +8,7 @@ export interface CreateCurrencyDTO {
   symbolPosition: CurrencySymbolPosition;
   color: ColorPickerColor;
   hasSpaceBetweenAmountAndSymbol: boolean;
+  precision: number;
 }
 
 export type UpdateCurrencyDTO = CreateCurrencyDTO;
