@@ -12,4 +12,10 @@ public class MainActivity extends BridgeActivity {
         super.onCreate(savedInstanceState);
         SplashScreen.installSplashScreen(this);
     }
+    
+    @Override
+    public void onStart() {
+        super.onStart();
+        bridge.getWebView().setVerticalScrollBarEnabled(false);
+    }
 }
