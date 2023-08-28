@@ -16,7 +16,9 @@ Our product is open source. You're welcome to contribute.
 
 ⚡ Backup to a file. You can backup all your data and not be afraid of losing it
 
-⚡ Fully open source. You're welcome to contribute
+⚡ Fully free and open source. You're welcome to contribute
+
+⚡ No ads
 
 ⚡ Works offline. Your data will never leak to developers
 
