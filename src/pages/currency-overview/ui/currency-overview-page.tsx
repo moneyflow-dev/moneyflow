@@ -92,17 +92,24 @@ export const CurrencyOverviewPage = () => {
 
         <main className="flex flex-col gap-4">
           <div className="flex flex-col gap-3 items-center">
-            <span
-              className={twMerge(
-                "text-xl font-extrabold px-4",
-                colorToBalanceClassName[color],
-              )}
-            >
-              {createCurrencyAmountString({
-                currency,
-                amount: getCurrencyBalance(currency.id, accounts, transactions),
-              })}
-            </span>
+            <div className="flex gap-4 items-center justify-between px-4 w-full whitespace-nowrap">
+              <span className="text-base text-subtext0 font-bold">Balance</span>
+              <span
+                className={twMerge(
+                  "text-xl font-extrabold overflow-x-auto",
+                  colorToBalanceClassName[color],
+                )}
+              >
+                {createCurrencyAmountString({
+                  currency,
+                  amount: getCurrencyBalance(
+                    currency.id,
+                    accounts,
+                    transactions,
+                  ),
+                })}
+              </span>
+            </div>
             <Divider />
           </div>
           <div className="flex flex-col gap-6">
