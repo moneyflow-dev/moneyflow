@@ -64,6 +64,8 @@
 
     --color-rosewater: 244, 219, 214;
     --color-rosewater-active: 246, 226, 222; /* brightness +20% */
+
+    --font-scale: 1.125;
   }
 
   * {
@@ -83,9 +85,7 @@
 
   html {
     font-family: JetBrainsMono;
-    font-size: calc(
-      16px * 1.125
-    ); /* multiply by 1.125 because android pixel is not equal desktop pixel */
+    font-size: calc(16px * var(--font-scale));
     user-select: none;
   }
 
