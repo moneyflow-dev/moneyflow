@@ -39,15 +39,17 @@ export const CurrencyCard = ({
       to={`/currencies/${currency.id}`}
       className={twMerge(
         "flex justify-center items-center p-4 rounded text-xl",
-        "text-crust font-extrabold transition-colors",
+        "text-crust font-extrabold transition-colors whitespace-nowrap",
         colorToClassName[currency.color],
         className,
       )}
     >
-      {createCurrencyAmountString({
-        currency,
-        amount: formatAmountPrecision(balance, currency.precision),
-      })}
+      <span className="overflow-x-auto">
+        {createCurrencyAmountString({
+          currency,
+          amount: formatAmountPrecision(balance, currency.precision),
+        })}
+      </span>
     </Link>
   );
 };
