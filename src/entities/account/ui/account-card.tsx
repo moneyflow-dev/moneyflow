@@ -46,8 +46,8 @@ export const AccountCard = ({
     <Link
       to={`/accounts/${account.id}`}
       className={twMerge(
-        "flex justify-between items-center p-4 rounded text-xl",
-        "text-crust font-extrabold transition-colors",
+        "flex justify-between items-center gap-4 p-4 rounded text-xl",
+        "text-crust font-extrabold transition-colors whitespace-nowrap",
         colorToClassName[account.color],
         className,
       )}
@@ -56,7 +56,9 @@ export const AccountCard = ({
         {iconToComponent[account.icon]}
         {account.title}
       </div>
-      <span className="text-xl font-extrabold">{formattedBalance}</span>
+      <span className="text-xl font-extrabold overflow-x-auto">
+        {formattedBalance}
+      </span>
     </Link>
   );
 };
