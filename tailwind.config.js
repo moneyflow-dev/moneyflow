@@ -70,7 +70,7 @@ export default {
     },
     borderRadius: {
       sm: "0.375rem",
-      DEFAULT: "0.675rem",
+      DEFAULT: "0.625rem",
       full: "9999px",
     },
     dropShadow: {

@@ -31,3 +31,6 @@ export interface IncomeCategory extends CreateIncomeCategory {
 }
 
 export type IncomeCategories = Record<string, IncomeCategory>;
+
+export const CategoryType = { expense: "expense", income: "income" } as const;
+export type CategoryType = (typeof CategoryType)[keyof typeof CategoryType];

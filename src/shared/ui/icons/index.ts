@@ -32,3 +32,5 @@ export { WalletIcon } from "./wallet-icon";
 export { XmarkIcon } from "./xmark-icon";
 export { FilterIcon } from "./filter-icon";
 export { SearchIcon } from "./search-icon";
+export { TrendUpIcon } from "./trend-up-icon";
+export { TrendDownIcon } from "./trend-down-icon";

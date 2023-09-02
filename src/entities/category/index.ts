@@ -9,6 +9,8 @@ export {
   type IncomeCategories,
   type IncomeCategory,
   type ExpenseCategory,
+  CategoryType,
 } from "./model/models";
 export { CategorySelect } from "./ui/category-select";
 export { createCategoryString } from "./lib/format";
+export { getRootCategory } from "./lib/get-root-category";
