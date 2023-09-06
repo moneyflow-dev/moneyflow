@@ -3,14 +3,14 @@
 Our product is open source. You're welcome to contribute.
 
 <p float="left">
-    <img width="32%" src="https://raw.githubusercontent.com/moneyflow-dev/moneyflow/main/assets/preview-1.png" />
-    <img width="32%" src="https://raw.githubusercontent.com/moneyflow-dev/moneyflow/main/assets/preview-2.png" />
-    <img width="32%" src="https://raw.githubusercontent.com/moneyflow-dev/moneyflow/main/assets/preview-3.png" />
+    <img width="30%" src="https://raw.githubusercontent.com/moneyflow-dev/moneyflow/main/assets/preview-1.png" />
+    <img width="30%" src="https://raw.githubusercontent.com/moneyflow-dev/moneyflow/main/assets/preview-2.png" />
+    <img width="30%" src="https://raw.githubusercontent.com/moneyflow-dev/moneyflow/main/assets/preview-3.png" />
 </p>
 <p float="left">
-    <img width="32%" src="https://raw.githubusercontent.com/moneyflow-dev/moneyflow/main/assets/preview-4.png" />
-    <img width="32%" src="https://raw.githubusercontent.com/moneyflow-dev/moneyflow/main/assets/preview-5.png" />
-    <img width="32%" src="https://raw.githubusercontent.com/moneyflow-dev/moneyflow/main/assets/preview-6.png" />
+    <img width="30%" src="https://raw.githubusercontent.com/moneyflow-dev/moneyflow/main/assets/preview-4.png" />
+    <img width="30%" src="https://raw.githubusercontent.com/moneyflow-dev/moneyflow/main/assets/preview-5.png" />
+    <img width="30%" src="https://raw.githubusercontent.com/moneyflow-dev/moneyflow/main/assets/preview-6.png" />
 </p>
 
 ## Features
