@@ -2,6 +2,13 @@
 
 Our product is open source. You're welcome to contribute.
 
+<img width="250px" src="https://raw.githubusercontent.com/moneyflow-dev/moneyflow/main/assets/preview-1.png" />
+<img width="250px" src="https://raw.githubusercontent.com/moneyflow-dev/moneyflow/main/assets/preview-2.png" />
+<img width="250px" src="https://raw.githubusercontent.com/moneyflow-dev/moneyflow/main/assets/preview-3.png" />
+<img width="250px" src="https://raw.githubusercontent.com/moneyflow-dev/moneyflow/main/assets/preview-4.png" />
+<img width="250px" src="https://raw.githubusercontent.com/moneyflow-dev/moneyflow/main/assets/preview-5.png" />
+<img width="250px" src="https://raw.githubusercontent.com/moneyflow-dev/moneyflow/main/assets/preview-6.png" />
+
 ## Features
 
 ⚡ Manage your expenses, incomes and transfers between different accounts
