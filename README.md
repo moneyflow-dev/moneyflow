@@ -2,6 +2,8 @@
 
 Our product is open source. You're welcome to contribute.
 
+You can download the application from the [Releases](https://github.com/moneyflow-dev/moneyflow/releases/latest) page.
+
 <p align="center">
     <img width="32%" src="https://raw.githubusercontent.com/moneyflow-dev/moneyflow/main/assets/preview-1.png" />
     <img width="32%" src="https://raw.githubusercontent.com/moneyflow-dev/moneyflow/main/assets/preview-2.png" />
