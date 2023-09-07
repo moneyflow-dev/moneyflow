@@ -36,3 +36,7 @@ You can download the application from the [Releases](https://github.com/moneyflo
 ⚡ No ads
 
 ⚡ Works offline. Your data will never leak to developers
+
+## Support
+
+If you want to support our product, the best thing you can do is star this GitHub repository.
