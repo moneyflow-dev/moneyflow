@@ -1,18 +1,22 @@
+<img align="left" width="80" height="80" src="assets/icon-for-github.png" alt="App icon" />
+
 # Money Flow - your personal money manager
+
+<br />
 
 Our product is open source. You're welcome to contribute.
 
 You can download the application from the [Releases](https://github.com/moneyflow-dev/moneyflow/releases/latest) page.
 
 <p align="center">
-    <img width="32%" src="https://raw.githubusercontent.com/moneyflow-dev/moneyflow/main/assets/preview-1.png" />
-    <img width="32%" src="https://raw.githubusercontent.com/moneyflow-dev/moneyflow/main/assets/preview-2.png" />
-    <img width="32%" src="https://raw.githubusercontent.com/moneyflow-dev/moneyflow/main/assets/preview-3.png" />
+    <img width="32%" src="assets/preview-1.png" />
+    <img width="32%" src="assets/preview-2.png" />
+    <img width="32%" src="assets/preview-3.png" />
 </p>
 <p align="center">
-    <img width="32%" src="https://raw.githubusercontent.com/moneyflow-dev/moneyflow/main/assets/preview-4.png" />
-    <img width="32%" src="https://raw.githubusercontent.com/moneyflow-dev/moneyflow/main/assets/preview-5.png" />
-    <img width="32%" src="https://raw.githubusercontent.com/moneyflow-dev/moneyflow/main/assets/preview-6.png" />
+    <img width="32%" src="assets/preview-4.png" />
+    <img width="32%" src="assets/preview-5.png" />
+    <img width="32%" src="assets/preview-6.png" />
 </p>
 
 ## Features
