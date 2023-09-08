@@ -3,6 +3,7 @@
 
 .env*
 !.env.sample
+!.env.test
 
 # Logs
 logs
