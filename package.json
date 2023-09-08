@@ -10,6 +10,7 @@
     "open:android": "cap open android",
     "sync": "cap sync",
     "lint": "eslint src",
+    "lint:style": "prettier src --check",
     "test": "vitest run",
     "postinstall": "husky install"
   },
