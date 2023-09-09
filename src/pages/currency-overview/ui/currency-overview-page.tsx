@@ -18,7 +18,6 @@ import { getCurrencyBalance } from "@features/statistics";
 import { useAccountsStore } from "@entities/account";
 import {
   createCurrencyAmountString,
-  Currency,
   useCurrenciesStore,
 } from "@entities/currency";
 import { useTransactions } from "@entities/transaction";
