@@ -1,6 +1,6 @@
 import { Preferences } from "@capacitor/preferences";
 
-import { SettingsDTO } from "./dtos";
+import { SettingsDTO, UITextSizeDTO } from "./dtos";
 import { SettingsAPI } from "./settings-api.interface";
 
 export class PreferencesSettingsAPI implements SettingsAPI {
@@ -9,6 +9,7 @@ export class PreferencesSettingsAPI implements SettingsAPI {
     if (value === null) {
       const state: SettingsDTO = {
         notifications: { enabled: true, time: { hour: 21, minute: 0 } },
+        appearance: { textSize: UITextSizeDTO.large },
       };
       await this.setState(state);
       return state;

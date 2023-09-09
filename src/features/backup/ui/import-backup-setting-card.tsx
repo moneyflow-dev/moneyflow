@@ -6,7 +6,7 @@ import {
   useIncomeCategoriesStore,
 } from "@entities/category";
 import { useCurrenciesStore } from "@entities/currency";
-import { SettingCard } from "@entities/settings";
+import { SettingCard, useSettingsStore } from "@entities/settings";
 import {
   useExpensesStore,
   useIncomesStore,
@@ -44,6 +44,9 @@ export const ImportBackupSettingCard = () => {
   const { fetchIncomeCategories } = useIncomeCategoriesStore((state) => ({
     fetchIncomeCategories: state.fetchIncomeCategories,
   }));
+  const { fetchSettings } = useSettingsStore((state) => ({
+    fetchSettings: state.fetchSettings,
+  }));
 
   const onClick = () => setConfirmationIsOpen(true);
   const closeConfirmation = () => setConfirmationIsOpen(false);
@@ -66,6 +69,7 @@ export const ImportBackupSettingCard = () => {
     fetchExpenses();
     fetchIncomes();
     fetchTransfers();
+    fetchSettings();
     closeConfirmation();
   };
 

@@ -23,9 +23,11 @@ import { RootPage } from "@pages/root";
 import { RootLayoutPage } from "@pages/root-layout";
 import { SettingsPage } from "@pages/settings";
 import { StatisticsPage } from "@pages/statistics";
+import { TextSizeSettingsPage } from "@pages/text-size-settings";
 import { TransactionsPage } from "@pages/transactions";
 import { TransferOverviewPage } from "@pages/transfer-overview";
 
+import { useTextSize } from "@features/appearance";
 import { NotificationsScheduler } from "@features/notifications";
 
 import { BackButtonContextProvider } from "@shared/lib/back-button-context";
@@ -112,12 +114,17 @@ const router = createBrowserRouter([
         path: "/transfers/:id",
         element: <TransferOverviewPage />,
       },
+      {
+        path: "/text-size-settings",
+        element: <TextSizeSettingsPage />,
+      },
     ],
   },
 ]);
 
 export const App = () => {
   useLoadState();
+  useTextSize();
 
   return (
     <BackButtonContextProvider>

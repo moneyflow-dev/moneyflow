@@ -1,5 +1,6 @@
 import { Header } from "@widgets/header";
 
+import { AppearanceSettingCardGroup } from "@features/appearance";
 import { BackupSettingCardGroup } from "@features/backup";
 import { NotificationsSettingCardGroup } from "@features/notifications";
 
@@ -21,6 +22,7 @@ export const SettingsPage = () => {
         </SettingCardGroup>
         <BackupSettingCardGroup />
         <NotificationsSettingCardGroup />
+        <AppearanceSettingCardGroup />
         <AboutUsSettingCardGroup />
       </main>
     </PageLayout>

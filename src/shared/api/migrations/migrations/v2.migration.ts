@@ -1,5 +1,6 @@
 import { Preferences } from "@capacitor/preferences";
 
+import { MigrationError } from "../errors";
 import { Migration } from "../migration.interface";
 
 /** This migration adds precision field to currency */
@@ -8,6 +9,12 @@ export class V2Migration implements Migration {
     const { value: currenciesJsonString } = await Preferences.get({
       key: "currencies",
     });
+
+    if (currenciesJsonString === null) {
+      throw new MigrationError(
+        "No currencies field in preferences in v2 migration",
+      );
+    }
 
     const currencies = JSON.parse(currenciesJsonString as string);
 

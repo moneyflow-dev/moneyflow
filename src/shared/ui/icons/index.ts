@@ -34,3 +34,4 @@ export { FilterIcon } from "./filter-icon";
 export { SearchIcon } from "./search-icon";
 export { TrendUpIcon } from "./trend-up-icon";
 export { TrendDownIcon } from "./trend-down-icon";
+export { FontIcon } from "./font-icon";
