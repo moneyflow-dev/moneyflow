@@ -207,5 +207,8 @@ module.exports = {
     "import/resolver": {
       typescript: true,
     },
+    react: {
+      version: "detect",
+    },
   },
 };
