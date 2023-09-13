@@ -7,7 +7,7 @@ import { PageLayout } from "@shared/ui/layouts";
 export function TextSizeSettingsPage() {
   return (
     <PageLayout>
-      <Header title="Text size settings" />
+      <Header title="Text size settings" backButton />
       <TextSizePicker />
     </PageLayout>
   );
