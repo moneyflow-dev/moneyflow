@@ -1,4 +1,3 @@
-import { Dialog } from "@headlessui/react";
 import { useState } from "react";
 
 import { FloatingActionButton } from "@shared/ui/buttons";
@@ -19,8 +18,12 @@ export const CreateTransactionButton = () => {
 
   return (
     <>
-      <ModalWithoutContent isOpen={isOpen} onClose={onClose}>
-        <Dialog.Panel className="fixed bottom-36 w-screen flex justify-center items-end gap-[3.25rem] z-10">
+      <ModalWithoutContent
+        isOpen={isOpen}
+        onClose={onClose}
+        contentClassName="fixed bottom-36"
+      >
+        <div className="flex justify-center items-end gap-[3.25rem]">
           <Link to="/incomes/create">
             <FloatingActionButton
               size="md"
@@ -49,12 +52,12 @@ export const CreateTransactionButton = () => {
               <UpArrowIcon size="md" />
             </FloatingActionButton>
           </Link>
-        </Dialog.Panel>
+        </div>
       </ModalWithoutContent>
       <FloatingActionButton
         size="lg"
         onClick={onOpenClick}
-        containerClassName="fixed bottom-20 left-1/2 -translate-x-1/2 z-20"
+        containerClassName="fixed bottom-20 left-1/2 -translate-x-1/2 z-40"
         className={`transition-all duration-300 ${
           isOpen ? "rotate-135" : "rotate-0"
         }`}

@@ -1,5 +1,6 @@
-import { Dialog, Transition } from "@headlessui/react";
+import { Transition } from "@headlessui/react";
 import { Fragment, ReactNode, useEffect } from "react";
+import { twMerge } from "tailwind-merge";
 
 import { useBackButtonContext } from "@shared/lib/back-button-context";
 
@@ -8,20 +9,22 @@ import { XmarkIcon } from "../icons";
 import { PageLayout } from "../layouts";
 
 interface ModalBottomSlideProps {
-  title: string;
   isOpen: boolean;
   onClose(): void;
+  title: string;
   children?: ReactNode;
+  className?: string;
   pageLayoutClassName?: string;
 }
 
-export const ModalBottomSlide = ({
-  title,
+export function ModalBottomSlide({
   isOpen,
   onClose,
+  title,
   children,
+  className,
   pageLayoutClassName,
-}: ModalBottomSlideProps) => {
+}: ModalBottomSlideProps) {
   const { register, unregister } = useBackButtonContext();
 
   useEffect(() => {
@@ -31,9 +34,13 @@ export const ModalBottomSlide = ({
     }
   }, [isOpen, onClose, register, unregister]);
 
+  useEffect(() => {
+    document.body.style.overflow = isOpen ? "hidden" : "auto";
+  }, [isOpen]);
+
   return (
-    <Transition appear show={isOpen} as={Fragment}>
-      <Dialog as="div" className="relative z-50" onClose={onClose}>
+    <Transition show={isOpen} as={Fragment}>
+      <div className={twMerge("fixed inset-0 z-10", className)}>
         <Transition.Child
           as={Fragment}
           enter="transition ease-out duration-300"
@@ -43,7 +50,7 @@ export const ModalBottomSlide = ({
           leaveFrom="translate-y-0"
           leaveTo="translate-y-full"
         >
-          <Dialog.Panel className="fixed inset-0 min-h-full bg-base-color">
+          <div className="fixed inset-0 min-h-full bg-base-color">
             <PageLayout className={pageLayoutClassName}>
               <div className="w-full flex flex-col gap-3">
                 <div className="flex items-center gap-4 pe-3">
@@ -61,9 +68,9 @@ export const ModalBottomSlide = ({
               </div>
               {children}
             </PageLayout>
-          </Dialog.Panel>
+          </div>
         </Transition.Child>
-      </Dialog>
+      </div>
     </Transition>
   );
-};
+}

@@ -1,19 +1,26 @@
-import { Dialog, Transition } from "@headlessui/react";
-import { Fragment, ReactNode, useEffect } from "react";
+import { Transition } from "@headlessui/react";
+import React, { Fragment, useEffect } from "react";
+import { twMerge } from "tailwind-merge";
 
 import { useBackButtonContext } from "@shared/lib/back-button-context";
 
 interface ModalWithoutContentProps {
   isOpen: boolean;
-  onClose(): void;
-  children?: ReactNode;
+  onClose: () => void;
+  children?: React.ReactNode;
+  overlayClassName?: string;
+  wrapperClassName?: string;
+  contentClassName?: string;
 }
 
-export const ModalWithoutContent = ({
+export function ModalWithoutContent({
   isOpen,
   onClose,
   children,
-}: ModalWithoutContentProps) => {
+  overlayClassName,
+  wrapperClassName,
+  contentClassName,
+}: ModalWithoutContentProps) {
   const { register, unregister } = useBackButtonContext();
 
   useEffect(() => {
@@ -23,9 +30,13 @@ export const ModalWithoutContent = ({
     }
   }, [isOpen, onClose, register, unregister]);
 
+  useEffect(() => {
+    document.body.style.overflow = isOpen ? "hidden" : "auto";
+  }, [isOpen]);
+
   return (
-    <Transition appear show={isOpen} as={Fragment}>
-      <Dialog as="div" className="relative z-10" onClose={onClose}>
+    <Transition show={isOpen} as={Fragment}>
+      <div className="fixed inset-0 z-10">
         <Transition.Child
           as={Fragment}
           enter="ease-out duration-300"
@@ -35,21 +46,34 @@ export const ModalWithoutContent = ({
           leaveFrom="opacity-100"
           leaveTo="opacity-0"
         >
-          <div className="fixed inset-0 bg-base-color bg-opacity-75" />
+          <div
+            className={twMerge(
+              "fixed inset-0 bg-base-color bg-opacity-75",
+              overlayClassName,
+            )}
+          ></div>
         </Transition.Child>
-
-        <Transition.Child
-          as={Fragment}
-          enter="ease-out duration-300"
-          enterFrom="opacity-0 scale-95"
-          enterTo="opacity-100 scale-100"
-          leave="ease-in duration-200"
-          leaveFrom="opacity-100 scale-100"
-          leaveTo="opacity-0 scale-95"
+        <div
+          className={twMerge(
+            "fixed inset-0 min-h-full flex items-center justify-center overflow-y-auto z-20",
+            wrapperClassName,
+          )}
+          onClick={onClose}
         >
-          {children}
-        </Transition.Child>
-      </Dialog>
+          <Transition.Child
+            enter="ease-out duration-300"
+            enterFrom="opacity-0 scale-95"
+            enterTo="opacity-100 scale-100"
+            leave="ease-in duration-200"
+            leaveFrom="opacity-100 scale-100"
+            leaveTo="opacity-0 scale-95"
+            className={contentClassName}
+            onClick={(event) => event.stopPropagation()}
+          >
+            {children}
+          </Transition.Child>
+        </div>
+      </div>
     </Transition>
   );
-};
+}

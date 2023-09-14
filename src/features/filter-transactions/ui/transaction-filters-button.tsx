@@ -178,6 +178,7 @@ export const TransactionFiltersButton = ({
         title="Transactions Filters"
         isOpen={isOpen}
         onClose={closeModal}
+        className="z-50"
         pageLayoutClassName="h-full"
       >
         <div className="flex flex-col justify-between h-full pb-7 gap-4">
