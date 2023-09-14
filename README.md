@@ -6,7 +6,7 @@
 
 Our product is open source. You're welcome to contribute.
 
-You can download the application from the [Releases](https://github.com/moneyflow-dev/moneyflow/releases/latest) page.
+You can download the application from the [Google Play Store](https://play.google.com/store/apps/details?id=cash.moneyflow.moneyflow) or download the APK file directly from the [Releases](https://github.com/moneyflow-dev/moneyflow/releases/latest) page.
 
 <p align="center">
     <img width="32%" src="assets/preview-1.png" />
