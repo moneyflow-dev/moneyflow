@@ -17,7 +17,7 @@ export class V3Migration implements Migration {
     }
 
     const settings = JSON.parse(settingsJsonString);
-    settings.appearance = { textSize: "large" };
+    settings.appearance = { textSize: "small" };
 
     await Promise.all([
       Preferences.set({ key: "version", value: "3" }),
