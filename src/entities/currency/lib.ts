@@ -1,5 +1,7 @@
 import { Decimal } from "decimal.js";
 
+import { numbersGroupingRegex } from "@shared/lib/regex";
+
 import { CurrencySymbolPosition } from "./model/models";
 
 interface CreateCurrencyBalanceStringParams {
@@ -7,6 +9,7 @@ interface CreateCurrencyBalanceStringParams {
     symbol: string;
     symbolPosition: CurrencySymbolPosition;
     hasSpaceBetweenAmountAndSymbol: boolean;
+    hasGroupingNumbers: boolean;
   };
   amount: string;
 }
@@ -14,7 +17,12 @@ interface CreateCurrencyBalanceStringParams {
 export class InvalidPrecisionError extends Error {}
 
 export const createCurrencyAmountString = ({
-  currency: { symbol, symbolPosition, hasSpaceBetweenAmountAndSymbol },
+  currency: {
+    symbol,
+    symbolPosition,
+    hasSpaceBetweenAmountAndSymbol,
+    hasGroupingNumbers,
+  },
   amount,
 }: CreateCurrencyBalanceStringParams): string => {
   const number = new Decimal(amount);
@@ -26,7 +34,7 @@ export const createCurrencyAmountString = ({
   }
   const currencyString = parts
     .join(hasSpaceBetweenAmountAndSymbol ? " " : "")
-    .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    .replace(numbersGroupingRegex, hasGroupingNumbers ? "," : "");
   return `${isNegative ? "-" : ""}${currencyString}`;
 };
 
