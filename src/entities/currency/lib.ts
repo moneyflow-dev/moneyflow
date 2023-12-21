@@ -24,7 +24,9 @@ export const createCurrencyAmountString = ({
   if (symbolPosition === "right") {
     parts.reverse();
   }
-  const currencyString = parts.join(hasSpaceBetweenAmountAndSymbol ? " " : "");
+  const currencyString = parts
+    .join(hasSpaceBetweenAmountAndSymbol ? " " : "")
+    .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   return `${isNegative ? "-" : ""}${currencyString}`;
 };
 
