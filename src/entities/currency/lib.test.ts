@@ -8,100 +8,144 @@ import {
 
 describe("currency entity lib", () => {
   describe("createCurrencyAmountString", () => {
-    it("positive number, left symbol position, without space", () => {
+    it("positive number, left symbol position, without space, without grouping", () => {
       const actual = createCurrencyAmountString({
         currency: {
           symbol: "$",
           symbolPosition: "left",
+          precision: 1,
           hasSpaceBetweenAmountAndSymbol: false,
+          hasGroupingNumbers: false,
         },
         amount: "15.8",
       });
       expect(actual).toBe("$15.8");
     });
 
-    it("positive number, right symbol position, without space", () => {
+    it("positive number, right symbol position, without space, without grouping", () => {
       const actual = createCurrencyAmountString({
         currency: {
           symbol: "$",
           symbolPosition: "right",
+          precision: 1,
           hasSpaceBetweenAmountAndSymbol: false,
+          hasGroupingNumbers: false,
         },
         amount: "15.8",
       });
       expect(actual).toBe("15.8$");
     });
 
-    it("positive number, left symbol position, with space", () => {
+    it("positive number, left symbol position, with space, without grouping", () => {
       const actual = createCurrencyAmountString({
         currency: {
           symbol: "$",
           symbolPosition: "left",
+          precision: 1,
           hasSpaceBetweenAmountAndSymbol: true,
+          hasGroupingNumbers: false,
         },
         amount: "15.8",
       });
       expect(actual).toBe("$ 15.8");
     });
 
-    it("positive number, right symbol position, with space", () => {
+    it("positive number, right symbol position, with space, without grouping", () => {
       const actual = createCurrencyAmountString({
         currency: {
           symbol: "$",
           symbolPosition: "right",
+          precision: 1,
           hasSpaceBetweenAmountAndSymbol: true,
+          hasGroupingNumbers: false,
         },
         amount: "15.8",
       });
       expect(actual).toBe("15.8 $");
     });
 
-    it("negative number, left symbol position, without space", () => {
+    it("negative number, left symbol position, without space, without grouping", () => {
       const actual = createCurrencyAmountString({
         currency: {
           symbol: "$",
           symbolPosition: "left",
+          precision: 1,
           hasSpaceBetweenAmountAndSymbol: false,
+          hasGroupingNumbers: false,
         },
         amount: "-15.8",
       });
       expect(actual).toBe("-$15.8");
     });
 
-    it("negative number, right symbol position, without space", () => {
+    it("negative number, right symbol position, without space, without grouping", () => {
       const actual = createCurrencyAmountString({
         currency: {
           symbol: "$",
           symbolPosition: "right",
+          precision: 1,
           hasSpaceBetweenAmountAndSymbol: false,
+          hasGroupingNumbers: false,
         },
         amount: "-15.8",
       });
       expect(actual).toBe("-15.8$");
     });
 
-    it("negative number, left symbol position, with space", () => {
+    it("negative number, left symbol position, with space, without grouping", () => {
       const actual = createCurrencyAmountString({
         currency: {
           symbol: "$",
           symbolPosition: "left",
+          precision: 1,
           hasSpaceBetweenAmountAndSymbol: true,
+          hasGroupingNumbers: false,
         },
         amount: "-15.8",
       });
       expect(actual).toBe("-$ 15.8");
     });
 
-    it("negative number, right symbol position, with space", () => {
+    it("negative number, right symbol position, with space, without grouping", () => {
       const actual = createCurrencyAmountString({
         currency: {
           symbol: "$",
           symbolPosition: "right",
+          precision: 1,
           hasSpaceBetweenAmountAndSymbol: true,
+          hasGroupingNumbers: false,
         },
         amount: "-15.8",
       });
       expect(actual).toBe("-15.8 $");
+    });
+
+    it("with grouping, high precision", () => {
+      const actual = createCurrencyAmountString({
+        currency: {
+          symbol: "BTC",
+          symbolPosition: "left",
+          precision: 6,
+          hasSpaceBetweenAmountAndSymbol: true,
+          hasGroupingNumbers: true,
+        },
+        amount: "1543.876532",
+      });
+      expect(actual).toBe("BTC 1,543.876532");
+    });
+
+    it("without grouping, low precision", () => {
+      const actual = createCurrencyAmountString({
+        currency: {
+          symbol: "BTC",
+          symbolPosition: "left",
+          precision: 2,
+          hasSpaceBetweenAmountAndSymbol: true,
+          hasGroupingNumbers: false,
+        },
+        amount: "1543.87",
+      });
+      expect(actual).toBe("BTC 1543.87");
     });
   });
 

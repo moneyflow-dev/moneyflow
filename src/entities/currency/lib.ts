@@ -1,13 +1,12 @@
 import { Decimal } from "decimal.js";
 
-import { numbersGroupingRegex } from "@shared/lib/regex";
-
 import { CurrencySymbolPosition } from "./model/models";
 
 interface CreateCurrencyBalanceStringParams {
   currency: {
     symbol: string;
     symbolPosition: CurrencySymbolPosition;
+    precision: number;
     hasSpaceBetweenAmountAndSymbol: boolean;
     hasGroupingNumbers: boolean;
   };
@@ -20,6 +19,7 @@ export const createCurrencyAmountString = ({
   currency: {
     symbol,
     symbolPosition,
+    precision,
     hasSpaceBetweenAmountAndSymbol,
     hasGroupingNumbers,
   },
@@ -27,14 +27,17 @@ export const createCurrencyAmountString = ({
 }: CreateCurrencyBalanceStringParams): string => {
   const number = new Decimal(amount);
   const isNegative = number.lt("0");
+  const formatedNumber = hasGroupingNumbers
+    ? new Intl.NumberFormat("en", { maximumFractionDigits: precision }).format(
+        number.abs().toNumber(),
+      )
+    : number.abs();
 
-  const parts = [symbol, number.abs().toString()];
+  const parts = [symbol, formatedNumber];
   if (symbolPosition === "right") {
     parts.reverse();
   }
-  const currencyString = parts
-    .join(hasSpaceBetweenAmountAndSymbol ? " " : "")
-    .replace(numbersGroupingRegex, hasGroupingNumbers ? "," : "");
+  const currencyString = parts.join(hasSpaceBetweenAmountAndSymbol ? " " : "");
   return `${isNegative ? "-" : ""}${currencyString}`;
 };
 
