@@ -22,6 +22,7 @@ export const createCurrencyFormFieldsetSchema = z.object({
   symbolPosition: z.nativeEnum(CurrencySymbolPosition),
   color: z.nativeEnum(ColorPickerColor),
   hasSpaceBetweenAmountAndSymbol: z.boolean(),
+  hasGroupingNumbers: z.boolean(),
   precision: z.string().regex(positiveIntegerRegex),
 });
 
@@ -80,6 +81,18 @@ export const CreateCurrencyFormFieldset = ({
         render={({ field: { value: checked, onChange } }) => (
           <Checkbox
             label="Add space between amount and symbol"
+            checked={checked}
+            onChange={onChange}
+            containerClassName="mt-3"
+          />
+        )}
+      />
+      <Controller
+        control={control}
+        name="hasGroupingNumbers"
+        render={({ field: { value: checked, onChange } }) => (
+          <Checkbox
+            label="Add grouping of numbers"
             checked={checked}
             onChange={onChange}
             containerClassName="mt-3"

@@ -6,7 +6,9 @@ interface CreateCurrencyBalanceStringParams {
   currency: {
     symbol: string;
     symbolPosition: CurrencySymbolPosition;
+    precision: number;
     hasSpaceBetweenAmountAndSymbol: boolean;
+    hasGroupingNumbers: boolean;
   };
   amount: string;
 }
@@ -14,13 +16,24 @@ interface CreateCurrencyBalanceStringParams {
 export class InvalidPrecisionError extends Error {}
 
 export const createCurrencyAmountString = ({
-  currency: { symbol, symbolPosition, hasSpaceBetweenAmountAndSymbol },
+  currency: {
+    symbol,
+    symbolPosition,
+    precision,
+    hasSpaceBetweenAmountAndSymbol,
+    hasGroupingNumbers,
+  },
   amount,
 }: CreateCurrencyBalanceStringParams): string => {
   const number = new Decimal(amount);
   const isNegative = number.lt("0");
+  const formatedNumber = hasGroupingNumbers
+    ? new Intl.NumberFormat("en", { maximumFractionDigits: precision }).format(
+        number.abs().toNumber(),
+      )
+    : number.abs();
 
-  const parts = [symbol, number.abs().toString()];
+  const parts = [symbol, formatedNumber];
   if (symbolPosition === "right") {
     parts.reverse();
   }

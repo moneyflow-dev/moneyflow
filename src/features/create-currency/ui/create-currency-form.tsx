@@ -29,15 +29,24 @@ export const CreateCurrencyForm = () => {
       symbolPosition: CurrencySymbolPosition.left,
       color: ColorPickerColor.peach,
       hasSpaceBetweenAmountAndSymbol: false,
+      hasGroupingNumbers: false,
       precision: "2",
     },
     resolver: zodResolver(createCurrencyFormFieldsetSchema),
   });
   const { formState, watch, handleSubmit } = methods;
-  const [symbol, symbolPosition, hasSpaceBetweenAmountAndSymbol] = watch([
+  const [
+    symbol,
+    symbolPosition,
+    precision,
+    hasSpaceBetweenAmountAndSymbol,
+    hasGroupingNumbers,
+  ] = watch([
     "symbol",
     "symbolPosition",
+    "precision",
     "hasSpaceBetweenAmountAndSymbol",
+    "hasGroupingNumbers",
   ]);
 
   const onCreateCurrency = async (
@@ -63,7 +72,9 @@ export const CreateCurrencyForm = () => {
                   currency: {
                     symbol,
                     symbolPosition,
+                    precision: +precision,
                     hasSpaceBetweenAmountAndSymbol,
+                    hasGroupingNumbers,
                   },
                   amount: "15.8",
                 })}
