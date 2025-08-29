@@ -1,5 +1,4 @@
 import { Preferences } from "@capacitor/preferences";
-import { v4 as uuidv4 } from "uuid";
 
 import { CreateIncomeDTO, IncomeDTO, IncomesDTO } from "./dtos";
 import { IncomesAPI } from "./incomes-api.interface";
@@ -33,7 +32,7 @@ export class PreferencesIncomesAPI implements IncomesAPI {
   async createIncome(expense: CreateIncomeDTO) {
     const incomes = await this.getState();
 
-    const id = uuidv4();
+    const id = crypto.randomUUID();
     const createdIncome: IncomeDTO = {
       ...expense,
       id,

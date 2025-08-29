@@ -1,5 +1,4 @@
 import { Preferences } from "@capacitor/preferences";
-import { v4 as uuidv4 } from "uuid";
 
 import { CurrencyID } from "../currencies-api";
 
@@ -45,7 +44,7 @@ export class PreferencesAccountsAPI implements AccountsAPI {
     const state = await this.getState();
     const { order, accounts } = state;
 
-    const id = uuidv4();
+    const id = crypto.randomUUID();
     const createdAccount: AccountDTO = {
       ...account,
       id,

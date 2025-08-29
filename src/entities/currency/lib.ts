@@ -27,13 +27,13 @@ export const createCurrencyAmountString = ({
 }: CreateCurrencyBalanceStringParams): string => {
   const number = new Decimal(amount);
   const isNegative = number.lt("0");
-  const formatedNumber = hasGroupingNumbers
+  const formattedNumber = hasGroupingNumbers
     ? new Intl.NumberFormat("en", { maximumFractionDigits: precision }).format(
         number.abs().toNumber(),
       )
     : number.abs();
 
-  const parts = [symbol, formatedNumber];
+  const parts = [symbol, formattedNumber];
   if (symbolPosition === "right") {
     parts.reverse();
   }

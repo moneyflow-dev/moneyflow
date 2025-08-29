@@ -1,5 +1,4 @@
 import { Preferences } from "@capacitor/preferences";
-import { v4 as uuidv4 } from "uuid";
 
 import {
   CreateExpenseCategoryDTO,
@@ -40,7 +39,7 @@ export class PreferencesExpenseCategoriesAPI implements ExpenseCategoriesAPI {
   ): Promise<ExpenseCategoryDTO> {
     const categories = await this.getState();
 
-    const id = uuidv4();
+    const id = crypto.randomUUID();
     const createdCategory: ExpenseCategoryDTO = {
       ...category,
       id,

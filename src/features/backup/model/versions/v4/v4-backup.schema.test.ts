@@ -21,7 +21,7 @@ const transferId2 = "150d1d21-b4b4-43bd-8ee5-7655b23ae13b";
 
 function generateBackup(): V4Backup {
   return {
-    version: 3,
+    version: 4,
     currencies: {
       order: [currencyId1, currencyId2],
       currencies: {
@@ -31,7 +31,7 @@ function generateBackup(): V4Backup {
           symbolPosition: "left",
           color: "lavender",
           hasSpaceBetweenAmountAndSymbol: false,
-          hasGroupingOfNumbers: false,
+          hasGroupingNumbers: false,
           precision: 2,
           createdAt: nowDate,
         },
@@ -41,7 +41,7 @@ function generateBackup(): V4Backup {
           symbolPosition: "right",
           color: "green",
           hasSpaceBetweenAmountAndSymbol: true,
-          hasGroupingOfNumbers: true,
+          hasGroupingNumbers: true,
           precision: 2,
           createdAt: nowDate,
         },
@@ -297,10 +297,10 @@ describe("v4 backup validation", () => {
       expect(success).toBe(false);
     });
 
-    it("without hasGroupingOfNumbers", () => {
+    it("without hasGroupingNumbers", () => {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const backup: any = generateBackup();
-      delete backup.currencies.currencies[currencyId1].hasGroupingOfNumbers;
+      delete backup.currencies.currencies[currencyId1].hasGroupingNumbers;
       const { success } = v4BackupConsistentSchema.safeParse(backup);
       expect(success).toBe(false);
     });
@@ -346,11 +346,10 @@ describe("v4 backup validation", () => {
       expect(success).toBe(false);
     });
 
-    it("hasGroupingOfNumbers is not boolean", () => {
+    it("hasGroupingNumbers is not boolean", () => {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const backup: any = generateBackup();
-      backup.currencies.currencies[currencyId1].hasGroupingOfNumbers =
-        "invalid";
+      backup.currencies.currencies[currencyId1].hasGroupingNumbers = "invalid";
       const { success } = v4BackupConsistentSchema.safeParse(backup);
       expect(success).toBe(false);
     });

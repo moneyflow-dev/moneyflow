@@ -39,7 +39,7 @@ const v4CurrencySchema = z.object({
   symbolPosition: z.enum(v4CurrencySymbolPosition),
   color: z.enum(v4ColorPickerColors),
   hasSpaceBetweenAmountAndSymbol: z.boolean(),
-  hasGroupingOfNumbers: z.boolean(),
+  hasGroupingNumbers: z.boolean(),
   precision: z.number().int().nonnegative(),
   createdAt: z.number().int().positive(),
 });
@@ -122,7 +122,7 @@ const v4SettingsSchema = z.object({
 });
 
 const v4BackupSchema = z.object({
-  version: z.literal(3),
+  version: z.literal(4),
   currencies: z.object({
     order: z.array(z.string().uuid()).refine(isUniqueArray),
     currencies: z.record(z.string().uuid(), v4CurrencySchema),

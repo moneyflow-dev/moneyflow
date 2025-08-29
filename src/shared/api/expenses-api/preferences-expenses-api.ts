@@ -1,5 +1,4 @@
 import { Preferences } from "@capacitor/preferences";
-import { v4 as uuidv4 } from "uuid";
 
 import { CreateExpenseDTO, ExpenseDTO, ExpensesDTO } from "./dtos";
 import { ExpensesAPI } from "./expenses-api.interface";
@@ -33,7 +32,7 @@ export class PreferencesExpensesAPI implements ExpensesAPI {
   async createExpense(expense: CreateExpenseDTO) {
     const expenses = await this.getState();
 
-    const id = uuidv4();
+    const id = crypto.randomUUID();
     const createdExpense: ExpenseDTO = {
       ...expense,
       id,

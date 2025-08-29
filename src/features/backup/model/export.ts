@@ -37,7 +37,7 @@ const createBackup = async (): Promise<Backup> => {
     settingsApi.getSettings(),
   ]);
   return {
-    version: version as 2,
+    version: version as 4,
     expenses,
     incomes,
     transfers,

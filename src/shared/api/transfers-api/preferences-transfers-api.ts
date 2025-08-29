@@ -1,5 +1,4 @@
 import { Preferences } from "@capacitor/preferences";
-import { v4 as uuidv4 } from "uuid";
 
 import { CreateTransferDTO, TransferDTO, TransfersDTO } from "./dtos";
 import { TransfersAPI } from "./transfers-api.interface";
@@ -33,7 +32,7 @@ export class PreferencesTransfersAPI implements TransfersAPI {
   async createTransfer(transfer: CreateTransferDTO) {
     const transfers = await this.getState();
 
-    const id = uuidv4();
+    const id = crypto.randomUUID();
     const createdTransfer: TransferDTO = {
       ...transfer,
       id,
